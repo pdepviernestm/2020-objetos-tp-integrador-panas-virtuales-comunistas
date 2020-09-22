@@ -1,8 +1,13 @@
 # TP Integrador
 
-Nombre de grupo: ...completar...
+Nombre de grupo: 
+					Panas Virtuales Comunistas
 
-Integrantes: ...completar...
+Integrantes: 
+	-Diego Renato Pisconte Castillo
+	-Matías Villa
+	-Tomás Bavutti
+	-Tomás Augusto De Lisio
 
 TP: ...si es juego poner el nombre del juego, si no dejar el [link al enunciado](https://docs.google.com/document/d/1S61v0V8ijICVy5OmhmZeOMklHqFBH_-4HQZFB8d-VLI/edit?usp=sharing)...
 
