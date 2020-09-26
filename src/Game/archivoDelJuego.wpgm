@@ -1,0 +1,5 @@
+import juegosinnombre.*
+
+program jueguito {
+	juegoSinNombre.jugar()
+}
