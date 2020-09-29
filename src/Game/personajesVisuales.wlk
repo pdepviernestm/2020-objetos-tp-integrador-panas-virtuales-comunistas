@@ -5,7 +5,7 @@ object personajePrincipal {
 	var estadoEmocional = 100
 	var cantidadSalud = 100
 	
-	method image() = "juan.jpg"
+	method image() = "avatar.png" //"juan.jpg" 
 	method saludo() = "Hola! :D" // Mensaje de prueba
 	method humor(){
 		if(estadoEmocional >= 70)
