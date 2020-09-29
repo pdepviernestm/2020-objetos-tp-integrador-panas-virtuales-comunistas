@@ -39,6 +39,7 @@ object juegoSinNombre {
 	method configurarTablero() {
 		game.width(15)
 		game.height(15)
+		game.boardGround("Piso.png")
 		game.title("INVENTAR NOMBRE") // No tenemos nombre todavía :(
 	}
 }
