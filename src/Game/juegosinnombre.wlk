@@ -34,6 +34,7 @@ object juegoSinNombre {
 	}
 	method configurarAmbiente(){
 		game.addVisual(puertaEntradaBanio)
+		game.addVisual(pc)
 	}
 	method configurarTablero() {
 		game.width(15)
