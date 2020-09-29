@@ -10,3 +10,9 @@ object pc {
 	method image()= "PC.jpg"
 	
 }
+
+object cama {
+	const property position = game.at(7,7)
+	method image() = "cama.jpg"
+	
+}

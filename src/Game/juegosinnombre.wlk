@@ -29,12 +29,13 @@ object juegoSinNombre {
 	method configurarPersonaje() {
 		game.addVisualCharacter(protagonista) 
 		game.say(protagonista,protagonista.saludo()) //Imprime el mensaje de prueba, lo podemos borrar
-		game.onTick(2000,"disminuye humor cada 2 seg",{stats.disminuirHumor()})
-		game.onTick(3000,"disminuye salud cada 3 seg",{stats.disminuirSalud()})
+		game.onTick(20000,"disminuye humor cada 20 seg",{stats.disminuirHumor()})
+		game.onTick(30000,"disminuye salud cada 30 seg",{stats.disminuirSalud()})
 	}
 	method configurarAmbiente(){
 		game.addVisual(puertaEntradaBanio)
 		game.addVisual(pc)
+		game.addVisual(cama) 
 	}
 	method configurarTablero() {
 		game.width(15)
