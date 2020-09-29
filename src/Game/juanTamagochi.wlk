@@ -3,7 +3,7 @@ import personajesVisuales.*
 import stats.*
 import wollok.game.*
 
-object juegoSinNombre {
+object juanTamagochi {
 	const protagonista = personajePrincipal
 	
 	method jugar() {
@@ -41,7 +41,7 @@ object juegoSinNombre {
 		game.width(15)
 		game.height(15)
 		game.boardGround("Piso.png")
-		game.title("INVENTAR NOMBRE") // No tenemos nombre todavía :(
+		game.title("juanTamgochi") // No tenemos nombre todavía :(
 	}
 }
 

@@ -1,5 +1,5 @@
-import juegosinnombre.*
+import juanTamagochi.*
 
 program jueguito {
-	juegoSinNombre.jugar()
+	juanTamagochi.jugar()
 }
