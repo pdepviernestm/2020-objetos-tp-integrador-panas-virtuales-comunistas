@@ -31,10 +31,10 @@ object stats {
 	}
 	method salud(){
 		if(cantidadSalud >= 50)
-			return "corazonLLeno.png" // HAY QUE BUSCARLE UNA IMAGEN
-		if(cantidadSalud.between(0,50))
-			return "corazonMitad.png" // HAY QUE BUSCARLE UNA IMAGEN
-		return "corazonVacio.png" // HAY QUE BUSCARLE UNA IMAGEN
+			return "corazonLLeno.png" 
+		if(cantidadSalud.between(0,49))
+			return "corazonMitad.png" 
+		return "corazonVacio.png" 
 	}
 	method modificarSalud(){
 		if(cantidadHigiene >= 70 )
