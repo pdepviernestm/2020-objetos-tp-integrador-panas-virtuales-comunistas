@@ -34,7 +34,7 @@ object stats {
 			return "juan.jpg" // HAY QUE BUSCARLE UNA IMAGEN
 		if(cantidadSalud.between(0,50))
 			return "avatar.png" // HAY QUE BUSCARLE UNA IMAGEN
-		return "cajaa.jpg" // HAY QUE BUSCARLE UNA IMAGEN
+		return "feliz.jpg" // HAY QUE BUSCARLE UNA IMAGEN
 	}
 	method modificarSalud(){
 		if(cantidadHigiene >= 70 )
@@ -43,6 +43,9 @@ object stats {
 			 cantidadSalud -= 30
 		if(cantidadHigiene < 20)
 			cantidadSalud -= 50
+	}
+	method muerte(){ // Booleano para matar al personaje
+		return cantidadHigiene <= 0 || cantidadSalud <= 0
 	}
 }
 

@@ -33,9 +33,10 @@ object juanTamagochi {
 	method configurarPersonaje() {
 		game.addVisualCharacter(protagonista) 
 		game.say(protagonista,protagonista.saludo()) //Imprime el mensaje de prueba, lo podemos borrar
-		game.onTick(20000,"disminuye humor cada 20 seg",{stats.disminuirHumor()})
-		game.onTick(30000,"disminuye higiene cada 30 seg",{stats.disminuirHigiene()})
+		game.onTick(2000,"disminuye humor cada 20 seg",{stats.disminuirHumor()})
+		game.onTick(3000,"disminuye higiene cada 30 seg",{stats.disminuirHigiene()})
 		game.onTick(2000, "modifica salud cada 2 segundos", {stats.modificarSalud()})
+		game.onTick(100,"verificar si muere",{self.muerto(protagonista)}) // MATA A JUAN :( pd: Cuando se muere rompe todo
 	}
 	method configurarAmbiente(){
 		game.addVisual(puertaEntradaBanio)
@@ -47,7 +48,21 @@ object juanTamagochi {
 		game.width(15)
 		game.height(15)
 		game.boardGround("Piso.png")
-		game.title("juanTamgochi") 
+		game.title("Juan Tamgochi") 
+	}
+	
+	method muerto(personaje){ // METODO PARA ELIMINAR AL PERSONAJE VISUAL
+		if(stats.muerte())
+			self.sacarPersonaje(personaje)
+	}
+	method sacarPersonaje(personaje){
+		spawner.despawnear(personaje)
+	}	
+}
+
+object spawner {
+	method despawnear(personaje){
+		game.removeVisual(personaje)		
 	}
 }
 
