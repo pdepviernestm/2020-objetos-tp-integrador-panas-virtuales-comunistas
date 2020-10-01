@@ -3,8 +3,9 @@ import wollok.game.*
 object stats {
 	
 	var property estadoEmocional = 100
+	var property cantidadHigiene = 60
 	var property cantidadSalud = 100
-	
+		
 	method humor(){
 		if(estadoEmocional >= 70)
 			return "feliz.jpg"
@@ -14,10 +15,10 @@ object stats {
 			return "triste.jpg"
 		return "muerto.jpg"
 	}
-	method salud(){
-		if(cantidadSalud>=50)
+	method higiene(){
+		if(cantidadHigiene>=50)
 			return "buenaSalud.jpg"
-		if(cantidadSalud>0 && cantidadSalud<50)
+		if(cantidadHigiene>0 && cantidadHigiene<50)
 			return "malaSalud.jpg"
 		return "muerte.jpg"
 	}
@@ -25,11 +26,26 @@ object stats {
 		estadoEmocional -=5 // disminuye humor en 5
 	}
 	
-	method disminuirSalud(){
-		cantidadSalud -=10
+	method disminuirHigiene(){
+		cantidadHigiene -=10
 	}
-	
-	
+	method salud(){
+		return "cajaa.jpg"
+	}
+	method modificarSalud(){
+		if(cantidadHigiene >= 70 )
+			return "cajaa.jpg"
+		if(cantidadHigiene <= 50)
+			return cantidadSalud - 30
+		if(cantidadHigiene <= 20)
+			return cantidadSalud - 50
+		return "cajaa.jpg"
+	}
+}
+
+object saludDePersonaje{
+	const property position = game.at(14,12)
+	method image() = stats.salud()
 }
 
 
@@ -38,8 +54,8 @@ object humorDePersonaje {
 	method image()= stats.humor()
 }
 
-object saludDePersonaje {
+object higieneDePersonaje {
 	const property position = game.at(14,13)
-	method image() = stats.salud()
+	method image() = stats.higiene()
 }
 

@@ -22,3 +22,4 @@ object cocina {
 	method image() = "cocina.jpg"
 	
 }
+

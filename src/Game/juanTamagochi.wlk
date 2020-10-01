@@ -17,11 +17,14 @@ object juanTamagochi {
 	}
 	method configurarStats(){
 		self.configurarHumor()
-		self.configurarSalud()
+		self.configurarHigiene()
 		self.configurarAmbiente()
 	}
 	method configurarHumor(){
 		game.addVisual(humorDePersonaje)
+	}
+	method configurarHigiene(){
+		game.addVisual(higieneDePersonaje)
 	}
 	method configurarSalud(){
 		game.addVisual(saludDePersonaje)
@@ -30,7 +33,8 @@ object juanTamagochi {
 		game.addVisualCharacter(protagonista) 
 		game.say(protagonista,protagonista.saludo()) //Imprime el mensaje de prueba, lo podemos borrar
 		game.onTick(20000,"disminuye humor cada 20 seg",{stats.disminuirHumor()})
-		game.onTick(30000,"disminuye salud cada 30 seg",{stats.disminuirSalud()})
+		game.onTick(30000,"disminuye higiene cada 30 seg",{stats.disminuirHigiene()})
+		game.onTick(2000, "modifica salud cada 2 segundos", {stats.modificarSalud()})
 	}
 	method configurarAmbiente(){
 		game.addVisual(puertaEntradaBanio)
