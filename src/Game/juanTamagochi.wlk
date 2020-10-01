@@ -35,13 +35,14 @@ object juanTamagochi {
 	method configurarAmbiente(){
 		game.addVisual(puertaEntradaBanio)
 		game.addVisual(pc)
-		game.addVisual(cama) 
+		game.addVisual(cama)
+		game.addVisual(cocina) 
 	}
 	method configurarTablero() {
 		game.width(15)
 		game.height(15)
 		game.boardGround("Piso.png")
-		game.title("juanTamgochi") // No tenemos nombre todavía :(
+		game.title("juanTamgochi") 
 	}
 }
 

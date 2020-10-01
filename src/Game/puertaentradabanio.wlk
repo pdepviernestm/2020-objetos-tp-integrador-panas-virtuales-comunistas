@@ -16,3 +16,9 @@ object cama {
 	method image() = "cama.jpg"
 	
 }
+
+object cocina {
+	const property position = game.at(3, 11)
+	method image() = "cocina.jpg"
+	
+}
