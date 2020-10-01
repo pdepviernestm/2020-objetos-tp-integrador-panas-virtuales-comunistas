@@ -19,6 +19,7 @@ object juanTamagochi {
 		self.configurarHumor()
 		self.configurarHigiene()
 		self.configurarAmbiente()
+		self.configurarSalud()
 	}
 	method configurarHumor(){
 		game.addVisual(humorDePersonaje)

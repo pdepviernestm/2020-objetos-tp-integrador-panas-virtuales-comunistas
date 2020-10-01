@@ -9,16 +9,16 @@ object stats {
 	method humor(){
 		if(estadoEmocional >= 70)
 			return "feliz.jpg"
-		if(estadoEmocional >= 30 && estadoEmocional < 70)
+		if(estadoEmocional.between(30,69))
 			return "neutral.jpg"
-		if(estadoEmocional >= 0 && estadoEmocional <30)
+		if(estadoEmocional.between(0,29))
 			return "triste.jpg"
 		return "muerto.jpg"
 	}
 	method higiene(){
 		if(cantidadHigiene>=50)
 			return "buenaSalud.jpg"
-		if(cantidadHigiene>0 && cantidadHigiene<50)
+		if(cantidadHigiene.between(0,49))
 			return "malaSalud.jpg"
 		return "muerte.jpg"
 	}
@@ -30,16 +30,19 @@ object stats {
 		cantidadHigiene -=10
 	}
 	method salud(){
-		return "cajaa.jpg"
+		if(cantidadSalud >= 50)
+			return "juan.jpg" // HAY QUE BUSCARLE UNA IMAGEN
+		if(cantidadSalud.between(0,50))
+			return "avatar.png" // HAY QUE BUSCARLE UNA IMAGEN
+		return "cajaa.jpg" // HAY QUE BUSCARLE UNA IMAGEN
 	}
 	method modificarSalud(){
 		if(cantidadHigiene >= 70 )
-			return "cajaa.jpg"
-		if(cantidadHigiene <= 50)
-			return cantidadSalud - 30
-		if(cantidadHigiene <= 20)
-			return cantidadSalud - 50
-		return "cajaa.jpg"
+			 cantidadSalud += 30
+		if(cantidadHigiene.between(20,50))
+			 cantidadSalud -= 30
+		if(cantidadHigiene < 20)
+			cantidadSalud -= 50
 	}
 }
 
