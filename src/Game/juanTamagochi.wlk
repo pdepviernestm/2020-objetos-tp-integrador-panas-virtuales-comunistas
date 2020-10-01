@@ -33,8 +33,8 @@ object juanTamagochi {
 	method configurarPersonaje() {
 		game.addVisualCharacter(protagonista) 
 		game.say(protagonista,protagonista.saludo()) //Imprime el mensaje de prueba, lo podemos borrar
-		game.onTick(2000,"disminuye humor cada 20 seg",{stats.disminuirHumor()})
-		game.onTick(3000,"disminuye higiene cada 30 seg",{stats.disminuirHigiene()})
+		game.onTick(20000,"disminuye humor cada 20 seg",{stats.disminuirHumor()})
+		game.onTick(30000,"disminuye higiene cada 30 seg",{stats.disminuirHigiene()})
 		game.onTick(2000, "modifica salud cada 2 segundos", {stats.modificarSalud()})
 		game.onTick(100,"verificar si muere",{self.muerto(protagonista)}) // MATA A JUAN :( pd: Cuando se muere rompe todo
 	}
