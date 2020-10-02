@@ -1,5 +1,6 @@
 import wollok.game.*
 import objetos.*
+import stats.*
 
 class Mapa {
 	
@@ -8,9 +9,11 @@ class Mapa {
 	method configurar(protagonista){
 		self.configurarFondo()
 		self.configurarObjetos()
+		
 		self.configurarTeclas(protagonista)
 //		self.trabajarPc(protagonista)
 	}
+	
 	method configurarFondo(){
 		game.addVisual(mapaActual)
 	}
@@ -32,6 +35,7 @@ object teclasDeLiving{
 		keyboard.a().onPressDo({if(protagonista.position() == salida.position()){protagonista.trabajarFuera()}})
 		keyboard.s().onPressDo({if(protagonista.position() == puertaEntradaBanio.position()){protagonista.lavarseLasManos()}})
 		keyboard.a().onPressDo({if(protagonista.position() == puertaEntradaBanio.position()){protagonista.defecar()}})
-	}
+	 }
+	
+ }
 
-}

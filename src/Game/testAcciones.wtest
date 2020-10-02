@@ -3,16 +3,54 @@ import acciones.*
 
 describe "Acciones"{
 	test "Cuando duerme en el sillon aumenta su energia en 50 y su humor en 20" {
+		stats.cantidadEnergia(50)
+		stats.estadoEmocional(80)
 		personaje.dormir()
-		assert.equals(150,stats.cantidadEnergia())
-		assert.equals(120,stats.estadoEmocional())
+		assert.equals(100,stats.cantidadEnergia())
+		assert.equals(100,stats.estadoEmocional())
 	}
 	test "Cuando se lava las manos aumenta su higiene en 20"{
+		stats.cantidadHigiene(80)
 		personaje.lavarseLasManos()
-		assert.equals(80,stats.cantidadHigiene())
+		assert.equals(100,stats.cantidadHigiene())
 	}
-	test "Cuando defeca disminuye su higiene en 20"{
+	test "Cuando defeca disminuye su higiene en 20 y 10 en su hambre pero aumenta su salud en 20"{
+		stats.cantidadSalud(80)
 		personaje.defecar()
-		assert.equals(40,stats.cantidadHigiene())
+		assert.equals(80,stats.cantidadHigiene())
+		assert.equals(100,stats.cantidadSalud())
+		assert.equals(90,stats.hambre())
+	}
+	test "Cuando trabaja aumenta dinero en 100 y disminuye 20 en energia y humor"{
+		personaje.trabajar()
+		assert.equals(100, stats.cantidadPlata())
+		assert.equals(80, stats.cantidadEnergia())
+		assert.equals(80, stats.estadoEmocional())
+	}
+	test "Cuando compra comida disminuye plata en 100, energia en 5 y higiene en 5, pero aumenta humor en 10 y hambre en 100"{
+		stats.estadoEmocional(90)
+		stats.cantidadPlata(100)
+		stats.hambre(0)
+		personaje.comprarComida()
+		assert.equals(0, stats.cantidadPlata())
+		assert.equals(95, stats.cantidadEnergia())
+		assert.equals(95, stats.cantidadHigiene())
+		assert.equals(100, stats.estadoEmocional())
+		assert.equals(100, stats.hambre())
+		}
+	test "Cuando sale de la casa disminuye plata en 100 y energia en 20, pero aumenta humor en 50. Ademas, por salir le agarra corona "{
+		stats.cantidadPlata(100)
+		stats.estadoEmocional(50)
+		personaje.salir()
+		assert.equals(0, stats.cantidadPlata())
+		assert.equals(80, stats.cantidadEnergia())
+		assert.equals(100, stats.estadoEmocional())
+		//assert.equals(true, personaje.tengoCorona())
+	}
+	test "Cuando sale trabajar afuera aumenta en 400 el dinero, pero disminuye 40 en energia y humor"{
+		personaje.trabajarFuera()
+		assert.equals(400, stats.cantidadPlata())
+		assert.equals(60, stats.cantidadEnergia())
+		assert.equals(60, stats.estadoEmocional())
 	}
 }
