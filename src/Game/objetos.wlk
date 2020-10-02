@@ -1,5 +1,14 @@
 import wollok.game.*
 
+object living {
+	var property lista = [pc,cama,cocina,puertaEntradaBanio]
+	const property position = game.origin()
+	method image()="Piso.png"
+}
+object banio {
+	const property position = game.origin()
+	method image()="fondo-baño.jpg"
+}
 object puertaEntradaBanio {
 	const property position = game.at(7,11)
 	method image()= "puertaBaño.jpg"

@@ -2,24 +2,24 @@ import objetos.*
 import personajesVisuales.*
 import stats.*
 import wollok.game.*
+import mapas.*
 
 object juanTamagochi {
 	const protagonista = personajePrincipal
-	
+	var property mapaActual = livingDeLaCasa
 	method jugar() {
 		self.configurarStats()
-		self.configurarTeclas()
-		self.configurarTableroYPersonaje()
+		self.configurarTablero()
+		self.configurarPersonaje()
 		game.start()
 	}
-	method configurarTableroYPersonaje(){
-		self.configurarTablero()
-		self.configurarPersonaje() // Aca vamos a poner mas cosas como self.configurarTeclas() por el momento no necesitamos mas
+	method configurarMapa(){
+		mapaActual.configurar(protagonista)
 	}
 	method configurarStats(){
 		self.configurarHumor()
 		self.configurarHigiene()
-		self.configurarAmbiente()
+		//self.configurarAmbiente()
 		self.configurarSalud()
 	}
 	method configurarHumor(){
@@ -31,19 +31,10 @@ object juanTamagochi {
 	method configurarSalud(){
 		game.addVisual(saludDePersonaje)
 	}
-	method configurarTeclas(){
-		keyboard.s().onPressDo({if(protagonista.position() == cama.position()){protagonista.domrir()}})
-	}
-	method configurarAmbiente(){
-		game.addVisual(puertaEntradaBanio)
-		game.addVisual(pc)
-		game.addVisual(cama)
-		game.addVisual(cocina) 
-	}
 	method configurarTablero() {
 		game.width(15)
 		game.height(15)
-		game.boardGround("Piso.png")
+		self.configurarMapa()
 		game.title("Juan Tamgochi") 
 	}
 	

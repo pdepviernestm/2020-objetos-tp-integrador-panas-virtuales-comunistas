@@ -26,7 +26,6 @@ object stats {
 	method modificarHumor(cantidad){
 		estadoEmocional += cantidad // modifica humor en cantidad ingresada
 	}
-	
 	method modificarHigiene(cantidad){
 		cantidadHigiene += cantidad
 	}
