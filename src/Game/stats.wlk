@@ -1,7 +1,8 @@
 import wollok.game.*
+import acciones.*
 
 object stats {
-	
+	var property contagiado = false
 	var property estadoEmocional = 100
 	var property cantidadHigiene = 100
 	var property cantidadSalud = 100
@@ -26,6 +27,9 @@ object stats {
 	}
 	method modificarSalud(cantidad){
 		cantidadSalud += cantidad
+	}
+	method contagiado(){
+		return personaje.salio() && cantidadHigiene < 20 && estadoEmocional < 20 
 	}
 	method salud(){
 		if(cantidadSalud >= 50)

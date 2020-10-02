@@ -45,7 +45,7 @@ describe "Acciones"{
 		assert.equals(0, stats.cantidadPlata())
 		assert.equals(80, stats.cantidadEnergia())
 		assert.equals(100, stats.estadoEmocional())
-		//assert.equals(true, personaje.tengoCorona())
+		assert.equals(true, personaje.salio())
 	}
 	test "Cuando sale trabajar afuera aumenta en 400 el dinero, pero disminuye 40 en energia y humor"{
 		personaje.trabajarFuera()
