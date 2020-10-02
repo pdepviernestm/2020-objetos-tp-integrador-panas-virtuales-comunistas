@@ -6,7 +6,42 @@ object stats {
 	var property cantidadHigiene = 100
 	var property cantidadSalud = 100
 	var property cantidadEnergia = 100
+	var property cantidadPlata = 0
+	var property hambre = 100
 		
+	method modificarHambre(cantidad){
+		hambre += cantidad // modifica hambre en cantidad ingresada
+	}
+	method modificarPlata(cantidad){
+		cantidadPlata += cantidad // modifica plata en cantidad ingresada
+	}
+	method modificarHumor(cantidad){
+		estadoEmocional += cantidad // modifica humor en cantidad ingresada
+	}
+	method modificarHigiene(cantidad){
+		cantidadHigiene += cantidad
+	}
+	method modificarEnergia(cantidad){
+		cantidadEnergia += cantidad
+	}
+	method modificarSalud(cantidad){
+		cantidadSalud += cantidad
+	}
+	method salud(){
+		if(cantidadSalud >= 50)
+			return "corazonLLeno.png" 
+		if(cantidadSalud.between(0,49))
+			return "corazonMitad.png" 
+		return "corazonVacio.png" 
+	}
+//	method modificarSalud(){                      // Me parecio incesesarion con el corona
+//		if(cantidadHigiene >= 70 )
+//			 cantidadSalud += 30
+//		if(cantidadHigiene.between(20,50))
+//			 cantidadSalud -= 30
+//		if(cantidadHigiene < 20)
+//			cantidadSalud -= 50
+//	}
 	method humor(){
 		if(estadoEmocional >= 70)
 			return "feliz.jpg"
@@ -23,34 +58,9 @@ object stats {
 			return "malaSalud.jpg"
 		return "muerte.jpg"
 	}
-	method modificarHumor(cantidad){
-		estadoEmocional += cantidad // modifica humor en cantidad ingresada
-	}
-	method modificarHigiene(cantidad){
-		cantidadHigiene += cantidad
-	}
-	method modificarEnergia(cantidad){
-		cantidadEnergia += cantidad
-	}
-	method salud(){
-		if(cantidadSalud >= 50)
-			return "corazonLLeno.png" 
-		if(cantidadSalud.between(0,49))
-			return "corazonMitad.png" 
-		return "corazonVacio.png" 
-	}
-	method modificarSalud(){
-		if(cantidadHigiene >= 70 )
-			 cantidadSalud += 30
-		if(cantidadHigiene.between(20,50))
-			 cantidadSalud -= 30
-		if(cantidadHigiene < 20)
-			cantidadSalud -= 50
-	}
-
 
 	method muerte(){ // Booleano para matar al personaje
-		return cantidadHigiene <= 0 || cantidadSalud <= 0
+		return cantidadSalud <= 0 || cantidadPlata <= 0 || hambre <= 0 || estadoEmocional <= 0
 	}
 }
 
