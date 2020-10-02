@@ -32,3 +32,7 @@ object cocina {
 	
 }
 
+object salida {
+	const property position = game.at(0, 5)
+}
+

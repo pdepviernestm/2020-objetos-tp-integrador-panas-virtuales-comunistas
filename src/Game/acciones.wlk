@@ -15,4 +15,14 @@ object personaje {
 		stats.modificarHigiene(-20)
 		//stats.modificarSalud(10) idem que dormir() 
 	}
+	method trabajar(){
+      stats.modificarHumor(-20)
+	}
+	method salir(){
+
+	}
+	method trabajarFuera(){
+
+	}
+
 }

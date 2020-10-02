@@ -14,4 +14,20 @@ object personajePrincipal {
 		personaje.lavarseLasManos()
 		game.say(self,"Me lavo las manos :D")
 	}
+	method trabajar(){
+		personaje.trabajar()
+		game.say(self,"Trabajo desde casa :D")
+	}
+	method salir(){
+		personaje.salir()
+		game.say(self,"Voy de shopping :|")
+	}
+	method trabajarFuera(){
+		personaje.trabajarFuera()
+		game.say(self,"Voy a trabajar :c")
+	}
+	method defecar(){
+		personaje.defecar()
+		game.say(self,"Usando el trono :D")
+	}
 }

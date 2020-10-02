@@ -9,6 +9,7 @@ class Mapa {
 		self.configurarFondo()
 		self.configurarObjetos()
 		self.configurarTeclas(protagonista)
+//		self.trabajarPc(protagonista)
 	}
 	method configurarFondo(){
 		game.addVisual(mapaActual)
@@ -25,5 +26,11 @@ const livingDeLaCasa = new Mapa (mapaActual=living,teclas=teclasDeLiving)
 object teclasDeLiving{
 	method configurarTeclas(protagonista){
 		keyboard.s().onPressDo({if(protagonista.position() == cama.position()){protagonista.domrir()}})
+		keyboard.s().onPressDo({if(protagonista.position() == pc.position()){protagonista.trabajar()}})
+		keyboard.s().onPressDo({if(protagonista.position() == salida.position()){protagonista.salir()}})
+		keyboard.a().onPressDo({if(protagonista.position() == salida.position()){protagonista.trabajarFuera()}})
+		keyboard.s().onPressDo({if(protagonista.position() == puertaEntradaBanio.position()){protagonista.lavarseLasManos()}})
+		keyboard.a().onPressDo({if(protagonista.position() == puertaEntradaBanio.position()){protagonista.defecar()}})
 	}
+
 }

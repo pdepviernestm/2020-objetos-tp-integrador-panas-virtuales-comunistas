@@ -3,7 +3,7 @@ import wollok.game.*
 object stats {
 	
 	var property estadoEmocional = 100
-	var property cantidadHigiene = 60
+	var property cantidadHigiene = 100
 	var property cantidadSalud = 100
 	var property cantidadEnergia = 100
 		
@@ -29,6 +29,9 @@ object stats {
 	method modificarHigiene(cantidad){
 		cantidadHigiene += cantidad
 	}
+	method modificarEnergia(cantidad){
+		cantidadEnergia += cantidad
+	}
 	method salud(){
 		if(cantidadSalud >= 50)
 			return "corazonLLeno.png" 
@@ -44,9 +47,8 @@ object stats {
 		if(cantidadHigiene < 20)
 			cantidadSalud -= 50
 	}
-	method modificarEnergia(cantidad){
-		cantidadEnergia += cantidad
-	}
+
+
 	method muerte(){ // Booleano para matar al personaje
 		return cantidadHigiene <= 0 || cantidadSalud <= 0
 	}
