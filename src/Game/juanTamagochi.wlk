@@ -8,8 +8,8 @@ object juanTamagochi {
 	const protagonista = personajePrincipal
 	var property mapaActual = livingDeLaCasa
 	method jugar() {
-		self.configurarStats()
 		self.configurarTablero()
+		self.configurarStats()
 		self.configurarPersonaje()
 		game.start()
 	}
