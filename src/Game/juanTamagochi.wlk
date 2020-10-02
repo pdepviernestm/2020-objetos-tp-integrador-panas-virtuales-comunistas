@@ -9,6 +9,7 @@ object juanTamagochi {
 	method jugar() {
 		self.configurarTableroYPersonaje()
 		self.configurarStats()
+		self.configurarTeclas()
 		game.start()
 	}
 	method configurarTableroYPersonaje(){
@@ -33,10 +34,13 @@ object juanTamagochi {
 	method configurarPersonaje() {
 		game.addVisualCharacter(protagonista) 
 		game.say(protagonista,protagonista.saludo()) //Imprime el mensaje de prueba, lo podemos borrar
-		game.onTick(20000,"disminuye humor cada 20 seg",{stats.disminuirHumor()})
-		game.onTick(30000,"disminuye higiene cada 30 seg",{stats.disminuirHigiene()})
+		game.onTick(20000,"disminuye humor cada 20 seg",{stats.modificarHumor(-5)})
+		game.onTick(30000,"disminuye higiene cada 30 seg",{stats.modificarHigiene(-10)})
 		game.onTick(20000, "modifica salud cada 20 segundos", {stats.modificarSalud()})
 		game.onTick(100,"verificar si muere",{self.muerto(protagonista)}) // MATA A JUAN :( pd: Cuando se muere rompe todo
+	}
+	method configurarTeclas(){
+		keyboard.s().onPressDo({if(protagonista.position() == cama.position()){protagonista.domrir()}})
 	}
 	method configurarAmbiente(){
 		game.addVisual(puertaEntradaBanio)

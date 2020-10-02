@@ -5,6 +5,7 @@ object stats {
 	var property estadoEmocional = 100
 	var property cantidadHigiene = 60
 	var property cantidadSalud = 100
+	var property cantidadEnergia = 100
 		
 	method humor(){
 		if(estadoEmocional >= 70)
@@ -22,12 +23,12 @@ object stats {
 			return "malaSalud.jpg"
 		return "muerte.jpg"
 	}
-		method disminuirHumor(){
-		estadoEmocional -=5 // disminuye humor en 5
+	method modificarHumor(cantidad){
+		estadoEmocional += cantidad // modifica humor en cantidad ingresada
 	}
 	
-	method disminuirHigiene(){
-		cantidadHigiene -=10
+	method modificarHigiene(cantidad){
+		cantidadHigiene += cantidad
 	}
 	method salud(){
 		if(cantidadSalud >= 50)
@@ -43,6 +44,9 @@ object stats {
 			 cantidadSalud -= 30
 		if(cantidadHigiene < 20)
 			cantidadSalud -= 50
+	}
+	method modificarEnergia(cantidad){
+		cantidadEnergia += cantidad
 	}
 	method muerte(){ // Booleano para matar al personaje
 		return cantidadHigiene <= 0 || cantidadSalud <= 0
@@ -64,4 +68,6 @@ object higieneDePersonaje {
 	const property position = game.at(14,13)
 	method image() = stats.higiene()
 }
-
+object energiaDePersonaje{
+	//implementar visuales de energia
+}

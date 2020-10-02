@@ -1,0 +1,18 @@
+import stats.*
+import acciones.*
+
+describe "Acciones"{
+	test "Cuando duerme en el sillon aumenta su energia en 50 y su humor en 20" {
+		personaje.dormir()
+		assert.equals(150,stats.cantidadEnergia())
+		assert.equals(120,stats.estadoEmocional())
+	}
+	test "Cuando se lava las manos aumenta su higiene en 20"{
+		personaje.lavarseLasManos()
+		assert.equals(80,stats.cantidadHigiene())
+	}
+	test "Cuando defeca disminuye su higiene en 20"{
+		personaje.defecar()
+		assert.equals(40,stats.cantidadHigiene())
+	}
+}
