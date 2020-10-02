@@ -60,7 +60,7 @@ object stats {
 	}
 
 	method muerte(){ // Booleano para matar al personaje
-		return cantidadSalud <= 0 || cantidadPlata <= 0 || hambre <= 0 || estadoEmocional <= 0
+		return cantidadSalud <= 0 || cantidadPlata < 0 || hambre <= 0 || estadoEmocional <= 0
 	}
 }
 
