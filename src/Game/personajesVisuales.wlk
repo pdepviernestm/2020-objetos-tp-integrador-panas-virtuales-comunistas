@@ -34,5 +34,8 @@ object personajePrincipal {
 		personaje.trabajarFuera()
 		game.say(self,"Voy a trabajar :c")
 	}
+	method cambiarPosicion(posicionNueva){
+		position = posicionNueva
+	}
 
 }

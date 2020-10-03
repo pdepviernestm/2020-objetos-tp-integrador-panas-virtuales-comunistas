@@ -7,19 +7,36 @@ import mapas.*
 object juanTamagochi {
 	const protagonista = personajePrincipal
 	var property mapaActual = livingDeLaCasa
+	const listaDeStats=[humorDePersonaje,higieneDePersonaje,saludDePersonaje,coronavirusDePersonaje]
 	method jugar() {
-		self.configurarTablero()
-		self.configurarStats()
-		self.configurarPersonaje()
+		self.configurar()
 		game.start()
+	}
+	method configurar(){
+		self.configurarTablero()
+		//self.configurarStats()
+		self.configurarPersonaje()
+	}
+	method configurarTablero() {
+		game.width(15)
+		game.height(15)
+		self.configurarMapa()
+		game.title("Juan Tamgochi") 
 	}
 	method configurarMapa(){
 		mapaActual.configurar(protagonista)
+		self.configurarStats()
+	}
+	method modificarMapa(nuevoMapa,ubicacion){
+		mapaActual.cambioDeMapa(protagonista)
+		mapaActual= nuevoMapa
+		listaDeStats.forEach{stat => game.removeVisual(stat)}
+		personajePrincipal.cambiarPosicion(ubicacion)
+		self.configurarTablero()
 	}
 	method configurarStats(){
 		self.configurarHumor()
 		self.configurarHigiene()
-		//self.configurarAmbiente()
 		self.configurarSalud()
 		self.contagiado()
 	}
@@ -35,13 +52,6 @@ object juanTamagochi {
 	method contagiado(){
         game.addVisual(coronavirusDePersonaje)
     }
-	method configurarTablero() {
-		game.width(15)
-		game.height(15)
-		self.configurarMapa()
-		game.title("Juan Tamgochi") 
-	}
-	
 	method muerto(personaje){ // METODO PARA ELIMINAR AL PERSONAJE VISUAL
 		if(stats.muerte())
 			self.sacarPersonaje(personaje)
@@ -50,7 +60,7 @@ object juanTamagochi {
 		spawner.despawnear(personaje)
 	}
 	method configurarPersonaje() {
-		game.addVisualCharacter(protagonista) 
+		//game.addVisualCharacter(protagonista) 
 		game.say(protagonista,protagonista.saludo()) //Imprime el mensaje de prueba, lo podemos borrar
 		game.onTick(20000,"disminuye humor cada 20 seg",{stats.modificarHumor(-5)})
 		game.onTick(30000,"disminuye higiene cada 30 seg",{stats.modificarHigiene(-10)})
