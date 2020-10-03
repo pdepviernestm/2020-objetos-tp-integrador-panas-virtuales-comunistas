@@ -21,6 +21,7 @@ object juanTamagochi {
 		self.configurarHigiene()
 		//self.configurarAmbiente()
 		self.configurarSalud()
+		self.contagiado()
 	}
 	method configurarHumor(){
 		game.addVisual(humorDePersonaje)
@@ -31,6 +32,9 @@ object juanTamagochi {
 	method configurarSalud(){
 		game.addVisual(saludDePersonaje)
 	}
+	method contagiado(){
+        game.addVisual(coronavirusDePersonaje)
+    }
 	method configurarTablero() {
 		game.width(15)
 		game.height(15)
