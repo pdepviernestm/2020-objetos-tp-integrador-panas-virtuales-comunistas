@@ -3,7 +3,6 @@ import wollok.game.*
 
 object personaje {
 	var property salio = false
-	
 	method dormir(){
 		stats.modificarEnergia(50)
 		stats.modificarSalud(20) //hay que ver si esta accion modifica o no la salud ya que por el momento 
@@ -44,11 +43,9 @@ object personaje {
       stats.modificarHumor(-40)
       salio = true
 	}
-	
 	method tengoCorona() {             //Me da Corona q resta salud sobre tiempo
 		if(stats.cantidadHigiene() < 50)
 		  game.onTick(20000, "modifica salud cada 20 segundos", {stats.modificarSalud(-10)})
-		  
 	}
 
 }

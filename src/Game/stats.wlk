@@ -9,7 +9,8 @@ object stats {
 	var property cantidadEnergia = 100
 	var property cantidadPlata = 0
 	var property hambre = 100
-		
+	var property contagiado = false
+	
 	method modificarHambre(cantidad){
 		hambre += cantidad // modifica hambre en cantidad ingresada
 	}
@@ -38,6 +39,14 @@ object stats {
 			return "corazonMitad.png" 
 		return "corazonVacio.png" 
 	}
+	method contagiado(){
+        return personaje.salio() && cantidadHigiene <= 20 && estadoEmocional <= 20 
+    }
+    method coronavirus(){
+        if(self.contagiado())
+            return "corona.png"
+        return "feliz.jpg"
+    }
 //	method modificarSalud(){                      // Me parecio incesesarion con el corona
 //		if(cantidadHigiene >= 70 )
 //			 cantidadSalud += 30
@@ -73,7 +82,7 @@ object stats {
 	}
 
 	method muerte(){ // Booleano para matar al personaje
-		return cantidadSalud <= 0 || cantidadPlata < 0 || hambre <= 0 || estadoEmocional <= 0
+		return cantidadSalud <= 0 || hambre <= 0 || estadoEmocional <= 0
 	}
 }
 
@@ -97,4 +106,8 @@ object higieneDePersonaje {
 }
 object energiaDePersonaje{
 	//implementar visuales de energia
+}
+object coronavirusDePersonaje{
+    const property position = game.at(14,10)
+    method image() = stats.coronavirus()
 }

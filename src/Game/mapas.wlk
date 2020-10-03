@@ -36,6 +36,5 @@ object teclasDeLiving{
 		keyboard.s().onPressDo({if(protagonista.position() == puertaEntradaBanio.position()){protagonista.lavarseLasManos()}})
 		keyboard.a().onPressDo({if(protagonista.position() == puertaEntradaBanio.position()){protagonista.defecar()}})
 	 }
-	
  }
 
