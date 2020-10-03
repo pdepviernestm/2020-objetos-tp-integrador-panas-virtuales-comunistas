@@ -55,6 +55,15 @@ object stats {
 			return "triste.jpg"
 		return "muerto.jpg"
 	}
+	method energia(){
+		if(cantidadEnergia >= 70)
+			return "energiallena.jpg"
+		if(cantidadEnergia.between(30,69))
+			return "energiaMitad.jpg"
+		if(cantidadEnergia.between(0,29))
+			return "energiaVacia.jpg"
+		return "muerto.jpg"
+	}
 	method higiene(){
 		if(cantidadHigiene>=50)
 			return "buenaSalud.jpg"
@@ -72,7 +81,10 @@ object saludDePersonaje{
 	const property position = game.at(14,12)
 	method image() = stats.salud()
 }
-
+object energiaPersonaje{
+	const property position = game.at(14,11)
+	method image() = stats.energia()
+}
 
 object humorDePersonaje {
 	const property position = game.at(14,14)

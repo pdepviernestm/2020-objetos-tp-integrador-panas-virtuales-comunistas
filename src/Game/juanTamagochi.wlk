@@ -21,6 +21,7 @@ object juanTamagochi {
 		self.configurarHigiene()
 		//self.configurarAmbiente()
 		self.configurarSalud()
+		self.configurarEnergia()
 	}
 	method configurarHumor(){
 		game.addVisual(humorDePersonaje)
@@ -30,7 +31,11 @@ object juanTamagochi {
 	}
 	method configurarSalud(){
 		game.addVisual(saludDePersonaje)
+	}	
+	method configurarEnergia(){
+		game.addVisual(energiaPersonaje)
 	}
+	
 	method configurarTablero() {
 		game.width(15)
 		game.height(15)
