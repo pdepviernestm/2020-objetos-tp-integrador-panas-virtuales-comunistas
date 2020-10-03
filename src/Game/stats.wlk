@@ -2,7 +2,7 @@ import wollok.game.*
 import acciones.*
 
 object stats {
-	
+	var property contagiado = false
 	var property estadoEmocional = 100
 	var property cantidadHigiene = 100
 	var property cantidadSalud = 100
@@ -28,6 +28,9 @@ object stats {
 	}
 	method modificarSalud(cantidad){
 		cantidadSalud += cantidad
+	}
+	method contagiado(){
+		return personaje.salio() && cantidadHigiene < 20 && estadoEmocional < 20 
 	}
 	method salud(){
 		if(cantidadSalud >= 50)
@@ -61,6 +64,15 @@ object stats {
 			return "triste.jpg"
 		return "muerto.jpg"
 	}
+	method energia(){
+		if(cantidadEnergia >= 70)
+			return "energiallena.jpg"
+		if(cantidadEnergia.between(30,69))
+			return "energiaMitad.jpg"
+		if(cantidadEnergia.between(0,29))
+			return "energiaVacia.jpg"
+		return "muerto.jpg"
+	}
 	method higiene(){
 		if(cantidadHigiene>=50)
 			return "buenaSalud.jpg"
@@ -78,7 +90,10 @@ object saludDePersonaje{
 	const property position = game.at(14,12)
 	method image() = stats.salud()
 }
-
+object energiaPersonaje{
+	const property position = game.at(14,11)
+	method image() = stats.energia()
+}
 
 object humorDePersonaje {
 	const property position = game.at(14,14)

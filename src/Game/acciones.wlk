@@ -41,6 +41,11 @@ object personaje {
       stats.modificarPlata(400)
       stats.modificarEnergia(-40)
       stats.modificarHumor(-40)
+      salio = true
+	}
+	method tengoCorona() {             //Me da Corona q resta salud sobre tiempo
+		if(stats.cantidadHigiene() < 50)
+		  game.onTick(20000, "modifica salud cada 20 segundos", {stats.modificarSalud(-10)})
 	}
 
 }
