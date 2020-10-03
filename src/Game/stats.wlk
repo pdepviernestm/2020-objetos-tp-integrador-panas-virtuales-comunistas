@@ -9,7 +9,7 @@ object stats {
 	var property cantidadEnergia = 100
 	var property cantidadPlata = 0
 	var property hambre = 100
-	var property contagiado = false
+//	var property contagiado = false
 	
 	method modificarHambre(cantidad){
 		hambre += cantidad // modifica hambre en cantidad ingresada
@@ -29,16 +29,16 @@ object stats {
 	method modificarSalud(cantidad){
 		cantidadSalud += cantidad
 	}
-	method contagiado(){
-		return personaje.salio() && cantidadHigiene < 20 && estadoEmocional < 20 
+	method crearImagen(stat,img1,img2,img3){
+		if(stat >= 70)
+			return img1 
+		if(stat.between(30,69))
+			return img2 
+        if(stat.between(0,29))
+			return img3 
+		return "muerto.jpg"
 	}
-	method salud(){
-		if(cantidadSalud >= 50)
-			return "corazonLLeno.png" 
-		if(cantidadSalud.between(0,49))
-			return "corazonMitad.png" 
-		return "corazonVacio.png" 
-	}
+
 	method contagiado(){
         return personaje.salio() && cantidadHigiene <= 20 && estadoEmocional <= 20 
     }
@@ -46,41 +46,7 @@ object stats {
         if(self.contagiado())
             return "corona.png"
         return "feliz.jpg"
-    }
-//	method modificarSalud(){                      // Me parecio incesesarion con el corona
-//		if(cantidadHigiene >= 70 )
-//			 cantidadSalud += 30
-//		if(cantidadHigiene.between(20,50))
-//			 cantidadSalud -= 30
-//		if(cantidadHigiene < 20)
-//			cantidadSalud -= 50
-//	}
-	method humor(){
-		if(estadoEmocional >= 70)
-			return "feliz.jpg"
-		if(estadoEmocional.between(30,69))
-			return "neutral.jpg"
-		if(estadoEmocional.between(0,29))
-			return "triste.jpg"
-		return "muerto.jpg"
-	}
-	method energia(){
-		if(cantidadEnergia >= 70)
-			return "energiallena.jpg"
-		if(cantidadEnergia.between(30,69))
-			return "energiaMitad.jpg"
-		if(cantidadEnergia.between(0,29))
-			return "energiaVacia.jpg"
-		return "muerto.jpg"
-	}
-	method higiene(){
-		if(cantidadHigiene>=50)
-			return "buenaSalud.jpg"
-		if(cantidadHigiene.between(0,49))
-			return "malaSalud.jpg"
-		return "muerte.jpg"
-	}
-
+}
 	method muerte(){ // Booleano para matar al personaje
 		return cantidadSalud <= 0 || hambre <= 0 || estadoEmocional <= 0
 	}
@@ -88,26 +54,25 @@ object stats {
 
 object saludDePersonaje{
 	const property position = game.at(14,12)
-	method image() = stats.salud()
-}
-object energiaPersonaje{
-	const property position = game.at(14,11)
-	method image() = stats.energia()
-}
-
-object humorDePersonaje {
-	const property position = game.at(14,14)
-	method image()= stats.humor()
-}
-
-object higieneDePersonaje {
-	const property position = game.at(14,13)
-	method image() = stats.higiene()
+	method image() = stats.crearImagen(stats.cantidadSalud(),"corazonLLeno.png","corazonMitad.png","corazonVacio.png")
 }
 object energiaDePersonaje{
-	//implementar visuales de energia
+	const property position = game.at(14,11)
+	method image() = stats.crearImagen(stats.cantidadEnergia(),"energiallena.jpg","energiaMitad.jpg","energiaVacia.jpg")   
+}
+object humorDePersonaje {
+	const property position = game.at(14,14)
+	method image() = stats.crearImagen(stats.estadoEmocional(),"feliz.jpg","neutral.jpg","triste.jpg")
+}
+object higieneDePersonaje {
+	const property position = game.at(14,13)
+	method image() = stats.crearImagen(stats.cantidadHigiene(),"buenaSalud.jpg","malaSalud.jpg","malaSalud.jpg")
 }
 object coronavirusDePersonaje{
-    const property position = game.at(14,10)
+    const property position = game.at(14,9)
     method image() = stats.coronavirus()
+}
+object saciedadDePersonaje{
+    const property position = game.at(14,10)
+    method image() = stats.crearImagen(stats.hambre(),"Pizza.jpg","PizzaCortada.jpg","PizzaPorcion.jpg")
 }
