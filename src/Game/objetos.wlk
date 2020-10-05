@@ -21,7 +21,7 @@ class ObjetoVisual{
 object accionesCama{
 	method primaria(protagonista){
 		protagonista.dormir()
-	}
+	}//comentario para poder hacer el commmit
 	method secundaria(protagonista){
 	}
 }
