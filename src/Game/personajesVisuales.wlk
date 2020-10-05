@@ -4,9 +4,9 @@ import acciones.*
 object personajePrincipal {
 	var property position = game.origin()
 	
-	method image() = "avatar.png" //"juan.jpg" 
+	method image() = "avatar.png" 
 	method saludo() = "Hola! :D" // Mensaje de prueba
-	method domrir(){
+	method dormir(){
 		personaje.dormir()
 		game.say(self,"Zzz...")
 	}

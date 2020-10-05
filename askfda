@@ -1,0 +1,46 @@
+[33mea893ce[m[33m ([m[1;36mHEAD -> [m[1;32mbranchDiego[m[33m, [m[1;31morigin/branchDiego[m[33m)[m objetos como clases con error
+[33m803c406[m Merge branch 'branchDiego' of https://github.com/pdepviernestm/2020-objetos-tp-integrador-panas-virtuales-comunistas.git into branchDiego
+[33mba01ccc[m transicion a baño con fallas
+[33m13166be[m Merge branch 'master' into branchDiego
+[33mc5e764e[m imagen de corona
+[33mfe7e705[m contagiado
+[33me58e5f9[m[33m ([m[1;32mmaster[m[33m)[m Agregue energia
+[33mee301a6[m Imagenes
+[33m9d3b085[m Agregamos la logica de tener o no coronavirus
+[33mbcda0e4[m Merge pull request #1 from pdepviernestm/branchDiego
+[33m70ada30[m correccion de onTick
+[33mfccf288[m Merge branch 'branchDiego' of https://github.com/pdepviernestm/2020-objetos-tp-integrador-panas-virtuales-comunistas.git into branchDiego
+[33mfd15a98[m muere sin error
+[33m9adced4[m[33m ([m[1;31morigin/branchTomi[m[33m, [m[1;31morigin/branchMati[m[33m)[m Agrego a testAcciones
+[33mba82ee1[m Agregamos test acciones
+[33madf5ea7[m se ven los stats
+[33mc441eb3[m Pequeño cambio(taba mal la plata)
+[33meab6b17[m Cambie un monton de cosas
+[33m8e951fe[m Agregue acciones para los objetos con a y s
+[33m488aad6[m mapas con clase a un archivo nuevo
+[33m102cc1d[m Juan se superpone a los objetos
+[33med77822[m borre dos imagenes que quedaron de prueba
+[33m38e0ec9[m test acciones + dormir visual
+[33m9727962[m Saque puerta del banio
+[33m37dc825[m Creo q lo arregla
+[33m6b3a33b[m Corazones
+[33mbba4a37[m arreglado el onTick
+[33mdd3decf[m Metodo para eliminar al personaje cuando "muere"
+[33mee7d996[m Salud improvisada
+[33m37ea0f7[m arreglando
+[33m072c791[m editado lavamanos.jpg
+[33ma8661ed[m Agregados baño y lavamanos
+[33mf766dae[m Agregamos nombre
+[33m0a8c999[m Agregamos cama y PC
+[33me45800e[m Agregue PC
+[33md0712df[m Cambio stats a otro archivo
+[33m5765a7a[m Cambio personaje
+[33m8ea1a8f[m Agregue piso
+[33m309a264[m Saque rogram
+[33m7799743[m Salud + puerta del baño
+[33mb0415d7[m agregado humor + imagenes
+[33m2c34719[m cambio en el tamaño del personaje
+[33mfedfd6a[m Codigo + imagenes ejemplo. Aparece el personaje
+[33m4f0be1c[m editado el deepThought
+[33m44a279c[m Modificado README
+[33m85fd883[m Initial commit

@@ -5,26 +5,25 @@ import wollok.game.*
 import mapas.*
 
 object juanTamagochi {
-	const protagonista = personajePrincipal
-	var property mapaActual = livingDeLaCasa
-	const listaDeStats=[humorDePersonaje,higieneDePersonaje,saludDePersonaje,coronavirusDePersonaje]
+	const property protagonista = personajePrincipal
+	var property mapaActual = mapas.livingDeLaCasa()
+	const listaDeStats=[humorDePersonaje,higieneDePersonaje,saludDePersonaje,coronavirusDePersonaje,energiaPersonaje]
 	method jugar() {
 		self.configurar()
 		game.start()
 	}
 	method configurar(){
 		self.configurarTablero()
-		//self.configurarStats()
 		self.configurarPersonaje()
 	}
 	method configurarTablero() {
 		game.width(15)
 		game.height(15)
 		self.configurarMapa()
-		game.title("Juan Tamgochi") 
+		game.title("Juan Tamagochi") 
 	}
 	method configurarMapa(){
-		mapaActual.configurar(protagonista)
+		mapaActual.configurar()
 		self.configurarStats()
 	}
 	method modificarMapa(nuevoMapa,ubicacion){
@@ -33,6 +32,7 @@ object juanTamagochi {
 		listaDeStats.forEach{stat => game.removeVisual(stat)}
 		personajePrincipal.cambiarPosicion(ubicacion)
 		self.configurarTablero()
+		game.addVisual(protagonista)
 	}
 	method configurarStats(){
 		self.configurarHumor()
@@ -64,7 +64,7 @@ object juanTamagochi {
 		spawner.despawnear(personaje)
 	}
 	method configurarPersonaje() {
-		//game.addVisualCharacter(protagonista) 
+		game.addVisualCharacter(protagonista) 
 		game.say(protagonista,protagonista.saludo()) //Imprime el mensaje de prueba, lo podemos borrar
 		game.onTick(2000,"disminuye humor cada 20 seg",{stats.modificarHumor(-5)})
 		game.onTick(3000,"disminuye higiene cada 30 seg",{stats.modificarHigiene(-10)})
