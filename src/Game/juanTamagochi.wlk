@@ -7,7 +7,7 @@ import mapas.*
 object juanTamagochi {
 	const property protagonista = personajePrincipal
 	var property mapaActual = mapas.livingDeLaCasa()
-	const listaDeStats=[humorDePersonaje,higieneDePersonaje,saludDePersonaje,coronavirusDePersonaje,energiaPersonaje]
+	const listaDeStats=[humorDePersonaje,higieneDePersonaje,saludDePersonaje,coronavirusDePersonaje,energiaDePersonaje]
 	method jugar() {
 		self.configurar()
 		game.start()
@@ -60,12 +60,6 @@ object juanTamagochi {
 	method configurarSaciedad(){
         game.addVisual(saciedadDePersonaje)
     }    
-	method configurarTablero() {
-		game.width(15)
-		game.height(15)
-		self.configurarMapa()
-		game.title("Juan Tamgochi") 
-	}
 	method muerto(personaje){ // METODO PARA ELIMINAR AL PERSONAJE VISUAL
 		if(stats.muerte())
 			self.sacarPersonaje(personaje)
