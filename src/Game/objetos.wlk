@@ -21,12 +21,11 @@ class ObjetoVisual{
 /*class Acciones{
 	const property accionPrim
 	const property accionSec
-	const property protagonista
 	method primaria(){
-		accionPrim
+		return accionPrim
 	}
 	method secundaria(){
-		accionSec
+		return accionSec
 	}
 }*/
 object accionesCama{
@@ -81,13 +80,14 @@ object accionesInodoro{
 	}
 }
 object living {
+	const protagonista = juanTamagochi.protagonista()
+	
 	const property puertaEntradaBanio=new ObjetoVisual(x=7,y=11,imagen="puertaBaño.jpg")
 	const pc=new ObjetoVisual(x=13,y=11,imagen="PC.jpg")
 	const cama=new ObjetoVisual(x=7,y=7,imagen="cama.jpg")
 	const cocina=new ObjetoVisual(x=3,y=11,imagen="cocina.jpg")
-	const salida=new ObjetoVisual(x=0,y=5,imagen="feliz.jpg")
+	const salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg")
 	
-	const protagonista = juanTamagochi.protagonista()
 	const lista = [pc,cama,cocina,puertaEntradaBanio,salida]
 
 	const property position = game.origin()
