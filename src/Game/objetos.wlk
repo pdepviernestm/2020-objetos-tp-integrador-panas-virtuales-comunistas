@@ -20,8 +20,8 @@ class ObjetoVisual{
 }
 object accionesCama{
 	method primaria(protagonista){
-		protagonista.dormir()
-	}//comentario para poder hacer el commmit
+		protagonista.dormir() 
+	}//comentario para poder hacer el commmit :D
 	method secundaria(protagonista){
 	}
 }
