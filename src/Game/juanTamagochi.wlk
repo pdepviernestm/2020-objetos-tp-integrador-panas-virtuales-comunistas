@@ -40,6 +40,7 @@ object juanTamagochi {
 		self.configurarSalud()
 		self.contagiado()
 		self.configurarEnergia()
+		self.configurarSaciedad()
 	}
 	method configurarHumor(){
 		game.addVisual(humorDePersonaje)
@@ -51,11 +52,20 @@ object juanTamagochi {
 		game.addVisual(saludDePersonaje)
 	}	
 	method configurarEnergia(){
-		game.addVisual(energiaPersonaje)
+		game.addVisual(energiaDePersonaje)
 	}
 	method contagiado(){
         game.addVisual(coronavirusDePersonaje)
     }
+	method configurarSaciedad(){
+        game.addVisual(saciedadDePersonaje)
+    }    
+	method configurarTablero() {
+		game.width(15)
+		game.height(15)
+		self.configurarMapa()
+		game.title("Juan Tamgochi") 
+	}
 	method muerto(personaje){ // METODO PARA ELIMINAR AL PERSONAJE VISUAL
 		if(stats.muerte())
 			self.sacarPersonaje(personaje)
