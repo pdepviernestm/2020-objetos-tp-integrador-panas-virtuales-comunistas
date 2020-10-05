@@ -19,14 +19,10 @@ class Mapa {
 		game.removeVisual(protagonista)
 	}
 }
-//const  livingDeLaCasa = new Mapa(mapaActual=living)
-//const  banioDeLaCasa = new Mapa(mapaActual=banio)
 
 object mapas{
 	method livingDeLaCasa()= new Mapa(mapaActual=living)
 	method banioDeLaCasa()=new Mapa(mapaActual=banio)
-	//const property livingDeLaCasa = new Mapa(mapaActual=living)
-	//const property banioDeLaCasa = new Mapa(mapaActual=banio)
 }
 
 

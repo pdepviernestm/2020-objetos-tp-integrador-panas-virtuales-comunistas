@@ -67,7 +67,7 @@ object juanTamagochi {
 	method sacarPersonaje(personaje){
 		spawner.despawnear(personaje)
 	}
-	method configurarPersonaje() {
+	method configurarPersonaje(){
 		game.addVisualCharacter(protagonista) 
 		game.say(protagonista,protagonista.saludo()) //Imprime el mensaje de prueba, lo podemos borrar
 		game.onTick(2000,"disminuye humor cada 20 seg",{stats.modificarHumor(-5)})
