@@ -9,7 +9,6 @@ object stats {
 	var property cantidadEnergia = 100
 	var property cantidadPlata = 0
 	var property hambre = 100
-//	var property contagiado = false
 	
 	method modificarHambre(cantidad){
 		hambre += cantidad // modifica hambre en cantidad ingresada
@@ -38,10 +37,10 @@ object stats {
 			return img3 
 		return "muerto.jpg"
 	}
-
 	method contagiado(){
         return personaje.salio() && cantidadHigiene <= 20 && estadoEmocional <= 20 
     }
+
     method coronavirus(){
         if(self.contagiado())
             return "corona.png"

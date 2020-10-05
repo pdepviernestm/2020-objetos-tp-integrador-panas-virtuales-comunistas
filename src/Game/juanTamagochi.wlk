@@ -5,21 +5,38 @@ import wollok.game.*
 import mapas.*
 
 object juanTamagochi {
-	const protagonista = personajePrincipal
-	var property mapaActual = livingDeLaCasa
+	const property protagonista = personajePrincipal
+	var property mapaActual = mapas.livingDeLaCasa()
+	const listaDeStats=[humorDePersonaje,higieneDePersonaje,saludDePersonaje,coronavirusDePersonaje,energiaPersonaje]
 	method jugar() {
-		self.configurarTablero()
-		self.configurarStats()
-		self.configurarPersonaje()
+		self.configurar()
 		game.start()
 	}
+	method configurar(){
+		self.configurarTablero()
+		self.configurarPersonaje()
+	}
+	method configurarTablero() {
+		game.width(15)
+		game.height(15)
+		self.configurarMapa()
+		game.title("Juan Tamagochi") 
+	}
 	method configurarMapa(){
-		mapaActual.configurar(protagonista)
+		mapaActual.configurar()
+		self.configurarStats()
+	}
+	method modificarMapa(nuevoMapa,ubicacion){
+		mapaActual.cambioDeMapa(protagonista)
+		mapaActual= nuevoMapa
+		listaDeStats.forEach{stat => game.removeVisual(stat)}
+		personajePrincipal.cambiarPosicion(ubicacion)
+		self.configurarTablero()
+		game.addVisual(protagonista)
 	}
 	method configurarStats(){
 		self.configurarHumor()
 		self.configurarHigiene()
-		//self.configurarAmbiente()
 		self.configurarSalud()
 		self.contagiado()
 		self.configurarEnergia()
@@ -40,7 +57,6 @@ object juanTamagochi {
 	method contagiado(){
         game.addVisual(coronavirusDePersonaje)
     }
-
 	method configurarSaciedad(){
         game.addVisual(saciedadDePersonaje)
     }    
@@ -50,7 +66,6 @@ object juanTamagochi {
 		self.configurarMapa()
 		game.title("Juan Tamgochi") 
 	}
-	
 	method muerto(personaje){ // METODO PARA ELIMINAR AL PERSONAJE VISUAL
 		if(stats.muerte())
 			self.sacarPersonaje(personaje)
