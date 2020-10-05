@@ -18,10 +18,11 @@ class ObjetoVisual{
 		game.removeVisual(self)
 	}
 }
+
 object accionesCama{
 	method primaria(protagonista){
 		protagonista.dormir() 
-	}//comentario para poder hacer el commmit :D
+	}
 	method secundaria(protagonista){
 	}
 }
@@ -31,7 +32,6 @@ object living {
 	const cama=new ObjetoVisual(x=7,y=7,imagen="cama.jpg")
 	const cocina=new ObjetoVisual(x=3,y=11,imagen="cocina.jpg")
 	const salida=new ObjetoVisual(x=0,y=5,imagen="feliz.jpg")
-	//const banio = mapas.banioDeLaCasa()
 	
 	const protagonista = personajePrincipal
 	const lista = [pc,cama,cocina,puertaEntradaBanio,salida]
@@ -39,12 +39,13 @@ object living {
 	const property position = game.origin()
 	method image() = "Piso.png"
 	method configurarTeclas(){
-		keyboard.s().onPressDo({if(protagonista.position() == cama.position()){protagonista.dormir()}})
-		keyboard.s().onPressDo({if(protagonista.position() == pc.position()){protagonista.trabajar()}})
-		keyboard.a().onPressDo({if(protagonista.position() == pc.position()){protagonista.comprarComida()}})
-		keyboard.s().onPressDo({if(protagonista.position() == salida.position()){protagonista.salir()}})
-		keyboard.a().onPressDo({if(protagonista.position() == salida.position()){protagonista.trabajarFuera()}})
-		keyboard.s().onPressDo({if(protagonista.position() == puertaEntradaBanio.position()){
+		keyboard.s().onPressDo({if(protagonista.position() == cama.position()&& game.hasVisual(cama)){protagonista.dormir()}})
+		keyboard.s().onPressDo({if(protagonista.position() == pc.position()&&game.hasVisual(pc)){protagonista.trabajar()}})
+		keyboard.a().onPressDo({if(protagonista.position() == pc.position()&&game.hasVisual(pc)){protagonista.comprarComida()}})
+		keyboard.s().onPressDo({if(protagonista.position()== cocina.position()&&game.hasVisual(cocina)){protagonista.comer()}})
+		keyboard.s().onPressDo({if(protagonista.position() == salida.position()&&game.hasVisual(salida)){protagonista.salir()}})
+		keyboard.a().onPressDo({if(protagonista.position() == salida.position()&&game.hasVisual(salida)){protagonista.trabajarFuera()}})
+		keyboard.s().onPressDo({if(protagonista.position() == puertaEntradaBanio.position()&&game.hasVisual(puertaEntradaBanio)){
 																	juanTamagochi.modificarMapa(mapas.banioDeLaCasa(),(game.origin()))
 		}})}
 	method configurarVisual(){
@@ -69,10 +70,10 @@ object banio {
 	const property position = game.origin()
 	method image()="fondo-baño.jpg"
 	method configurarTeclas(){
- 		keyboard.s().onPressDo({if(protagonista.position() == lavamanos.position())protagonista.lavarseLasManos()})
- 		keyboard.d().onPressDo({if(protagonista.position() == inodoro.position()) protagonista.defecar()})
- 		keyboard.space().onPressDo({if(protagonista.position()==self.position()){ 
- 											juanTamagochi.modificarMapa(living,(living.puertaEntradaBanio().position()
+ 		keyboard.s().onPressDo({if(protagonista.position() == lavamanos.position()&&game.hasVisual(lavamanos))protagonista.lavarseLasManos()})
+ 		keyboard.d().onPressDo({if(protagonista.position() == inodoro.position()&&game.hasVisual(inodoro)) protagonista.defecar()})
+ 		keyboard.space().onPressDo({if(protagonista.position()==self.position()&&game.hasVisual(self)){ 
+ 											juanTamagochi.modificarMapa(living,(living.mapaActual().puertaEntradaBanio().position()
  											))}
  		})
 	}

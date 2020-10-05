@@ -47,5 +47,10 @@ object personaje {
 		if(stats.cantidadHigiene() < 50)
 		  game.onTick(20000, "modifica salud cada 20 segundos", {stats.modificarSalud(-10)})
 	}
+	method comer(){
+		stats.modificarEnergia(10)
+		stats.modificarHumor(10)
+		stats.modificarHambre(50)
+	}
 
 }

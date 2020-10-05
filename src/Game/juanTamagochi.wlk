@@ -7,7 +7,7 @@ import mapas.*
 object juanTamagochi {
 	const property protagonista = personajePrincipal
 	var property mapaActual = mapas.livingDeLaCasa()
-	const listaDeStats=[humorDePersonaje,higieneDePersonaje,saludDePersonaje,coronavirusDePersonaje,energiaDePersonaje]
+	const listaDeStats=[humorDePersonaje,higieneDePersonaje,saludDePersonaje,coronavirusDePersonaje,energiaDePersonaje,saciedadDePersonaje]
 	method jugar() {
 		self.configurar()
 		game.start()
