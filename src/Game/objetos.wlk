@@ -94,14 +94,14 @@ object living {
 	method image() = "Piso.png"
 	method configurarTeclas(){
 		keyboard.s().onPressDo({if(protagonista.position() == cama.position()&& game.hasVisual(cama)){accionesCama.primaria(protagonista)}
-								if(protagonista.position() == pc.position()&&game.hasVisual(pc)){protagonista.trabajar()}
-								if(protagonista.position()== cocina.position()&&game.hasVisual(cocina)){protagonista.comer()}
-								if(protagonista.position() == salida.position()&&game.hasVisual(salida)){protagonista.salir()}
+								if(protagonista.position() == pc.position()&&game.hasVisual(pc)){accionesPC.primaria(protagonista)}
+								if(protagonista.position()== cocina.position()&&game.hasVisual(cocina)){accionesCocina.primaria(protagonista)}
+								if(protagonista.position() == salida.position()&&game.hasVisual(salida)){accionesSalida.primaria(protagonista)}
 								if(protagonista.position() == puertaEntradaBanio.position()&&game.hasVisual(puertaEntradaBanio)){
-																	juanTamagochi.modificarMapa(mapas.banioDeLaCasa(),(game.origin()))}
+																	accionesPuertaEntradaBanio.primaria(protagonista)}
 		})
-		keyboard.a().onPressDo({if(protagonista.position() == pc.position()&&game.hasVisual(pc)){protagonista.comprarComida()}
-								if(protagonista.position() == salida.position()&&game.hasVisual(salida)){protagonista.trabajarFuera()}
+		keyboard.a().onPressDo({if(protagonista.position() == pc.position()&&game.hasVisual(pc)){accionesPC.secundaria(protagonista)}
+								if(protagonista.position() == salida.position()&&game.hasVisual(salida)){accionesSalida.secundaria(protagonista)}
 		})
 		}
 	method configurarVisual(){
