@@ -52,7 +52,7 @@ object accionesCocina{
 }
 object accionesSalida{
 	method primaria(protagonista){
-		protagonista.salir()
+		juanTamagochi.modificarMapa(mapas.superMercadoJoJo(),(game.origin()))
 	}
 	method secundaria(protagonista){
 		protagonista.trabajarFuera()
@@ -147,3 +147,32 @@ object banio {
 		}
 }
 
+object superMercado {
+	
+	const protagonista = personajePrincipal
+	const lista = []
+	const property position = game.origin()
+	method image()="superMercado.png"
+	method configurarTeclas(){
+		
+ 		keyboard.s().onPressDo({})
+ 		keyboard.a().onPressDo({
+ 								if(protagonista.position()==self.position()&&game.hasVisual(self)){
+ 																juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(mapas.livingDeLaCasa().mapaActual().salida().position())
+ 																									)}		
+ 										}) //Las teclas de cambio de mapa tienen que ser distintas porque sino no funciona la transición
+	}
+	method configurarVisual(){
+		game.addVisual(self)
+		self.configurarObjetos()
+	}
+		method configurarObjetos(){
+		lista.forEach{objeto => objeto.configurarVisual()}
+	}
+	method borrarse(){
+			lista.forEach{objeto => objeto.borrarSuVisual()}
+			game.removeVisual(self)
+		}	
+	
+	
+}
