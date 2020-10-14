@@ -148,9 +148,14 @@ object banio {
 }
 
 object superMercado {
+	const jojoPizza = new ObjetoVisual(x=7,y=11,imagen="jojoPizza.png")
+	const jojaCola = new ObjetoVisual(x=2,y=7,imagen="jojaCola.png")
+	const fruta = new ObjetoVisual(x=2,y=11,imagen="fruta.png")
+	const comidaBarata = new ObjetoVisual(x=7,y=7,imagen="comidaBarata.png")
+	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png")		
 	
 	const protagonista = personajePrincipal
-	const lista = []
+	const lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura]
 	const property position = game.origin()
 	method image()="superMercado.png"
 	method configurarTeclas(){
