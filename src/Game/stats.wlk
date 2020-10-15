@@ -11,22 +11,22 @@ object stats {
 	var property hambre = 100
 	
 	method modificarHambre(cantidad){
-		hambre += cantidad // modifica hambre en cantidad ingresada
+		hambre += (cantidad).min(100) // modifica hambre en cantidad ingresada
 	}
 	method modificarPlata(cantidad){
 		cantidadPlata += cantidad // modifica plata en cantidad ingresada
 	}
 	method modificarHumor(cantidad){
-		estadoEmocional += cantidad // modifica humor en cantidad ingresada
+		estadoEmocional += (cantidad).min(100) // modifica humor en cantidad ingresada
 	}
 	method modificarHigiene(cantidad){
-		cantidadHigiene += cantidad
+		cantidadHigiene += (cantidad).min(100)
 	}
 	method modificarEnergia(cantidad){
-		cantidadEnergia += cantidad
+		cantidadEnergia += (cantidad).min(100)
 	}
 	method modificarSalud(cantidad){
-		cantidadSalud += cantidad
+		cantidadSalud += (cantidad).min(100)
 	}
 	method crearImagen(stat,img1,img2,img3){
 		if(stat >= 70)
