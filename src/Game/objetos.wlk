@@ -55,6 +55,9 @@ object accionesSalida{
 		juanTamagochi.modificarMapa(mapas.superMercadoJoJo(),(game.origin()))
 	}
 	method secundaria(protagonista){
+		juanTamagochi.modificarMapa(mapas.mapa(),(game.origin()))
+	}
+	method terciaria(protagonista){
 		protagonista.trabajarFuera()
 	}
 }
@@ -101,6 +104,9 @@ object living {
 																	accionesPuertaEntradaBanio.primaria(protagonista)}
 		})
 		keyboard.a().onPressDo({if(protagonista.position() == pc.position()&&game.hasVisual(pc)){accionesPC.secundaria(protagonista)}
+								if(protagonista.position() == salida.position()&&game.hasVisual(salida)){accionesSalida.terciaria(protagonista)}
+		})
+		keyboard.d().onPressDo({
 								if(protagonista.position() == salida.position()&&game.hasVisual(salida)){accionesSalida.secundaria(protagonista)}
 		})
 		}
@@ -179,5 +185,36 @@ object superMercado {
 			game.removeVisual(self)
 		}	
 	
+	
+}
+
+object mapaGeneral{
+	
+	const protagonista = personajePrincipal
+	const lista = []
+	const property position = game.origin()
+	method image() = "mapaGeneral.png"
+	method configurarTeclas(){
+		
+		keyboard.s().onPressDo({})
+		keyboard.a().onPressDo({
+								if(protagonista.position()==self.position()&&game.hasVisual(self)){
+ 															juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(mapas.livingDeLaCasa().mapaActual().salida().position())
+ 																									)}		
+		})
+	}
+ 																					
+	
+	method configurarVisual(){
+		game.addVisual(self)
+		self.configurarObjetos()
+	}
+		method configurarObjetos(){
+		lista.forEach{objeto => objeto.configurarVisual()}
+	}
+	method borrarse(){
+			lista.forEach{objeto => objeto.borrarSuVisual()}
+			game.removeVisual(self)
+		}	
 	
 }
