@@ -9,6 +9,7 @@ object stats {
 	var property cantidadEnergia = 100
 	var property cantidadPlata = 0
 	var property hambre = 100
+	var property dias = 0
 	
 	method modificarHambre(cantidad){
 		hambre += (cantidad).min(100) // modifica hambre en cantidad ingresada

@@ -218,3 +218,13 @@ object mapaGeneral{
 		}	
 	
 }
+
+object mochila {
+	
+	
+}
+
+object carrito {
+	
+	
+}
