@@ -169,7 +169,7 @@ object superMercado {
  		keyboard.s().onPressDo({})
  		keyboard.a().onPressDo({
  								if(protagonista.position()==self.position()&&game.hasVisual(self)){
- 																juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(mapas.livingDeLaCasa().mapaActual().salida().position())
+ 																juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(mapas.livingDeLaCasa().mapaActual().position())
  																									)}		
  										}) //Las teclas de cambio de mapa tienen que ser distintas porque sino no funciona la transición
 	}
@@ -193,14 +193,14 @@ object mapaGeneral{
 	const protagonista = personajePrincipal
 	const lista = []
 	const property position = game.origin()
+	const salida=new ObjetoVisual(x=0,y=5,imagen="salidaMapaGeneral.jpg")
 	method image() = "mapaGeneral.png"
 	method configurarTeclas(){
 		
 		keyboard.s().onPressDo({})
 		keyboard.a().onPressDo({
 								if(protagonista.position()==self.position()&&game.hasVisual(self)){
- 															juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(mapas.livingDeLaCasa().mapaActual().salida().position())
- 																									)}		
+ 																juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(mapas.livingDeLaCasa().mapaActual().position()))}
 		})
 	}
  																					
