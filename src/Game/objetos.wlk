@@ -50,6 +50,12 @@ object accionesCocina{
 	method secundiara(protagonista){
 	}
 }
+object accionesHeladera{
+	method primaria(protagonista){
+	}
+	method secundiara(protagonista){
+	}
+}
 object accionesSalida{
 	method primaria(protagonista){
 		juanTamagochi.modificarMapa(mapas.superMercadoJoJo(),(game.origin()))
@@ -90,8 +96,9 @@ object living {
 	const cama=new ObjetoVisual(x=7,y=7,imagen="cama.jpg")
 	const cocina=new ObjetoVisual(x=3,y=11,imagen="cocina.jpg")
 	const salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg")
+	const heladera=new ObjetoVisual(x=5,y=11,imagen="heladera.png")
 	
-	const lista = [pc,cama,cocina,puertaEntradaBanio,salida]
+	const lista = [pc,cama,cocina,puertaEntradaBanio,salida,heladera]
 
 	const property position = game.origin()
 	method image() = "Piso.png"
