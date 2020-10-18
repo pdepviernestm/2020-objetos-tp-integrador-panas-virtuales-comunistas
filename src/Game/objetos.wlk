@@ -227,11 +227,11 @@ object mapaGeneral{
 }
 
 object mochila {
-	
+	var property comidas = []
 	
 }
 
 object carrito {
-	
+	var property productos = []
 	
 }

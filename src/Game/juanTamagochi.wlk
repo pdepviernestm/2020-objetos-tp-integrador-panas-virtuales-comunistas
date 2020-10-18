@@ -34,6 +34,7 @@ object juanTamagochi {
 		self.configurarTablero()
 		game.addVisual(protagonista)
 	}
+
 	method configurarStats(){
 		self.configurarHumor()
 		self.configurarHigiene()
