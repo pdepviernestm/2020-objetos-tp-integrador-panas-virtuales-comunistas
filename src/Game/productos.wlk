@@ -1,8 +1,4 @@
 import wollok.game.*
-import juanTamagochi.*
-import mapas.*
-import personajesVisuales.*
-import objetos.*
 import stats.*
 
 class Pizza {

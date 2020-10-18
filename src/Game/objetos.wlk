@@ -2,6 +2,7 @@ import wollok.game.*
 import juanTamagochi.*
 import mapas.*
 import personajesVisuales.*
+import productos.*
 
 class ObjetoVisual{
 	const property x
