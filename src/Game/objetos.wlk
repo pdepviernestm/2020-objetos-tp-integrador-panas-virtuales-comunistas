@@ -118,6 +118,10 @@ object living {
 								if(protagonista.position() == salida.position()&&game.hasVisual(salida)){accionesSalida.secundaria(protagonista)}
 		})
 		}
+//	method configuracionTeclas(){                        //viendo de hacer lo q pidio
+//		keyboard.s().onPressDo({if(protagonista.position() == cama.position()&& game.hasVisual(cama)){accionesCama.primaria(protagonista)}})
+//	}
+	
 	method configurarVisual(){
 		game.addVisual(self)
 		self.configurarObjetos()
