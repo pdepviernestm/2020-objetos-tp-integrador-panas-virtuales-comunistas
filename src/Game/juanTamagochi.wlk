@@ -22,45 +22,24 @@ object juanTamagochi {
 		self.configurarMapa()
 		game.title("Juan Tamagochi") 
 	}
+	method agregarVisualStats(){
+		listaDeStats.forEach{stat => game.addVisual(stat)}
+	}
+	method borrarVisualStats(){
+		listaDeStats.forEach{stat => game.removeVisual(stat)}
+	}
 	method configurarMapa(){
 		mapaActual.configurar()
-		self.configurarStats()
+		self.agregarVisualStats()
 	}
 	method modificarMapa(nuevoMapa,ubicacion){
 		mapaActual.cambioDeMapa(protagonista)
 		mapaActual= nuevoMapa
-		listaDeStats.forEach{stat => game.removeVisual(stat)}
+		self.borrarVisualStats()
 		personajePrincipal.cambiarPosicion(ubicacion)
 		self.configurarTablero()
 		game.addVisual(protagonista)
 	}
-
-	method configurarStats(){
-		self.configurarHumor()
-		self.configurarHigiene()
-		self.configurarSalud()
-		self.contagiado()
-		self.configurarEnergia()
-		self.configurarSaciedad()
-	}
-	method configurarHumor(){
-		game.addVisual(humorDePersonaje)
-	}
-	method configurarHigiene(){
-		game.addVisual(higieneDePersonaje)
-	}
-	method configurarSalud(){
-		game.addVisual(saludDePersonaje)
-	}	
-	method configurarEnergia(){
-		game.addVisual(energiaDePersonaje)
-	}
-	method contagiado(){
-        game.addVisual(coronavirusDePersonaje)
-    }
-	method configurarSaciedad(){
-        game.addVisual(saciedadDePersonaje)
-    }    
 	method muerto(personaje){ // METODO PARA ELIMINAR AL PERSONAJE VISUAL
 		if(stats.muerte())
 			self.sacarPersonaje(personaje)
