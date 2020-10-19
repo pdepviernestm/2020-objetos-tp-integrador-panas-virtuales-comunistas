@@ -1,7 +1,7 @@
 import wollok.game.*
 import stats.*
 
-class Pizza {
+/*class Pizza {
 	const property valor = 300
 	method comer() {
     stats.modificarEnergia(-5)
@@ -43,4 +43,4 @@ class Fruta {
     stats.modificarHigiene(-5)	
 	stats.modificarSalud(10)
 	}
-}
+}*/

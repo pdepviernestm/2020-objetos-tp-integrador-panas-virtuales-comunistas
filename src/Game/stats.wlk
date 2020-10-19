@@ -3,43 +3,15 @@ import acciones.*
 
 object stats {
 	var property contagiado = false
-	var property estadoEmocional = 100
-	var property cantidadHigiene = 100
-	var property cantidadSalud = 100
-	var property cantidadEnergia = 100
 	var property cantidadPlata = 0
 	var property hambre = 100
 	var property dias = 0
 	
-	method modificarHambre(cantidad){
-		hambre += (cantidad).min(100) // modifica hambre en cantidad ingresada
-	}
 	method modificarPlata(cantidad){
 		cantidadPlata += cantidad // modifica plata en cantidad ingresada
 	}
-	method modificarHumor(cantidad){
-		estadoEmocional += (cantidad).min(100) // modifica humor en cantidad ingresada
-	}
-	method modificarHigiene(cantidad){
-		cantidadHigiene += (cantidad).min(100)
-	}
-	method modificarEnergia(cantidad){
-		cantidadEnergia += (cantidad).min(100)
-	}
-	method modificarSalud(cantidad){
-		cantidadSalud += (cantidad).min(100)
-	}
-	method crearImagen(stat,img1,img2,img3){
-		if(stat >= 70)
-			return img1 
-		if(stat.between(30,69))
-			return img2 
-        if(stat.between(0,29))
-			return img3 
-		return "muerto.jpg"
-	}
 	method contagiado(){
-        return personaje.salio() && cantidadHigiene <= 20 && estadoEmocional <= 20 
+        return personaje.salio() && statsDelJuego.higieneDePersonaje().cantidad() <= 20 && statsDelJuego.humorDePersonaje().cantidad() <= 20 
     }
 
     method coronavirus(){
@@ -48,31 +20,49 @@ object stats {
         return "feliz.jpg"
 }
 	method muerte(){ // Booleano para matar al personaje
-		return cantidadSalud <= 0 || hambre <= 0 || estadoEmocional <= 0
+		return statsDelJuego.saludDePersonaje().cantidad() <= 0 || statsDelJuego.saciedadDePersonaje().cantidad() <= 0 || statsDelJuego.humorDePersonaje().cantidad() <= 0
 	}
 }
+class Stat{
+	var property cantidad
+	var property tieneLimite = true
+	const property x
+	const property y
+	var property position = game.origin()
+	const property buenaImagen
+	const property mediaImagen
+	const property malaImagen
+	
+	method modificarCantidad(cantidadQueModifica){
+		if(!tieneLimite){
+			cantidad += (cantidadQueModifica).min(100)
+		}
+		else {
+			cantidad += cantidadQueModifica
+		}
+	}
+	method visualCorrespondida(){
+		position=game.at(x,y)
+		if(cantidad >= 70)
+			return buenaImagen 
+		if(cantidad.between(30,69))
+			return mediaImagen 
+        if(cantidad.between(0,29))
+			return malaImagen 
+		return "muerto.jpg"
+	}
+	method image() = self.visualCorrespondida()
+}
+object statsDelJuego {
+	const property saludDePersonaje = new Stat (cantidad = 100,x=14,y=12,buenaImagen="corazonLleno.png",mediaImagen="corazonMitad.png",malaImagen="corazonVacio.png")
+	const property energiaDePersonaje = new Stat (cantidad=100,x=14,y=11,buenaImagen="energiaLlena.jpg",mediaImagen="energiaMitad.jpg",malaImagen="energiaVacia.jpg")
+	const property humorDePersonaje = new Stat (cantidad = 100,x=14,y=14,buenaImagen="feliz.jpg",mediaImagen="neutral.jpg",malaImagen="triste.jpg")
+	const property higieneDePersonaje = new Stat (cantidad=100,x=14,y=13,buenaImagen="buenasalud.jpg",mediaImagen="malaSalud.jpg",malaImagen="malaSalud.jpg")
+	const property saciedadDePersonaje = new Stat (cantidad=100,x=14,y=10,buenaImagen="Pizza.jpg",mediaImagen="PizzaCortada.jpg",malaImagen="PizzaPorcion.jpg")
+	const property listaDeStats = [saludDePersonaje,energiaDePersonaje,humorDePersonaje,higieneDePersonaje,saciedadDePersonaje,coronavirusDePersonaje]
+}
 
-object saludDePersonaje{
-	const property position = game.at(14,12)
-	method image() = stats.crearImagen(stats.cantidadSalud(),"corazonLLeno.png","corazonMitad.png","corazonVacio.png")
-}
-object energiaDePersonaje{
-	const property position = game.at(14,11)
-	method image() = stats.crearImagen(stats.cantidadEnergia(),"energiallena.jpg","energiaMitad.jpg","energiaVacia.jpg")   
-}
-object humorDePersonaje {
-	const property position = game.at(14,14)
-	method image() = stats.crearImagen(stats.estadoEmocional(),"feliz.jpg","neutral.jpg","triste.jpg")
-}
-object higieneDePersonaje {
-	const property position = game.at(14,13)
-	method image() = stats.crearImagen(stats.cantidadHigiene(),"buenaSalud.jpg","malaSalud.jpg","malaSalud.jpg")
-}
 object coronavirusDePersonaje{
     const property position = game.at(14,9)
     method image() = stats.coronavirus()
-}
-object saciedadDePersonaje{
-    const property position = game.at(14,10)
-    method image() = stats.crearImagen(stats.hambre(),"Pizza.jpg","PizzaCortada.jpg","PizzaPorcion.jpg")
 }
