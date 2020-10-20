@@ -1,5 +1,4 @@
 import stats.*
-import wollok.game.*
 
 object personaje {
 	var property salio = false
@@ -43,14 +42,16 @@ object personaje {
       statsDelJuego.humorDePersonaje().modificarCantidad(-40)
       salio = true
 	}
-	method tengoCorona() {             //Me da Corona q resta salud sobre tiempo
-		if(statsDelJuego.higieneDePersonaje().cantidad() < 50)
-		  game.onTick(20000, "modifica salud cada 20 segundos", {statsDelJuego.saludDePersonaje().modificarCantidad(-10)})
-	}
 	method comer(){
 		statsDelJuego.energiaDePersonaje().modificarCantidad(10)
 		statsDelJuego.humorDePersonaje().modificarCantidad(10)
 		statsDelJuego.saciedadDePersonaje().modificarCantidad(50)
+	}
+	method higieneBaja(){
+		return (statsDelJuego.higieneDePersonaje().cantidad() < 50)
+	}
+	method efectoCorona(){
+		statsDelJuego.saludDePersonaje().modificarCantidad(-10)
 	}
 
 }

@@ -60,10 +60,10 @@ object coronavirusDePersonaje{
         return personaje.salio() && statsDelJuego.higieneDePersonaje().cantidad() <= 20 && statsDelJuego.humorDePersonaje().cantidad() <= 20 
     }
 
-    method coronavirus(){
+    method visual(){
         if(self.contagiado())
             return "corona.png"
         return "feliz.jpg"
 }
-    method image() = self.coronavirus()
+    method image() = self.visual()
 }

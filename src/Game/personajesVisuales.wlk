@@ -38,6 +38,10 @@ object personajePrincipal {
 		personaje.comer()
 		game.say(self,"Comiendo :D")
 	}
+	method tengoCorona() {             //Me da Corona q resta salud sobre tiempo
+		if(personaje.higieneBaja())
+		  game.onTick(20000, "modifica salud cada 20 segundos", {personaje.efectoCorona()})
+	}
 	method cambiarPosicion(posicionNueva){
 		position = posicionNueva
 	}
