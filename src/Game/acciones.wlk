@@ -1,4 +1,6 @@
 import stats.*
+import productos.*
+import objetos.*
 
 object personaje {
 	var property salio = false
@@ -43,9 +45,11 @@ object personaje {
       salio = true
 	}
 	method comer(){
-		statsDelJuego.energiaDePersonaje().modificarCantidad(10)
-		statsDelJuego.humorDePersonaje().modificarCantidad(10)
-		statsDelJuego.saciedadDePersonaje().modificarCantidad(50)
+		const comida = mochila.encontrarComida()
+		comida.comer()
+		mochila.sacarComida(comida)		
+//		}
+		
 	}
 	method higieneBaja(){
 		return (statsDelJuego.higieneDePersonaje().cantidad() < 50)

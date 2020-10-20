@@ -2,7 +2,7 @@ import wollok.game.*
 import acciones.*
 
 object stats {
-	var property cantidadPlata = 0
+	var property cantidadPlata = 10000
 	var property dias = 0
 	
 	method modificarPlata(cantidad){

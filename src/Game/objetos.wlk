@@ -3,6 +3,10 @@ import juanTamagochi.*
 import mapas.*
 import personajesVisuales.*
 import productos.*
+import stats.*
+import Game.productos.Pizza
+import Game.productos.Pizza
+import Game.productos.Pizza
 
 class ObjetoVisual{
 	const property x
@@ -172,7 +176,7 @@ object superMercado {
 	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png")	
 	const cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png")
 	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png")
-	const ahorretor = new ObjetoVisual(x=11,y=4,imagen="Punto.png")
+//	const ahorretor = new ObjetoVisual(x=11,y=4,imagen="Punto.png")
 	
 	var property carrito = []
 	
@@ -186,16 +190,25 @@ object superMercado {
 								if(protagonista.position()== jojaCola.position()&&game.hasVisual(jojaCola)){carrito.add(new JojaCola())}
 								if(protagonista.position()== fruta.position()&&game.hasVisual(jojaCola)){carrito.add(new Fruta())}
 								if(protagonista.position()== comidaBarata.position()&&game.hasVisual(jojaCola)){carrito.add(new ComidaBarata())}
-								if(protagonista.position()== caja.position()&&game.hasVisual(jojaCola)){accionesPC.primaria(protagonista)}
-								if(protagonista.position()== cajera.position()&&game.hasVisual(jojaCola)){accionesPC.primaria(protagonista)}
+								if(protagonista.position()== caja.position()&&game.hasVisual(jojaCola)){self.realizarCompras()}
+//	falta arreglar							if(protagonista.position()== cajera.position()&&game.hasVisual(jojaCola)){accionesPC.primaria(protagonista)}
 								if(protagonista.position()== basura.position()&&game.hasVisual(jojaCola)){carrito = []}
-								if(protagonista.position()== ahorretor.position()&&game.hasVisual(jojaCola)){carrito.remove({unProducto => unProducto.valor() > 100})}
+//	falta arreglar							if(protagonista.position()== ahorretor.position()&&game.hasVisual(jojaCola)){carrito.remove({unProducto => unProducto.valor() > 200})}
 								})
  		keyboard.a().onPressDo({
  								if(protagonista.position()==self.position()&&game.hasVisual(self)){
  																juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(mapas.livingDeLaCasa().mapaActual().position())
  																									)}		
  										}) //Las teclas de cambio de mapa tienen que ser distintas porque sino no funciona la transición
+	}
+	method realizarCompras(){
+		const precio = carrito.sum({unProducto => unProducto.valor()})
+		if(precio <= stats.cantidadPlata() && carrito.size() > 0 ) {
+			stats.modificarPlata(-precio)
+			carrito.forEach({producto => mochila.agregarComida(producto)})                     
+            carrito = []
+            game.say(self,"Me gaste la plata :D")
+		}
 	}
 	method configurarVisual(){
 		game.addVisual(self)
@@ -212,13 +225,22 @@ object superMercado {
 	
 }
 
-//object carrito {
-//	var property productos = []
-//}
-
 object mochila {
 	var property comidas = []
 	
+	method agregarComida(comida){
+		comidas.add(comida)
+	}
+	method sacarComida(comida){
+		comidas.remove(comida)
+	}
+	method encontrarComida(){
+		return comidas.find({comida => comida.valor() > 50 })
+	}
+	method comer(comida){
+		
+		comida.comer()
+	}
 }
 
 object mapaGeneral{
