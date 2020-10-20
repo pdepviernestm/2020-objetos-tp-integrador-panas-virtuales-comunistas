@@ -37,6 +37,7 @@ object accionesCama{
 	}
 }
 object accionesPC{
+	
 	method primaria(protagonista){
 		protagonista.trabajar()
 	}
@@ -118,10 +119,8 @@ object living {
 								if(protagonista.position() == salida.position()&&game.hasVisual(salida)){accionesSalida.secundaria(protagonista)}
 		})
 		}
-//	method configuracionTeclas(){                        //viendo de hacer lo q pidio
-//		keyboard.s().onPressDo({if(protagonista.position() == cama.position()&& game.hasVisual(cama)){accionesCama.primaria(protagonista)}})
-//	}
-	
+
+		
 	method configurarVisual(){
 		game.addVisual(self)
 		self.configurarObjetos()
@@ -170,15 +169,24 @@ object superMercado {
 	const jojaCola = new ObjetoVisual(x=2,y=7,imagen="jojaCola.png")
 	const fruta = new ObjetoVisual(x=2,y=11,imagen="fruta.png")
 	const comidaBarata = new ObjetoVisual(x=7,y=7,imagen="comidaBarata.png")
-	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png")		
+	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png")	
+	const cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png")
+	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png")	
 	
 	const protagonista = personajePrincipal
-	const lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura]
+	const lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura,caja,cajera]
 	const property position = game.origin()
 	method image()="superMercado.png"
 	method configurarTeclas(){
 		
- 		keyboard.s().onPressDo({})
+ 		keyboard.s().onPressDo({if(protagonista.position() == jojoPizza.position()&&game.hasVisual(jojoPizza)){accionesPC.primaria(protagonista)}
+								if(protagonista.position()== jojaCola.position()&&game.hasVisual(jojaCola)){accionesPC.primaria(protagonista)}
+								if(protagonista.position()== fruta.position()&&game.hasVisual(jojaCola)){accionesPC.primaria(protagonista)}
+								if(protagonista.position()== comidaBarata.position()&&game.hasVisual(jojaCola)){accionesPC.primaria(protagonista)}
+								if(protagonista.position()== caja.position()&&game.hasVisual(jojaCola)){accionesPC.primaria(protagonista)}
+								if(protagonista.position()== cajera.position()&&game.hasVisual(jojaCola)){accionesPC.primaria(protagonista)}
+								if(protagonista.position()== basura.position()&&game.hasVisual(jojaCola)){accionesPC.primaria(protagonista)}
+								if(protagonista.position() == fruta.position()&&game.hasVisual(fruta)){accionesPC.primaria(protagonista)}})
  		keyboard.a().onPressDo({
  								if(protagonista.position()==self.position()&&game.hasVisual(self)){
  																juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(mapas.livingDeLaCasa().mapaActual().position())
@@ -209,8 +217,9 @@ object mapaGeneral{
 	method image() = "mapaGeneral.png"
 	method configurarTeclas(){
 		
-		keyboard.s().onPressDo({})
-		keyboard.a().onPressDo({
+		            keyboard.s().onPressDo({})
+			
+					keyboard.a().onPressDo({
 								if(protagonista.position()==self.position()&&game.hasVisual(self)){
  																juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(mapas.livingDeLaCasa().mapaActual().position()))}
 		})
