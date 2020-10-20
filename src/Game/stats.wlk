@@ -2,7 +2,6 @@ import wollok.game.*
 import acciones.*
 
 object stats {
-	var property contagiado = false
 	var property cantidadPlata = 0
 	var property hambre = 100
 	var property dias = 0
@@ -10,15 +9,6 @@ object stats {
 	method modificarPlata(cantidad){
 		cantidadPlata += cantidad // modifica plata en cantidad ingresada
 	}
-	method contagiado(){
-        return personaje.salio() && statsDelJuego.higieneDePersonaje().cantidad() <= 20 && statsDelJuego.humorDePersonaje().cantidad() <= 20 
-    }
-
-    method coronavirus(){
-        if(self.contagiado())
-            return "corona.png"
-        return "feliz.jpg"
-}
 	method muerte(){ // Booleano para matar al personaje
 		return statsDelJuego.saludDePersonaje().cantidad() <= 0 || statsDelJuego.saciedadDePersonaje().cantidad() <= 0 || statsDelJuego.humorDePersonaje().cantidad() <= 0
 	}
@@ -65,5 +55,15 @@ object statsDelJuego {
 
 object coronavirusDePersonaje{
     const property position = game.at(14,9)
-    method image() = stats.coronavirus()
+    var property contagiado = false //
+    method contagiado(){
+        return personaje.salio() && statsDelJuego.higieneDePersonaje().cantidad() <= 20 && statsDelJuego.humorDePersonaje().cantidad() <= 20 
+    }
+
+    method coronavirus(){
+        if(self.contagiado())
+            return "corona.png"
+        return "feliz.jpg"
+}
+    method image() = self.coronavirus()
 }
