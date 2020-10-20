@@ -34,12 +34,13 @@ class Stat{
 	const property malaImagen
 	
 	method modificarCantidad(cantidadQueModifica){
-		if(!tieneLimite){
-			cantidad += (cantidadQueModifica).min(100)
+		if(tieneLimite){
+			cantidad = (cantidad +cantidadQueModifica).min(100)
 		}
 		else {
 			cantidad += cantidadQueModifica
 		}
+		return cantidad
 	}
 	method visualCorrespondida(){
 		position=game.at(x,y)
