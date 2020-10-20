@@ -53,5 +53,7 @@ object personaje {
 	method efectoCorona(){
 		statsDelJuego.saludDePersonaje().modificarCantidad(-10)
 	}
-
+	method morir(){ // Booleano para matar al personaje
+		return statsDelJuego.saludDePersonaje().cantidad() <= 0 || statsDelJuego.saciedadDePersonaje().cantidad() <= 0 || statsDelJuego.humorDePersonaje().cantidad() <= 0
+	}
 }

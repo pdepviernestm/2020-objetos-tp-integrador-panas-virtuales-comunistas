@@ -42,6 +42,9 @@ object personajePrincipal {
 		if(personaje.higieneBaja())
 		  game.onTick(20000, "modifica salud cada 20 segundos", {personaje.efectoCorona()})
 	}
+	method morir(){
+		return personaje.morir()
+	}
 	method cambiarPosicion(posicionNueva){
 		position = posicionNueva
 	}

@@ -3,14 +3,10 @@ import acciones.*
 
 object stats {
 	var property cantidadPlata = 0
-	var property hambre = 100
 	var property dias = 0
 	
 	method modificarPlata(cantidad){
 		cantidadPlata += cantidad // modifica plata en cantidad ingresada
-	}
-	method muerte(){ // Booleano para matar al personaje
-		return statsDelJuego.saludDePersonaje().cantidad() <= 0 || statsDelJuego.saciedadDePersonaje().cantidad() <= 0 || statsDelJuego.humorDePersonaje().cantidad() <= 0
 	}
 }
 class Stat{
@@ -51,6 +47,11 @@ object statsDelJuego {
 	const property higieneDePersonaje = new Stat (cantidad=100,x=14,y=13,buenaImagen="buenasalud.jpg",mediaImagen="malaSalud.jpg",malaImagen="malaSalud.jpg")
 	const property saciedadDePersonaje = new Stat (cantidad=100,x=14,y=10,buenaImagen="Pizza.jpg",mediaImagen="PizzaCortada.jpg",malaImagen="PizzaPorcion.jpg")
 	const property listaDeStats = [saludDePersonaje,energiaDePersonaje,humorDePersonaje,higieneDePersonaje,saciedadDePersonaje,coronavirusDePersonaje]
+	method configurarAfeccionesDeStats(){
+		game.onTick(20000,"disminuye humor cada 20 seg",{self.humorDePersonaje().modificarCantidad(-5)}) 
+		game.onTick(30000,"disminuye higiene cada 30 seg",{self.higieneDePersonaje().modificarCantidad(-10)})
+		game.onTick(30000,"disminuye hambre cada 30 seg",{self.saciedadDePersonaje().modificarCantidad(-10)})
+	}
 }
 
 object coronavirusDePersonaje{

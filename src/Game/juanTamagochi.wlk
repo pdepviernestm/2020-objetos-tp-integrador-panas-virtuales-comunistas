@@ -40,8 +40,8 @@ object juanTamagochi {
 		self.configurarTablero()
 		game.addVisual(protagonista)
 	}
-	method muerto(personaje){ // METODO PARA ELIMINAR AL PERSONAJE VISUAL
-		if(stats.muerte())
+	method muerte(personaje){ // METODO PARA ELIMINAR AL PERSONAJE VISUAL
+		if(personaje.morir())
 			self.sacarPersonaje(personaje)
 	}
 	method sacarPersonaje(personaje){
@@ -50,11 +50,8 @@ object juanTamagochi {
 	method configurarPersonaje(){
 		game.addVisualCharacter(protagonista) 
 		game.say(protagonista,protagonista.saludo()) //Imprime el mensaje de prueba, lo podemos borrar
-		game.onTick(20000,"disminuye humor cada 20 seg",{statsDelJuego.humorDePersonaje().modificarCantidad(-10)}) //-5
-		game.onTick(30000,"disminuye higiene cada 30 seg",{statsDelJuego.higieneDePersonaje().modificarCantidad(-10)})
-//		game.onTick(20000, "modifica salud cada 20 segundos", {stats.modificarSalud()})
-		game.onTick(30000,"disminuye hambre cada 30 seg",{statsDelJuego.saciedadDePersonaje().modificarCantidad(-10)})
-		game.onTick(100,"verificar si muere",{if(game.hasVisual(protagonista)) self.muerto(protagonista)}) // MATA A JUAN :( pd: Cuando se muere rompe todo)
+		statsDelJuego.configurarAfeccionesDeStats()
+		game.onTick(100,"verificar si muere",{if(game.hasVisual(protagonista)) self.muerte(protagonista)}) // MATA A JUAN :( pd: Cuando se muere rompe todo)
 	}	
 }
 
