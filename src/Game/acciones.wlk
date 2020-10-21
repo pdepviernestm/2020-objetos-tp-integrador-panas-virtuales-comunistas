@@ -44,13 +44,13 @@ object personaje {
       statsDelJuego.humorDePersonaje().modificarCantidad(-40)
       salio = true
 	}
-	method comer(){
+	/*method comer(){
 		const comida = mochila.encontrarComida()
 		comida.comer()
 		mochila.sacarComida(comida)		
 //		}
 		
-	}
+	}*/
 	method higieneBaja(){
 		return (statsDelJuego.higieneDePersonaje().cantidad() < 50)
 	}

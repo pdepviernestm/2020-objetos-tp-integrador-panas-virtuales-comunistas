@@ -34,10 +34,10 @@ object personajePrincipal {
 		personaje.trabajarFuera()
 		game.say(self,"Voy a trabajar :c")
 	}
-	method comer(){
+	/*method comer(){
 		personaje.comer()
 		game.say(self,"Comiendo :D")
-	}
+	}*/
 	method tengoCorona() {             //Me da Corona q resta salud sobre tiempo
 		if(personaje.higieneBaja())
 		  game.onTick(20000, "modifica salud cada 20 segundos", {personaje.efectoCorona()})

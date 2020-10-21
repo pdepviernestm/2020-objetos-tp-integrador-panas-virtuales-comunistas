@@ -11,8 +11,12 @@ import Game.productos.Pizza
 class ObjetoVisual{
 	const property x
 	const property y
-	//const property acciones
 	const property imagen
+	const property esDeTransicion = false
+	const property accionPrimaria ={parametro=>} //bloques que no hacen nada,hay que modificar en cada new ObjetoVisual(como por ej cama), es lo que define la accion de cada uno
+	const property accionSecundaria={parametro=>}
+	const property mapaNuevo = null
+	const property posicionEnMapaNuevo = null
 	var property position = game.origin()
 	method image()=imagen
 	method configurarVisual(){
@@ -22,109 +26,52 @@ class ObjetoVisual{
 	method borrarSuVisual(){
 		game.removeVisual(self)
 	}
-}
-/*class Acciones{
-	const property accionPrim
-	const property accionSec
-	method primaria(){
-		return accionPrim
+	method activarAccion(posicionDelPersonaje){
+		return posicionDelPersonaje == self.position() && game.hasVisual(self)
 	}
-	method secundaria(){
-		return accionSec
+	method activarAccionPrimaria(personaje){
+		accionPrimaria.apply(personaje)
 	}
-}*/
-object accionesCama{
-	method primaria(protagonista){
-		protagonista.dormir() 
+	method activarAccionSecundaria(personaje){
+		accionSecundaria.apply(personaje)
 	}
-	method secundaria(protagonista){
+	method transicion(){
+		juanTamagochi.modificarMapa(mapaNuevo,posicionEnMapaNuevo)
 	}
 }
-object accionesPC{
-	
-	method primaria(protagonista){
-		protagonista.trabajar()
-	}
-	method secundaria(protagonista){
-		protagonista.comprarComida()
-	}
-}
-object accionesCocina{
-	method primaria(protagonista){
-		protagonista.comer()
-	}
-	method secundiara(protagonista){
-	}
-}
-object accionesHeladera{
-	method primaria(protagonista){
-	}
-	method secundiara(protagonista){
-	}
-}
+/* 
 object accionesSalida{
 	method primaria(protagonista){
-		juanTamagochi.modificarMapa(mapas.superMercadoJoJo(),(game.origin()))
+		juanTamagochi.modificarMapa(mapas.superMercadoJoJo(),(game.origin())) // la salida solo hace la transicion al mapa general. Y recien desde el mapa general se va al super
 	}
 	method secundaria(protagonista){
 		juanTamagochi.modificarMapa(mapas.mapa(),(game.origin()))
 	}
-	method terciaria(protagonista){
-		protagonista.trabajarFuera()
-	}
 }
-object accionesPuertaEntradaBanio{
-	method primaria(protagonista){
-		juanTamagochi.modificarMapa(mapas.banioDeLaCasa(),(game.origin()))
-	}
-	method segundaria(protagonista){
-	}
-}
-object accionesLavamanos{
-	method primaria(protagonista){
-		protagonista.lavarseLasManos()
-	}
-	method secundaria(){
-	}
-}
-object accionesInodoro{
-	method primaria(protagonista){
-		protagonista.defecar()
-	}
-	method secundaria(protagonista){
-	}
-}
+*/
 object living {
 	const protagonista = juanTamagochi.protagonista()
 	
-	const property puertaEntradaBanio=new ObjetoVisual(x=7,y=11,imagen="puertaBaño.jpg")
-	const pc=new ObjetoVisual(x=13,y=11,imagen="PC.jpg")
-	const cama=new ObjetoVisual(x=7,y=7,imagen="cama.jpg")
+	const property puertaEntradaBanio=new ObjetoVisual(x=7,y=11,imagen="puertaBaño.jpg",esDeTransicion=true,mapaNuevo=mapas.banioDeLaCasa(),posicionEnMapaNuevo=game.origin())
+	const pc=new ObjetoVisual(x=13,y=11,imagen="PC.jpg",accionPrimaria={personaje => personaje.trabajar()} ,accionSecundaria={personaje => personaje.comprarComida()} )//
+	const cama=new ObjetoVisual(x=7,y=7,imagen="cama.jpg",accionPrimaria={personaje => personaje.dormir()})
 	const cocina=new ObjetoVisual(x=3,y=11,imagen="cocina.jpg")
-	const salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg")
-	const heladera=new ObjetoVisual(x=5,y=11,imagen="heladera.png")
+	const salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg",esDeTransicion=true,mapaNuevo=mapas.mapa(),posicionEnMapaNuevo=game.origin())
+	const heladera=new ObjetoVisual(x=5,y=11,imagen="heladera.png") // Cual sería la función de la heladera?
 	
-	const lista = [pc,cama,cocina,puertaEntradaBanio,salida,heladera]
-
+	const lista = [pc,cama,cocina,puertaEntradaBanio,salida,heladera] 
+	//const lista=[pc,cama,cocina,puertaEntradaBanio,heladera]
 	const property position = game.origin()
 	method image() = "Piso.png"
 	method configurarTeclas(){
-		keyboard.s().onPressDo({if(protagonista.position() == cama.position()&& game.hasVisual(cama)){accionesCama.primaria(protagonista)}
-								if(protagonista.position() == pc.position()&&game.hasVisual(pc)){accionesPC.primaria(protagonista)}
-								if(protagonista.position()== cocina.position()&&game.hasVisual(cocina)){accionesCocina.primaria(protagonista)}
-								if(protagonista.position() == salida.position()&&game.hasVisual(salida)){accionesSalida.primaria(protagonista)}
-								if(protagonista.position() == puertaEntradaBanio.position()&&game.hasVisual(puertaEntradaBanio)){
-																	accionesPuertaEntradaBanio.primaria(protagonista)}
-		})
-		keyboard.a().onPressDo({if(protagonista.position() == pc.position()&&game.hasVisual(pc)){accionesPC.secundaria(protagonista)}
-								if(protagonista.position() == salida.position()&&game.hasVisual(salida)){accionesSalida.terciaria(protagonista)}
-		})
-		keyboard.d().onPressDo({
-								if(protagonista.position() == salida.position()&&game.hasVisual(salida)){accionesSalida.secundaria(protagonista)}
+		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => if(!(objeto.esDeTransicion()) ) 
+																																objeto.activarAccionPrimaria(protagonista)
+																														  else{objeto.transicion()}
 		})
 		}
-
-		
+		keyboard.a().onPressDo{lista.filter({objeto=> objeto.activarAccion(protagonista.position())}).forEach({objeto=>objeto.activarAccionSecundaria(protagonista)})}
+		}
+	
 	method configurarVisual(){
 		game.addVisual(self)
 		self.configurarObjetos()
@@ -137,23 +84,26 @@ object living {
 			game.removeVisual(self)
 		}
 }
+
 object banio {
-	const lavamanos = new ObjetoVisual(x=3,y=2,imagen="lavaManos.jpg")
-	const inodoro = new ObjetoVisual(x=9,y=2,imagen="inodoro.jpg")
+	const lavamanos = new ObjetoVisual(x=3,y=2,imagen="lavaManos.jpg",accionPrimaria={personaje=>personaje.lavarseLasManos()})
+	const inodoro = new ObjetoVisual(x=9,y=2,imagen="inodoro.jpg",accionSecundaria={personaje=>personaje.defecar()})
 	
 	const protagonista = personajePrincipal
 	const lista = [lavamanos,inodoro]
 	const property position = game.origin()
 	method image()="fondo-baño.jpg"
 	method configurarTeclas(){
-		
- 		keyboard.s().onPressDo({if(protagonista.position() == lavamanos.position()&&game.hasVisual(lavamanos)){accionesLavamanos.primaria(protagonista)}
- 								})
- 		keyboard.a().onPressDo({if(protagonista.position() == inodoro.position()&&game.hasVisual(inodoro)) {accionesInodoro.primaria(protagonista)}
- 								if(protagonista.position()==self.position()&&game.hasVisual(self)){
- 																juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(mapas.livingDeLaCasa().mapaActual().puertaEntradaBanio().position())
- 																									)}		
- 										}) //Las teclas de cambio de mapa tienen que ser distintas porque sino no funciona la transición
+		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionPrimaria(protagonista)																										  
+		})
+		}
+ 		keyboard.a().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionSecundaria(protagonista)	
+ 										})
+ 							   if(protagonista.position()==self.position()&&game.hasVisual(self)){
+ 															juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(living.puertaEntradaBanio().position())
+ 																									)}	
+ 	 //Las teclas de cambio de mapa tienen que ser distintas porque sino no funciona la transición
+	}
 	}
 	method configurarVisual(){
 		game.addVisual(self)
@@ -167,7 +117,7 @@ object banio {
 			game.removeVisual(self)
 		}
 }
-
+/*
 object superMercado {
 	const jojoPizza = new ObjetoVisual(x=7,y=11,imagen="jojoPizza.png")
 	const jojaCola = new ObjetoVisual(x=2,y=7,imagen="jojaCola.png")
@@ -242,13 +192,13 @@ object mochila {
 		comida.comer()
 	}
 }
-
+*/
 object mapaGeneral{
 	
 	const protagonista = personajePrincipal
 	const lista = []
 	const property position = game.origin()
-	const salida=new ObjetoVisual(x=0,y=5,imagen="salidaMapaGeneral.jpg")
+	const salida=new ObjetoVisual(x=0,y=5,imagen="salidaMapaGeneral.jpg") // esto no se esta usando
 	method image() = "mapaGeneral.png"
 	method configurarTeclas(){
 		
@@ -274,4 +224,3 @@ object mapaGeneral{
 		}	
 	
 }
-
