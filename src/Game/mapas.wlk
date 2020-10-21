@@ -23,7 +23,7 @@ class Mapa {
 object mapas{
 	method livingDeLaCasa()= new Mapa(mapaActual=living)
 	method banioDeLaCasa()=new Mapa(mapaActual=banio)
-	//method superMercadoJoJo()=new Mapa(mapaActual=superMercado)
+	method superMercadoJoJo()=new Mapa(mapaActual=superMercado)
 	method mapa() = new Mapa(mapaActual = mapaGeneral)
 }
 
