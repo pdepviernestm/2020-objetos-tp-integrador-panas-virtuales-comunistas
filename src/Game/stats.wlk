@@ -39,6 +39,7 @@ class Stat{
 		return "muerto.jpg"
 	}
 	method image() = self.visualCorrespondida()
+
 }
 object statsDelJuego {
 	const property saludDePersonaje = new Stat (cantidad = 100,x=14,y=12,buenaImagen="corazonLleno.png",mediaImagen="corazonMitad.png",malaImagen="corazonVacio.png")

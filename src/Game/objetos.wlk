@@ -53,7 +53,7 @@ object living {
 	const property puertaEntradaBanio=new ObjetoVisual(x=7,y=11,imagen="puertaBaño.jpg",esDeTransicion=true,mapaNuevo=mapas.banioDeLaCasa(),posicionEnMapaNuevo=game.origin())
 	const pc=new ObjetoVisual(x=13,y=11,imagen="PC.jpg",accionPrimaria={personaje => personaje.trabajar()} ,accionSecundaria={personaje => personaje.comprarComida()} )//
 	const cama=new ObjetoVisual(x=7,y=7,imagen="cama.jpg",accionPrimaria={personaje => personaje.dormir()})
-	const cocina=new ObjetoVisual(x=3,y=11,imagen="cocina.jpg")
+	const cocina=new ObjetoVisual(x=3,y=11,imagen="cocina.jpg",accionPrimaria={personaje => personaje.comer()})
 	const salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg",esDeTransicion=true,mapaNuevo=mapas.superMercadoJoJo(),posicionEnMapaNuevo=game.origin())
 	const heladera=new ObjetoVisual(x=5,y=11,imagen="heladera.png") // Cual sería la función de la heladera?
 	

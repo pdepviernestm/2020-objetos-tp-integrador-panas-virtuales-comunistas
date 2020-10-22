@@ -50,9 +50,12 @@ object juanTamagochi {
 	method configurarPersonaje(){
 		game.addVisualCharacter(protagonista) 
 		game.say(protagonista,protagonista.saludo()) //Imprime el mensaje de prueba, lo podemos borrar
+		keyboard.p().onPressDo {protagonista.plataActual()}
+		keyboard.t().onPressDo {protagonista.estadoActual()}
 		statsDelJuego.configurarAfeccionesDeStats()
 		game.onTick(100,"verificar si muere",{if(game.hasVisual(protagonista)) self.muerte(protagonista)}) // MATA A JUAN :( pd: Cuando se muere rompe todo)
-	}	
+	}
+
 }
 
 object spawner {

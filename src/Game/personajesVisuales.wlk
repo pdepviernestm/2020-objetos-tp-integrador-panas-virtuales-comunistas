@@ -35,13 +35,13 @@ object personajePrincipal {
 		personaje.trabajarFuera()
 		game.say(self,"Voy a trabajar :c")
 	}
-	/*method comer(){
+	method comer(){
 		personaje.comer()
 		game.say(self,"Comiendo :D")
-	}*/
+	}
 	method tengoCorona() {             //Me da Corona q resta salud sobre tiempo
 		if(personaje.higieneBaja())
-		  game.onTick(20000, "modifica salud cada 20 segundos", {personaje.efectoCorona()})
+		  game.onTick(30000, "modifica salud cada 30 segundos", {personaje.efectoCorona()})
 	}
 	method morir(){
 		return personaje.morir()
@@ -55,5 +55,11 @@ object personajePrincipal {
 	}
 	method plataActual(){
 		game.say(self,"Me quedan " + stats.cantidadPlata() + " mangos")
+	}
+	method estadoActual(){
+		game.say(self,"Mi salud " + statsDelJuego.saludDePersonaje().cantidad())
+		game.say(self,"Mi humor " + statsDelJuego.humorDePersonaje().cantidad())
+		game.say(self,"Mi higiene " + statsDelJuego.higieneDePersonaje().cantidad())
+		game.say(self,"Mi hambre " + statsDelJuego.saciedadDePersonaje().cantidad())
 	}
 }
