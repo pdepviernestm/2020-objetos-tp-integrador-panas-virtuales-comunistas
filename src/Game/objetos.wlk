@@ -123,7 +123,7 @@ object superMercado {
 	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png",accionPrimaria={carro => carro.vaciarCarrito()})	
 	const property cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={carro=>carro.informarMonto()})
 	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png",accionPrimaria={carro => carro.cobrar()})
-	const ahorrador = new ObjetoVisual(x=11,y=10,imagen="ahorradorT.png")
+	const ahorrador = new ObjetoVisual(x=11,y=10,imagen="ahorradorT.png",accionPrimaria={carro => carro.seleccionarBarato()})
 	
 	
 	const property protagonista = personajePrincipal
@@ -193,6 +193,9 @@ object carrito {
             comidas = []
             protagonista.plataActual()
 		}
+	}
+	method seleccionarBarato(){
+		comidas.filter({comida => comida.valor() > 200}).forEach({comida => comidas.remove(comida)})
 	}
 	method encontrarComida(){
 		return comidas.find({comida => comida.valor() > 50 })
