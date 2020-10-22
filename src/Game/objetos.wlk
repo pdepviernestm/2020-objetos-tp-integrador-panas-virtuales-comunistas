@@ -121,12 +121,12 @@ object superMercado {
 	const fruta = new ObjetoVisual(x=2,y=11,imagen="fruta.png",accionPrimaria={carro => carro.agregarComida(new Fruta())},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Fruta")})
 	const comidaBarata = new ObjetoVisual(x=7,y=7,imagen="comidaBarata.png",accionPrimaria={carro => carro.agregarComida(new ComidaBarata())},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Comida barata")})
 	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png",accionPrimaria={carro => carro.vaciarCarrito()})	
-	const property cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={carro => carro.decirHola(cajera)})
-	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png",accionPrimaria={carro => carro.calcularPrecio()})
+	const property cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={carro=>carro.informarMonto()})
+	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png",accionPrimaria={carro => carro.cobrar()})
 //	const ahorretor = new ObjetoVisual(x=11,y=4,imagen="Punto.png")
 	
 	
-	const protagonista = personajePrincipal
+	const property protagonista = personajePrincipal
 	const lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura,caja,cajera]
 	const property position = game.origin()
 	method image()="superMercado.png"
@@ -144,7 +144,6 @@ object superMercado {
 	method configurarVisual(){
 		game.addVisual(self)
 		self.configurarObjetos()
-		carrito.agregarVisual()
 	}
 		method configurarObjetos(){
 		lista.forEach{objeto => objeto.configurarVisual()}
@@ -160,30 +159,40 @@ object superMercado {
 object carrito {
 	var property comidas = []
 	const property position= game.at(7,7)
+	const property protagonista = personajePrincipal
 	method image()="feliz.jpg"
 	method agregarVisual(){
 		game.addVisual(self)
 	}
-	method decirHola(cajera){
-		game.say(cajera,"Holaaa")
-	}
 	
 	method agregarComida(comida){
 		comidas.add(comida)
-		game.say(self,"Llene el carrito :)")
+		const nombreComida = comida.nombre()
+		game.say(protagonista,"agregué une " + nombreComida +" al carrito")
 	}
 	method vaciarCarrito(){
-		comidas = []
-		game.say(self,"Vacie el carrito ;/")
+		if(comidas == [])
+			game.say(protagonista,"No tengo nada para tirar")
+		else {
+			comidas = []
+			game.say(protagonista,"Vacie el carrito :/")
+			}
 	}
 	method calcularPrecio(){
-		const precio = comidas.sum({unProducto => unProducto.valor()})
+		return (comidas.map({unProducto => unProducto.valor()})).sum()	
+	}
+	method informarMonto(){
+		const precio = self.calcularPrecio()
+		game.say(superMercado.cajera(),"el precio es "+ precio)
+	}
+	method cobrar(){
+		const precio = self.calcularPrecio()
 		if(precio <= stats.cantidadPlata() && comidas.size() > 0 ) {
 			stats.modificarPlata(-precio)
 			comidas.forEach({producto => mochila.agregarComida(producto)})                     
             comidas = []
-            game.say(self,"Me gaste la plata ;/")
-		}		
+            superMercado.protagonista().plataActual()
+		}
 	}
 	method encontrarComida(){
 		return comidas.find({comida => comida.valor() > 50 })

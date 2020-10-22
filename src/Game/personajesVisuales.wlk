@@ -1,5 +1,6 @@
 import wollok.game.*
 import acciones.*
+import stats.*
 
 object personajePrincipal {
 	var property position = game.origin()
@@ -52,5 +53,7 @@ object personajePrincipal {
 		const cantidad = (lista.filter({objeto => objeto.nombre() == producto})).size()
 		game.say(self,"Tengo " + cantidad + " " + producto +"s")
 	}
-
+	method plataActual(){
+		game.say(self,"Me quedan " + stats.cantidadPlata() + " mangos")
+	}
 }
