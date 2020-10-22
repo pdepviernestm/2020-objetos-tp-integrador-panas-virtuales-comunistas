@@ -13,7 +13,6 @@ class ObjetoVisual{
 	const property esDeTransicion = false
 	const property accionPrimaria ={parametro=>} //bloques que no hacen nada,hay que modificar en cada new ObjetoVisual(como por ej cama), es lo que define la accion de cada uno
 	const property accionSecundaria={parametro=>}
-	const property accionTerciaria={parametro=>}
 	const property mapaNuevo = null
 	const property posicionEnMapaNuevo = null
 	var property position = game.origin()
@@ -33,9 +32,6 @@ class ObjetoVisual{
 	}
 	method activarAccionSecundaria(personaje){
 		accionSecundaria.apply(personaje)
-	}
-	method activarAccionTerciaria(carro){
-		accionTerciaria.apply(carro)
 	}
 	method transicion(){
 		juanTamagochi.modificarMapa(mapaNuevo,posicionEnMapaNuevo)
@@ -120,13 +116,13 @@ object banio {
 }
 
 object superMercado {
-	const jojoPizza = new ObjetoVisual(x=7,y=11,imagen="jojoPizza.png",accionTerciaria={carro => carro.agregarComida(new Pizza())})
-	const jojaCola = new ObjetoVisual(x=2,y=7,imagen="jojaCola.png",accionTerciaria={carro => carro.agregarComida(new JojaCola())})
-	const fruta = new ObjetoVisual(x=2,y=11,imagen="fruta.png",accionTerciaria={carro => carro.agregarComida(new Fruta())})
-	const comidaBarata = new ObjetoVisual(x=7,y=7,imagen="comidaBarata.png",accionTerciaria={carro => carro.agregarComida(new ComidaBarata())})
-	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png",accionTerciaria={carro => carro.vaciarCarrito()})	
-	const cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionTerciaria={carro => carro.decirHola()})
-	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png",accionTerciaria={carro => carro.calcularPrecio()})
+	const jojoPizza = new ObjetoVisual(x=7,y=11,imagen="jojoPizza.png",accionPrimaria={carro => carro.agregarComida(new Pizza())},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Pizza")})
+	const jojaCola = new ObjetoVisual(x=2,y=7,imagen="jojaCola.png",accionPrimaria={carro => carro.agregarComida(new JojaCola())},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"JojaCola")})
+	const fruta = new ObjetoVisual(x=2,y=11,imagen="fruta.png",accionPrimaria={carro => carro.agregarComida(new Fruta())},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Fruta")})
+	const comidaBarata = new ObjetoVisual(x=7,y=7,imagen="comidaBarata.png",accionPrimaria={carro => carro.agregarComida(new ComidaBarata())},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Comida barata")})
+	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png",accionPrimaria={carro => carro.vaciarCarrito()})	
+	const property cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={carro => carro.decirHola(cajera)})
+	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png",accionPrimaria={carro => carro.calcularPrecio()})
 //	const ahorretor = new ObjetoVisual(x=11,y=4,imagen="Punto.png")
 	
 	
@@ -136,9 +132,9 @@ object superMercado {
 	method image()="superMercado.png"
 	method configurarTeclas(){
 		
- 		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionTerciaria(carrito)})
+ 		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionPrimaria(carrito)})
  		}
- 		keyboard.a().onPressDo({
+ 		keyboard.a().onPressDo({lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionSecundaria(protagonista)})
  								if(protagonista.position()==self.position()&&game.hasVisual(self)){
  																juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(mapas.livingDeLaCasa().mapaActual().position())
  																									)}		
@@ -148,6 +144,7 @@ object superMercado {
 	method configurarVisual(){
 		game.addVisual(self)
 		self.configurarObjetos()
+		carrito.agregarVisual()
 	}
 		method configurarObjetos(){
 		lista.forEach{objeto => objeto.configurarVisual()}
@@ -162,9 +159,13 @@ object superMercado {
 
 object carrito {
 	var property comidas = []
-	
-	method decirHola(){
-		game.say(self,"Holaaa")
+	const property position= game.at(7,7)
+	method image()="feliz.jpg"
+	method agregarVisual(){
+		game.addVisual(self)
+	}
+	method decirHola(cajera){
+		game.say(cajera,"Holaaa")
 	}
 	
 	method agregarComida(comida){

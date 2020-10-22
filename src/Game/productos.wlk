@@ -2,6 +2,7 @@ import wollok.game.*
 import stats.*
 
 class Pizza {
+	const property nombre ="Pizza"
 	const property valor = 300
 	method comer() {
     statsDelJuego.energiaDePersonaje().modificarCantidad(-5)
@@ -14,6 +15,7 @@ class Pizza {
 
 class JojaCola {
 	const property valor = 100
+	const property nombre = "JojaCola"
 	method comer() {
 	statsDelJuego.energiaDePersonaje().modificarCantidad(10)
     statsDelJuego.humorDePersonaje().modificarCantidad(10)
@@ -25,6 +27,7 @@ class JojaCola {
 
 class ComidaBarata {
 	const property valor = 100
+	const property nombre = "Comida barata"
 	method comer() {
 	statsDelJuego.energiaDePersonaje().modificarCantidad(-5)
     statsDelJuego.humorDePersonaje().modificarCantidad(-5)
@@ -36,6 +39,7 @@ class ComidaBarata {
 
 class Fruta {
 	const property valor = 200
+	const property nombre = "Fruta"
 	method comer() {
 	statsDelJuego.energiaDePersonaje().modificarCantidad(-5)
     statsDelJuego.humorDePersonaje().modificarCantidad(-5)

@@ -48,5 +48,9 @@ object personajePrincipal {
 	method cambiarPosicion(posicionNueva){
 		position = posicionNueva
 	}
+	method cantidadDe(lista,producto){
+		const cantidad = (lista.filter({objeto => objeto.nombre() == producto})).size()
+		game.say(self,"Tengo " + cantidad + " " + producto +"s")
+	}
 
 }
