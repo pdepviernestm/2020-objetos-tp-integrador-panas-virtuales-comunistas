@@ -121,7 +121,7 @@ object superMercado {
 	const fruta = new ObjetoVisual(x=2,y=11,imagen="fruta.png",accionPrimaria={carro => carro.agregarComida(new Fruta())},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Fruta")})
 	const comidaBarata = new ObjetoVisual(x=7,y=7,imagen="comidaBarata.png",accionPrimaria={carro => carro.agregarComida(new ComidaBarata())},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Comida barata")})
 	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png",accionPrimaria={carro => carro.vaciarCarrito()})	
-	const property cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={carro=>carro.informarMonto()})
+	const property cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={carro=>carro.informarMontoYCantidad()})
 	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png",accionPrimaria={carro => carro.cobrar()})
 	const ahorrador = new ObjetoVisual(x=11,y=10,imagen="ahorradorT.png",accionPrimaria={carro => carro.seleccionarBarato()})
 	
@@ -181,9 +181,17 @@ object carrito {
 	method calcularPrecio(){
 		return (comidas.map({unProducto => unProducto.valor()})).sum()	
 	}
-	method informarMonto(){
+	method cantidadDe(nombreProducto){
+		return (comidas.filter({unProducto=>unProducto.nombre() == nombreProducto})).size()
+	}
+	method informarMontoYCantidad(){
 		const precio = self.calcularPrecio()
-			game.say(superMercado.cajera(),"los productos son "+ comidas)
+		const cantidadDePizzas=self.cantidadDe("Pizza")
+		const cantidadDeJojaCola= self.cantidadDe("JojaCola")
+		const cantidadDeComidaBarata=self.cantidadDe("Comida barata")
+		const cantidadDeFruta = self.cantidadDe("Fruta")
+			game.say(superMercado.cajera(),"los productos son: "+cantidadDePizzas+" Pizzas, "+cantidadDeJojaCola+" JojaColas, "+cantidadDeComidaBarata+" comidas baratas, y "
+											+cantidadDeFruta+" Frutas")
 			game.say(superMercado.cajera(),"el precio es "+ precio)
 	}
 	method cobrar(){
