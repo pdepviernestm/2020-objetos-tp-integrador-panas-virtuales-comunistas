@@ -183,7 +183,8 @@ object carrito {
 	}
 	method informarMonto(){
 		const precio = self.calcularPrecio()
-		game.say(superMercado.cajera(),"el precio es "+ precio)
+			game.say(superMercado.cajera(),"los productos son "+ comidas)
+			game.say(superMercado.cajera(),"el precio es "+ precio)
 	}
 	method cobrar(){
 		const precio = self.calcularPrecio()
