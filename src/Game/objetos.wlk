@@ -123,11 +123,11 @@ object superMercado {
 	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png",accionPrimaria={carro => carro.vaciarCarrito()})	
 	const property cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={carro=>carro.informarMonto()})
 	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png",accionPrimaria={carro => carro.cobrar()})
-//	const ahorretor = new ObjetoVisual(x=11,y=4,imagen="Punto.png")
+	const ahorrador = new ObjetoVisual(x=11,y=10,imagen="ahorradorT.png")
 	
 	
 	const property protagonista = personajePrincipal
-	const lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura,caja,cajera]
+	const lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura,caja,cajera,ahorrador]
 	const property position = game.origin()
 	method image()="superMercado.png"
 	method configurarTeclas(){
@@ -191,7 +191,7 @@ object carrito {
 			stats.modificarPlata(-precio)
 			comidas.forEach({producto => mochila.agregarComida(producto)})                     
             comidas = []
-            superMercado.protagonista().plataActual()
+            protagonista.plataActual()
 		}
 	}
 	method encontrarComida(){
