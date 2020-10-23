@@ -54,7 +54,7 @@ object living {
 	const pc=new ObjetoVisual(x=13,y=11,imagen="PC.jpg",accionPrimaria={personaje => personaje.trabajar()} ,accionSecundaria={personaje => personaje.comprarComida()} )//
 	const cama=new ObjetoVisual(x=7,y=7,imagen="cama.jpg",accionPrimaria={personaje => personaje.dormir()})
 	const cocina=new ObjetoVisual(x=3,y=11,imagen="cocina.jpg",accionPrimaria={personaje => personaje.comer()})
-	const salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg",esDeTransicion=true,mapaNuevo=mapas.superMercadoJoJo(),posicionEnMapaNuevo=game.origin())
+	const property salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg",esDeTransicion=true,mapaNuevo=mapas.superMercadoJoJo(),posicionEnMapaNuevo=game.origin())
 	const heladera=new ObjetoVisual(x=5,y=11,imagen="heladera.png") // Cual sería la función de la heladera?
 	
 	const lista = [pc,cama,cocina,puertaEntradaBanio,salida,heladera] 
@@ -64,7 +64,7 @@ object living {
 	method configurarTeclas(){
 		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => if(!(objeto.esDeTransicion()) ) 
 																																objeto.activarAccionPrimaria(protagonista)
-																														  else{objeto.transicion() protagonista.salir()}
+																														  else{objeto.transicion()}
 		})
 		}
 		keyboard.a().onPressDo{lista.filter({objeto=> objeto.activarAccion(protagonista.position())}).forEach({objeto=>objeto.activarAccionSecundaria(protagonista)})}
@@ -137,7 +137,7 @@ object superMercado {
  		keyboard.a().onPressDo({lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionSecundaria(protagonista)})
  								if(protagonista.position()==self.position()&&game.hasVisual(self)){
  																juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(mapas.livingDeLaCasa().mapaActual().position())
- 																									)}		
+ 																									)protagonista.salir()}		
  										}) //Las teclas de cambio de mapa tienen que ser distintas porque sino no funciona la transición
 	}
 // viejomodo de hacerlo         if(protagonista.position() == jojoPizza.position()&&game.hasVisual(jojoPizza)){carrito.add(new Pizza())}		
