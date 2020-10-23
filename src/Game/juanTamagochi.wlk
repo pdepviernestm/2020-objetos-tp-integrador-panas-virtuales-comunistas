@@ -54,6 +54,7 @@ object juanTamagochi {
 		keyboard.t().onPressDo {protagonista.estadoActual()}
 		statsDelJuego.configurarAfeccionesDeStats()
 		game.onTick(100,"verificar si muere",{if(game.hasVisual(protagonista)) self.muerte(protagonista)}) // MATA A JUAN :( pd: Cuando se muere rompe todo)
+		keyboard.j().onPressDo{protagonista.cambiarDeTrabajo()}
 	}
 
 }

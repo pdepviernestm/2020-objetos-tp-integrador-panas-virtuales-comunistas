@@ -1,9 +1,11 @@
 import wollok.game.*
 import acciones.*
 import stats.*
+import trabajos.*
 
 object personajePrincipal {
 	var property position = game.origin()
+	var property trabajoActual
 	
 	method image() = "avatar.png" 
 	method saludo() = "Hola! :D" // Mensaje de prueba
@@ -23,6 +25,9 @@ object personajePrincipal {
 		personaje.trabajar()
 		game.say(self,"Trabajo desde casa :D")
 	}
+	method cambiarDeTrabajo(){
+		
+	} 
 	method comprarComida(){
 		personaje.comprarComida()
 		game.say(self,"Me pido una pizza :D")
