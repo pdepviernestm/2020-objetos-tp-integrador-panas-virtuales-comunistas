@@ -19,10 +19,10 @@ object personaje {
 		statsDelJuego.saludDePersonaje().modificarCantidad(20)
 		statsDelJuego.saciedadDePersonaje().modificarCantidad(-10)
 	}
-	method trabajar(){                 // trabaja desde la compu
-      statsDelJuego.humorDePersonaje().modificarCantidad(-20)
-      statsDelJuego.modificarPlata(100)
-      statsDelJuego.energiaDePersonaje().modificarCantidad(-20)
+	method trabajar(humorqconsume, sueldo, energiaqconsume){                 // trabaja desde la compu
+      statsDelJuego.humorDePersonaje().modificarCantidad(humorqconsume)
+      statsDelJuego.modificarPlata(sueldo)
+      statsDelJuego.energiaDePersonaje().modificarCantidad(energiaqconsume)
 	}
 	method comprarComida(){            //compra comida por la compu
       statsDelJuego.modificarPlata(-100)
