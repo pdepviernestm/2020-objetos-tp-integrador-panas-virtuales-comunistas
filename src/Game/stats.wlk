@@ -49,21 +49,44 @@ object statsDelJuego {
 	const property saciedadDePersonaje = new Stat (cantidad=100,x=14,y=10,buenaImagen="Pizza.jpg",mediaImagen="PizzaCortada.jpg",malaImagen="PizzaPorcion.jpg")
 	const property listaDeStats = [saludDePersonaje,energiaDePersonaje,humorDePersonaje,higieneDePersonaje,saciedadDePersonaje,coronavirusDePersonaje]
 	method configurarAfeccionesDeStats(){
-		game.onTick(20000,"disminuye humor cada 20 seg",{self.humorDePersonaje().modificarCantidad(-5)}) 
-		game.onTick(30000,"disminuye higiene cada 30 seg",{self.higieneDePersonaje().modificarCantidad(-10)})
+		game.onTick(2000,"disminuye humor cada 20 seg",{self.humorDePersonaje().modificarCantidad(-5)}) //-5
+		game.onTick(2000,"disminuye higiene cada 30 seg",{self.higieneDePersonaje().modificarCantidad(-5)}) //30000 -10
 		game.onTick(30000,"disminuye hambre cada 30 seg",{self.saciedadDePersonaje().modificarCantidad(-10)})
+		game.onTick(5000,"proba. contagio",{self.activarProbabilidadDeContagio()}) 
+	}
+	method activarProbabilidadDeContagio(){
+		if(coronavirusDePersonaje.estaEnCondicionesDeContagio()){ 
+			game.removeTickEvent("proba. contagio")
+			self.contagioAleatorio()
+			//if(coronavirusDePersonaje.contagiado()==true) 
+				//game.removeTickEvent("proba. contagio")
+		}
+	}
+	method contagioAleatorio(){
+		game.onTick(2000,"puede contagiarse",{game.say(coronavirusDePersonaje,coronavirusDePersonaje.probabilidadDeContagio().toString()) coronavirusDePersonaje.analizarContagio() })
 	}
 }
 
 object coronavirusDePersonaje{
     const property position = game.at(14,9)
     var property contagiado = false //
-    method contagiado(){
-        return personaje.salio() && statsDelJuego.higieneDePersonaje().cantidad() <= 20 && statsDelJuego.humorDePersonaje().cantidad() <= 20 
+    //method contagiado()={
+        //return personaje.salio() && statsDelJuego.higieneDePersonaje().cantidad() <= 20 && statsDelJuego.humorDePersonaje().cantidad() <= 20 
+        //return (self.probabilidadDeContagio()).between(0,5)
+   // }
+    method estaEnCondicionesDeContagio(){
+    	return personaje.salio() && statsDelJuego.higieneDePersonaje().cantidad() <= 20 && statsDelJuego.humorDePersonaje().cantidad() <= 20 
     }
-
+	method probabilidadDeContagio(){
+		const proporcionStatsDeContagio = (statsDelJuego.higieneDePersonaje().cantidad() + statsDelJuego.humorDePersonaje().cantidad() ).div(10)
+		return (1.randomUpTo(proporcionStatsDeContagio))
+	}
+	method analizarContagio(){
+		if((self.probabilidadDeContagio()).between(0,3))
+			contagiado=true
+	}
     method visual(){
-        if(self.contagiado())
+        if(self.contagiado()) // si usamos if(self.contagiado) rompe todo 
             return "corona.png"
         return "feliz.jpg"
 }

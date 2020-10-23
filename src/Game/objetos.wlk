@@ -64,7 +64,7 @@ object living {
 	method configurarTeclas(){
 		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => if(!(objeto.esDeTransicion()) ) 
 																																objeto.activarAccionPrimaria(protagonista)
-																														  else{objeto.transicion()}
+																														  else{objeto.transicion() protagonista.salir()}
 		})
 		}
 		keyboard.a().onPressDo{lista.filter({objeto=> objeto.activarAccion(protagonista.position())}).forEach({objeto=>objeto.activarAccionSecundaria(protagonista)})}
@@ -192,7 +192,7 @@ object carrito {
 		const cantidadDeFruta = self.cantidadDe("Fruta")
 			game.say(superMercado.cajera(),"los productos son: "+cantidadDePizzas+" Pizzas, "+cantidadDeJojaCola+" JojaColas, "+cantidadDeComidaBarata+" comidas baratas, y "
 											+cantidadDeFruta+" Frutas")
-			game.say(superMercado.cajera(),"el precio es "+ precio)
+			game.say(superMercado.cajera(),"el precio es "+ precio.toString())
 	}
 	method cobrar(){
 		const precio = self.calcularPrecio()
