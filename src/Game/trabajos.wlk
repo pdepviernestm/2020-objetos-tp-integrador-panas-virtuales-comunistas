@@ -8,7 +8,7 @@ class Trabajos {
 	const energiaqconsume
 	const humorqconsume
 	const property position = game.at(14,8)
-	
+	const property nombre 
 	
 	method image() = imagen
 	
@@ -20,12 +20,10 @@ class Trabajos {
 
 object trabajos{
 	
-	const property desarrollador = new Trabajos(sueldo = 800, energiaqconsume = -30, humorqconsume = -30, imagen = "programador.png")
-	const property tecnicoPC = new Trabajos(sueldo = 400, energiaqconsume = -30, humorqconsume = -10, imagen = "reparadorPC.jpg")
+	const property desarrollador = new Trabajos(nombre="desarrollador",sueldo = 800, energiaqconsume = -30, humorqconsume = -30, imagen = "programador.png")
+	const property tecnicoPC = new Trabajos(nombre="Tecnico de PC", sueldo = 400, energiaqconsume = -30, humorqconsume = -10, imagen = "reparadorPC.jpg")
 		
 	var property listaTrabajos = [desarrollador, tecnicoPC]
-
-	
 }
 
 

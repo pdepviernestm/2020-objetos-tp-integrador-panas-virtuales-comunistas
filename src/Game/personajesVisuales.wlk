@@ -5,7 +5,8 @@ import trabajos.*
 
 object personajePrincipal {
 	var property position = game.origin()
-	var property trabajoActual
+	var property trabajoActual = trabajos.listaTrabajos().head()
+	var puedeCambiarDeTrabajo=true
 	
 	method image() = "avatar.png" 
 	method saludo() = "Hola! :D" // Mensaje de prueba
@@ -22,12 +23,24 @@ object personajePrincipal {
 		game.say(self,"Usando el trono :D")
 	}
 	method trabajar(){
-		personaje.trabajar()
+		trabajoActual.trabajar()
 		game.say(self,"Trabajo desde casa :D")
 	}
 	method cambiarDeTrabajo(){
-		
+		if(puedeCambiarDeTrabajo){
+			game.removeVisual(trabajoActual)
+			trabajos.listaTrabajos().add(trabajoActual)
+			trabajos.listaTrabajos().remove(trabajoActual)
+			trabajoActual=trabajos.listaTrabajos().head()
+			game.say(self,"Mi trabajo ahora es: "+trabajoActual.nombre())
+			self.configurarVisualTrabajo()
+			puedeCambiarDeTrabajo=false
+			game.onTick(3000,"cambio trabajo",{puedeCambiarDeTrabajo=true})
+			}
 	} 
+	method configurarVisualTrabajo(){
+		game.addVisual(trabajoActual)
+	}
 	method comprarComida(){
 		personaje.comprarComida()
 		game.say(self,"Me pido una pizza :D")
@@ -36,10 +49,10 @@ object personajePrincipal {
 		personaje.salir()
 		game.say(self,"Voy de shopping :D")
 	}
-	method trabajarFuera(){
+	/*method trabajarFuera(){
 		personaje.trabajarFuera()
 		game.say(self,"Voy a trabajar :c")
-	}
+	}*/
 	method comer(){
 		personaje.comer()
 		game.say(self,"Comiendo :D")
@@ -55,16 +68,17 @@ object personajePrincipal {
 		position = posicionNueva
 	}
 	method cantidadDe(lista,producto){
-		const cantidad = (lista.filter({objeto => objeto.nombre() == producto})).size()
-		game.say(self,"Tengo " + cantidad + " " + producto +"s")
+		const cantidad = (lista.filter({objeto => objeto.nombre() == producto}).size())
+		game.say(self,"Tengo " + cantidad.toString() + " " + producto.toString() +"s")
 	}
 	method plataActual(){
-		game.say(self,"Me quedan " + statsDelJuego.cantidadPlata() + " mangos")
+		game.say(self,"Me quedan " + statsDelJuego.cantidadPlata().toString() + " mangos")
 	}
 	method estadoActual(){
-		game.say(self,"Mi salud " + statsDelJuego.saludDePersonaje().cantidad())
-		game.say(self,"Mi humor " + statsDelJuego.humorDePersonaje().cantidad())
-		game.say(self,"Mi higiene " + statsDelJuego.higieneDePersonaje().cantidad())
-		game.say(self,"Mi hambre " + statsDelJuego.saciedadDePersonaje().cantidad())
+		game.say(self,"Mi salud " + statsDelJuego.saludDePersonaje().cantidad().toString())
+		game.say(self,"Mi humor " + statsDelJuego.humorDePersonaje().cantidad().toString())
+		game.say(self,"Mi higiene " + statsDelJuego.higieneDePersonaje().cantidad().toString())
+		game.say(self,"Mi hambre " + statsDelJuego.saciedadDePersonaje().cantidad().toString())
 	}
+	
 }
