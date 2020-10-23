@@ -196,8 +196,8 @@ object carrito {
 	}
 	method cobrar(){
 		const precio = self.calcularPrecio()
-		if(precio <= stats.cantidadPlata() && comidas.size() > 0 ) {
-			stats.modificarPlata(-precio)
+		if(precio <= statsDelJuego.cantidadPlata() && comidas.size() > 0 ) {
+			statsDelJuego.modificarPlata(-precio)
 			comidas.forEach({producto => mochila.agregarComida(producto)})                     
             comidas = []
             protagonista.plataActual()

@@ -54,7 +54,7 @@ object personajePrincipal {
 		game.say(self,"Tengo " + cantidad + " " + producto +"s")
 	}
 	method plataActual(){
-		game.say(self,"Me quedan " + stats.cantidadPlata() + " mangos")
+		game.say(self,"Me quedan " + statsDelJuego.cantidadPlata() + " mangos")
 	}
 	method estadoActual(){
 		game.say(self,"Mi salud " + statsDelJuego.saludDePersonaje().cantidad())

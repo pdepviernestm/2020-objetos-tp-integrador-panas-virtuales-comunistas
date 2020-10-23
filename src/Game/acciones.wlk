@@ -21,25 +21,25 @@ object personaje {
 	}
 	method trabajar(){                 // trabaja desde la compu
       statsDelJuego.humorDePersonaje().modificarCantidad(-20)
-      stats.modificarPlata(100)
+      statsDelJuego.modificarPlata(100)
       statsDelJuego.energiaDePersonaje().modificarCantidad(-20)
 	}
 	method comprarComida(){            //compra comida por la compu
-      stats.modificarPlata(-100)
+      statsDelJuego.modificarPlata(-100)
       statsDelJuego.energiaDePersonaje().modificarCantidad(-5)
       statsDelJuego.humorDePersonaje().modificarCantidad(10)
       statsDelJuego.saciedadDePersonaje().modificarCantidad(100)
       statsDelJuego.higieneDePersonaje().modificarCantidad(-5)		
 	}
 	method salir(){                // sale a divertirce
-      stats.modificarPlata(-100)
+      statsDelJuego.modificarPlata(-100)
       statsDelJuego.energiaDePersonaje().modificarCantidad(-20)
       //statsDelJuego.humorDePersonaje().modificarCantidad(50)
       salio = true
               
 	}
 	method trabajarFuera(){     // Va a laburar y gana mas lata q desde casa(da corona)
-      stats.modificarPlata(400)
+      statsDelJuego.modificarPlata(400)
       statsDelJuego.energiaDePersonaje().modificarCantidad(-40)
       statsDelJuego.humorDePersonaje().modificarCantidad(-40)
       salio = true

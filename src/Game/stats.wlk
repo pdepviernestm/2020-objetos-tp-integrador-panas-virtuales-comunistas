@@ -1,14 +1,7 @@
 import wollok.game.*
 import acciones.*
 
-object stats {
-	var property cantidadPlata = 10000
-	var property dias = 0
-	
-	method modificarPlata(cantidad){
-		cantidadPlata += cantidad // modifica plata en cantidad ingresada
-	}
-}
+
 class Stat{
 	var property cantidad
 	var property tieneLimite = true
@@ -42,6 +35,10 @@ class Stat{
 
 }
 object statsDelJuego {
+	var property cantidadPlata = 10000
+	var property dias = 0
+	
+	
 	const property saludDePersonaje = new Stat (cantidad = 100,x=14,y=12,buenaImagen="corazonLleno.png",mediaImagen="corazonMitad.png",malaImagen="corazonVacio.png")
 	const property energiaDePersonaje = new Stat (cantidad=100,x=14,y=11,buenaImagen="energiaLlena.jpg",mediaImagen="energiaMitad.jpg",malaImagen="energiaVacia.jpg")
 	const property humorDePersonaje = new Stat (cantidad = 100,x=14,y=14,buenaImagen="feliz.jpg",mediaImagen="neutral.jpg",malaImagen="triste.jpg")
@@ -64,6 +61,9 @@ object statsDelJuego {
 	}
 	method contagioAleatorio(){
 		game.onTick(2000,"puede contagiarse",{game.say(coronavirusDePersonaje,coronavirusDePersonaje.probabilidadDeContagio().toString()) coronavirusDePersonaje.analizarContagio() })
+	}
+	method modificarPlata(cantidad){
+		cantidadPlata += cantidad // modifica plata en cantidad ingresada
 	}
 }
 
