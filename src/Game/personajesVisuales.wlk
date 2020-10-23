@@ -35,7 +35,7 @@ object personajePrincipal {
 			game.say(self,"Mi trabajo ahora es: "+trabajoActual.nombre())
 			self.configurarVisualTrabajo()
 			puedeCambiarDeTrabajo=false
-			game.onTick(3000,"cambio trabajo",{puedeCambiarDeTrabajo=true})
+			game.onTick(30000,"cambio trabajo",{puedeCambiarDeTrabajo=true})
 			}
 	} 
 	method configurarVisualTrabajo(){
