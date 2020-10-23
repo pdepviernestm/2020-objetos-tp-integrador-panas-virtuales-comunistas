@@ -33,8 +33,8 @@ class ObjetoVisual{
 	method activarAccionSecundaria(personaje){
 		accionSecundaria.apply(personaje)
 	}
-	method transicion(){
-		juanTamagochi.modificarMapa(mapaNuevo,posicionEnMapaNuevo)
+	method transicion(mapa){
+		juanTamagochi.modificarMapa(mapa,posicionEnMapaNuevo)
 	}
 }
 /* 
@@ -64,10 +64,15 @@ object living {
 	method configurarTeclas(){
 		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => if(!(objeto.esDeTransicion()) ) 
 																																objeto.activarAccionPrimaria(protagonista)
-																														  else{objeto.transicion()}
+																														  else{objeto.transicion(mapas.superMercadoJoJo())}
 		})
 		}
-		keyboard.a().onPressDo{lista.filter({objeto=> objeto.activarAccion(protagonista.position())}).forEach({objeto=>objeto.activarAccionSecundaria(protagonista)})}
+		keyboard.a().onPressDo{lista.filter({objeto=> objeto.activarAccion(protagonista.position())}).forEach({objeto => if(!(objeto.esDeTransicion()) ) 
+																																objeto.activarAccionPrimaria(protagonista)
+																														  else{objeto.transicion(mapas.oficina())}
+		}
+		)
+		}
 		}
 	
 	method configurarVisual(){

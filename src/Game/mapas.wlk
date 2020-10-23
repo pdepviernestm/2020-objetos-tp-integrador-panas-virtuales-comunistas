@@ -25,6 +25,7 @@ object mapas{
 	method banioDeLaCasa()=new Mapa(mapaActual=banio)
 	method superMercadoJoJo()=new Mapa(mapaActual=superMercado)
 	method mapa() = new Mapa(mapaActual = mapaGeneral)
+	method oficina() = new Mapa(mapaActual=oficina)
 }
 
 
