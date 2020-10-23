@@ -269,13 +269,14 @@ object mapaGeneral{
 object oficina{
 	const protagonista = juanTamagochi.protagonista()
 	const pc = new ObjetoVisual(x=2,y=7,imagen="punto.png",accionPrimaria={protagonista=>protagonista.trabajar()})
-	const lista=[pc]
+	const salida = new ObjetoVisual(x=8,y=0,imagen="punto.png",mapaNuevo=mapas.livingDeLaCasa(),posicionEnMapaNuevo=game.origin(),esDeTransicion=true)
+	const lista=[pc,salida]
 	const property position = game.origin()
 	method image() = "oficina.png"
 	method configurarTeclas(){
 		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => if(!(objeto.esDeTransicion()) ) 
 																																objeto.activarAccionPrimaria(protagonista)
-																														  else{objeto.transicion()}
+																														  else{objeto.transicion(mapas.livingDeLaCasa())}
 		})
 		}
 		keyboard.a().onPressDo{lista.filter({objeto=> objeto.activarAccion(protagonista.position())}).forEach({objeto=>objeto.activarAccionSecundaria(protagonista)})}
