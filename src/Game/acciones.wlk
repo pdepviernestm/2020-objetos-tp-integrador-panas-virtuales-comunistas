@@ -34,7 +34,7 @@ object personaje {
 	method salir(){                // sale a divertirce
       statsDelJuego.modificarPlata(-100)
       statsDelJuego.energiaDePersonaje().modificarCantidad(-20)
-      //statsDelJuego.humorDePersonaje().modificarCantidad(50)
+      statsDelJuego.humorDePersonaje().modificarCantidad(50)
       salio = true
               
 	}
