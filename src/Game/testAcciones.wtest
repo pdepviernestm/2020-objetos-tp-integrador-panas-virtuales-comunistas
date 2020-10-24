@@ -1,5 +1,6 @@
 import stats.*
 import acciones.*
+import Game.productos.*
 
 describe "Acciones"{
 	test "Cuando duerme en el sillon aumenta su energia en 50 y su humor en 20" {
@@ -68,3 +69,68 @@ describe "Acciones"{
 		assert.that(personaje.morir())
 	}
 }
+
+describe "Productos"{
+	
+	test "Cuando el personaje come una pizza la salud, la higiene y energia disminuyen 5, pero saciedad sube 100 y humor sube 10"{
+		statsDelJuego.humorDePersonaje().cantidad(90)
+		statsDelJuego.saciedadDePersonaje().cantidad(0)
+		productos.pizza().comer()
+		assert.equals(95, statsDelJuego.higieneDePersonaje().cantidad())
+		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
+		assert.equals(95, statsDelJuego.energiaDePersonaje().cantidad())
+		assert.equals(100, statsDelJuego.humorDePersonaje().cantidad())
+		assert.equals(95, statsDelJuego.saludDePersonaje().cantidad())
+	}
+	test "Cuando el personaje se toma una jojaCola la energia, el humor y la saciedad aumentan 10, pero higiene y salud disminuyen 5"{
+		statsDelJuego.humorDePersonaje().cantidad(90)
+		statsDelJuego.saciedadDePersonaje().cantidad(90)
+		statsDelJuego.energiaDePersonaje().cantidad(90)
+		productos.jojaCola().comer()
+		assert.equals(95, statsDelJuego.higieneDePersonaje().cantidad())
+		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
+		assert.equals(100, statsDelJuego.energiaDePersonaje().cantidad())
+		assert.equals(100, statsDelJuego.humorDePersonaje().cantidad())
+		assert.equals(95, statsDelJuego.saludDePersonaje().cantidad())
+	}
+	test "Cuando el personaje come comida barata la energia, la higiene y el humor disminuyen 5, ademas la salud tambien disminuye pero en 10. En cambio, la saciedad aumenta 50"{
+		statsDelJuego.saciedadDePersonaje().cantidad(50)
+		productos.comidaBarata().comer()
+		assert.equals(95, statsDelJuego.higieneDePersonaje().cantidad())
+		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
+		assert.equals(95, statsDelJuego.energiaDePersonaje().cantidad())
+		assert.equals(95, statsDelJuego.humorDePersonaje().cantidad())
+		assert.equals(90, statsDelJuego.saludDePersonaje().cantidad())
+	}
+	test "cuando el personaje come una fruta, el humor y la higiene dismiuyen 5 pero energia y salud aumentan en 10, ademas, la saciendad aumenta 80 "{
+		statsDelJuego.saludDePersonaje().cantidad(90)
+		statsDelJuego.saciedadDePersonaje().cantidad(20)
+		statsDelJuego.energiaDePersonaje().cantidad(90)
+		productos.fruta().comer()
+		assert.equals(95, statsDelJuego.higieneDePersonaje().cantidad())
+		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
+		assert.equals(100, statsDelJuego.energiaDePersonaje().cantidad())
+		assert.equals(95, statsDelJuego.humorDePersonaje().cantidad())
+		assert.equals(100, statsDelJuego.saludDePersonaje().cantidad())
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
