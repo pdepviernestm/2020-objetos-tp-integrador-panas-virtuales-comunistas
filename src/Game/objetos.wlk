@@ -73,6 +73,10 @@ object living {
 		}
 		)
 		}
+		keyboard.d().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => if(!(objeto.esDeTransicion())) 
+																																 objeto.activarAccionPrimaria(protagonista)
+																														    else{objeto.transicion(mapas.banioDeLaCasa())}
+		})
 		}
 	
 	method configurarVisual(){
@@ -106,6 +110,7 @@ object banio {
  																									)}	
  	 //Las teclas de cambio de mapa tienen que ser distintas porque sino no funciona la transición
 	}
+	
 	}
 	method configurarVisual(){
 		game.addVisual(self)
