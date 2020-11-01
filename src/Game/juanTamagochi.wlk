@@ -4,31 +4,31 @@ import stats.*
 import wollok.game.*
 import mapas.*
 
-object juanTamagochi {
+object juanTamagochi {                                                  // Nuestro Juego
 	const property protagonista = personajePrincipal
 	var property mapaActual = mapas.livingDeLaCasa()
 	const listaDeStats=statsDelJuego.listaDeStats()
-	method jugar() {
+	method jugar() {                                                    // Usa configurar y empieza el juego
 		self.configurar()
 		game.start()
 	}
-	method configurar(){
+	method configurar(){                                                // Configura el tablero y el personaje
 		self.configurarTablero()
 		self.configurarPersonaje()
 	}
-	method configurarTablero() {
+	method configurarTablero() {                                        // Caracteristicas del tablero y arranca confMapa
 		game.width(15)
 		game.height(15)
 		self.configurarMapa()
 		game.title("Juan Tamagochi") 
 	}
-	method agregarVisualStats(){
+	method agregarVisualStats(){                                         // Agrega Visual de stats
 		listaDeStats.forEach{stat => game.addVisual(stat)}
 	}
-	method borrarVisualStats(){
+	method borrarVisualStats(){                                           // Lo borra
 		listaDeStats.forEach{stat => game.removeVisual(stat)}
 	}
-	method configurarMapa(){
+	method configurarMapa(){                                              // Configura el mapa(Hay q cambiar stats)
 		mapaActual.configurar()
 		self.agregarVisualStats()
 	}
