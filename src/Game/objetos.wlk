@@ -50,11 +50,12 @@ object accionesSalida{
 object living {
 	const protagonista = juanTamagochi.protagonista()
 	
-	const property puertaEntradaBanio=new ObjetoVisual(x=7,y=11,imagen="puertaBaño.jpg",esDeTransicion=true,mapaNuevo=mapas.banioDeLaCasa(),posicionEnMapaNuevo=game.origin())
+//	const property puertaEntradaBanio=new ObjetoVisual(x=7,y=11,imagen="puertaBaño.jpg",esDeTransicion=true,mapaNuevo=mapas.banioDeLaCasa(),posicionEnMapaNuevo=game.origin())
+	const property puertaEntradaBanio=new ObjetoVisual(x=7,y=11,imagen="puertaBaño.jpg",accionPrimaria={personaje => personaje.movermeAlBanio()})
 	const pc=new ObjetoVisual(x=13,y=11,imagen="PC.jpg",accionPrimaria={personaje => personaje.trabajar()} ,accionSecundaria={personaje => personaje.comprarComida()} )//
 	const cama=new ObjetoVisual(x=7,y=7,imagen="cama.jpg",accionPrimaria={personaje => personaje.dormir()})
 	const cocina=new ObjetoVisual(x=3,y=11,imagen="cocina.jpg",accionPrimaria={personaje => personaje.comer()})
-	const property salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg",esDeTransicion=true,mapaNuevo=mapas.superMercadoJoJo(),posicionEnMapaNuevo=game.origin())
+	const property salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg",accionPrimaria={personaje => personaje.movermeAlSuper()},accionSecundaria={personaje => personaje.movermeAOficina()})
 	const heladera=new ObjetoVisual(x=5,y=11,imagen="heladera.png") // Cual sería la función de la heladera?
 	
 	const lista = [pc,cama,cocina,puertaEntradaBanio,salida,heladera] 
@@ -62,23 +63,10 @@ object living {
 	const property position = game.origin()
 	method image() = "Piso.png"
 	method configurarTeclas(){
-		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => if(!(objeto.esDeTransicion()) ) 
-																																objeto.activarAccionPrimaria(protagonista)
-																														  else{objeto.transicion(mapas.superMercadoJoJo())}
-		})
-		}
-		keyboard.a().onPressDo{lista.filter({objeto=> objeto.activarAccion(protagonista.position())}).forEach({objeto => if(!(objeto.esDeTransicion()) ) 
-																																objeto.activarAccionPrimaria(protagonista)
-																														  else{objeto.transicion(mapas.oficina())}
-		}
-		)
-		}
-		keyboard.d().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => if(!(objeto.esDeTransicion())) 
-																																 objeto.activarAccionPrimaria(protagonista)
-																														    else{objeto.transicion(mapas.banioDeLaCasa())}
-		})
-		}
-	
+		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto =>objeto.activarAccionPrimaria(protagonista)})}
+
+		keyboard.a().onPressDo{lista.filter({objeto=> objeto.activarAccion(protagonista.position())}).forEach({objeto =>objeto.activarAccionSecundaria(protagonista)})}
+}	
 	method configurarVisual(){
 		game.addVisual(self)
 		self.configurarObjetos()
@@ -95,22 +83,16 @@ object living {
 object banio {
 	const lavamanos = new ObjetoVisual(x=3,y=2,imagen="lavaManos.jpg",accionPrimaria={personaje=>personaje.lavarseLasManos()})
 	const inodoro = new ObjetoVisual(x=9,y=2,imagen="inodoro.jpg",accionSecundaria={personaje=>personaje.defecar()})
+	const puerta = new ObjetoVisual(x=0,y=0,imagen="Punto.png",accionPrimaria={personaje=>personaje.salirDelBanio()})
 	
 	const protagonista = personajePrincipal
-	const lista = [lavamanos,inodoro]
+	const lista = [lavamanos,inodoro,puerta]
 	const property position = game.origin()
 	method image()="fondo-baño.jpg"
 	method configurarTeclas(){
-		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionPrimaria(protagonista)})
-		}
- 		keyboard.a().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionSecundaria(protagonista)	
- 										})
- 							   if(protagonista.position()==self.position()&&game.hasVisual(self)){
- 															juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(living.puertaEntradaBanio().position())
- 																									)}	
- 	 //Las teclas de cambio de mapa tienen que ser distintas porque sino no funciona la transición
-	}
-	
+		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionPrimaria(protagonista)})}
+		
+ 		keyboard.a().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionSecundaria(protagonista)})}	
 	}
 	method configurarVisual(){
 		game.addVisual(self)
@@ -134,23 +116,17 @@ object superMercado {
 	const property cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={carro=>carro.informarMontoYCantidad()})
 	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png",accionPrimaria={carro => carro.cobrar()})
 	const ahorrador = new ObjetoVisual(x=11,y=10,imagen="ahorradorT.png",accionPrimaria={carro => carro.seleccionarBarato()})
-	
+    const property salida=new ObjetoVisual(x=1,y=0,imagen="salidaLiving.jpg",accionSecundaria={personaje => personaje.volverACasa()})
 	
 	const property protagonista = personajePrincipal
-	const lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura,caja,cajera,ahorrador]
+	const lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura,caja,cajera,ahorrador,salida]
 	const property position = game.origin()
 	method image()="superMercado.png"
-	method configurarTeclas(){
-		
- 		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionPrimaria(carrito)})
- 		}
- 		keyboard.a().onPressDo({lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionSecundaria(protagonista)})
- 								if(protagonista.position()==self.position()&&game.hasVisual(self)){
- 																juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),(mapas.livingDeLaCasa().mapaActual().position())
- 																									)protagonista.salir()}		
- 										}) //Las teclas de cambio de mapa tienen que ser distintas porque sino no funciona la transición
+	method configurarTeclas(){		
+ 		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionPrimaria(carrito)})}
+ 		keyboard.a().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionSecundaria(protagonista)})}
 	}
-// viejomodo de hacerlo         if(protagonista.position() == jojoPizza.position()&&game.hasVisual(jojoPizza)){carrito.add(new Pizza())}		
+
 	method configurarVisual(){
 		game.addVisual(self)
 		self.configurarObjetos()
@@ -240,7 +216,34 @@ object mochila {
 	}
 }
 
+object oficina{
+	const protagonista = juanTamagochi.protagonista()
+	const pc = new ObjetoVisual(x=2,y=7,imagen="punto.png",accionPrimaria={protagonista=>protagonista.trabajar()})
+	const salida = new ObjetoVisual(x=8,y=0,imagen="punto.png",accionPrimaria={personaje=>personaje.volverACasa()})
+	const lista=[pc,salida]
+	const property position = game.origin()
+	method image() = "oficina.png"
+	method configurarTeclas(){
+		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionPrimaria(protagonista)})}
+		
+ 		keyboard.a().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionSecundaria(protagonista)})}	
+	}
+	
+	method configurarVisual(){
+		game.addVisual(self)
+		self.configurarObjetos()
+	}
+		method configurarObjetos(){
+		lista.forEach{objeto => objeto.configurarVisual()}
+	}
+		method borrarse(){
+			lista.forEach{objeto => objeto.borrarSuVisual()}
+			game.removeVisual(self)
+		}
+}
+/* 
 object mapaGeneral{
+*/
 	
 	const protagonista = personajePrincipal
 	const lista = []
@@ -270,32 +273,4 @@ object mapaGeneral{
 			game.removeVisual(self)
 		}	
 	
-}
-object oficina{
-	const protagonista = juanTamagochi.protagonista()
-	const pc = new ObjetoVisual(x=2,y=7,imagen="punto.png",accionPrimaria={protagonista=>protagonista.trabajar()})
-	const salida = new ObjetoVisual(x=8,y=0,imagen="punto.png",mapaNuevo=mapas.livingDeLaCasa(),posicionEnMapaNuevo=game.origin(),esDeTransicion=true)
-	const lista=[pc,salida]
-	const property position = game.origin()
-	method image() = "oficina.png"
-	method configurarTeclas(){
-		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => if(!(objeto.esDeTransicion()) ) 
-																																objeto.activarAccionPrimaria(protagonista)
-																														  else{objeto.transicion(mapas.livingDeLaCasa())}
-		})
-		}
-		keyboard.a().onPressDo{lista.filter({objeto=> objeto.activarAccion(protagonista.position())}).forEach({objeto=>objeto.activarAccionSecundaria(protagonista)})}
-		}
-	
-	method configurarVisual(){
-		game.addVisual(self)
-		self.configurarObjetos()
-	}
-		method configurarObjetos(){
-		lista.forEach{objeto => objeto.configurarVisual()}
-	}
-		method borrarse(){
-			lista.forEach{objeto => objeto.borrarSuVisual()}
-			game.removeVisual(self)
-		}
 }

@@ -22,12 +22,6 @@ object juanTamagochi {                                                  // Nuest
 		self.configurarMapa()
 		game.title("Juan Tamagochi") 
 	}
-	method agregarVisualStats(){                                         // Agrega Visual de stats
-		listaDeStats.forEach{stat => game.addVisual(stat)}
-	}
-	method borrarVisualStats(){                                           // Lo borra
-		listaDeStats.forEach{stat => game.removeVisual(stat)}
-	}
 	method configurarMapa(){                                              // Configura el mapa(Hay q cambiar stats)
 		mapaActual.configurar()
 		self.agregarVisualStats()
@@ -40,6 +34,13 @@ object juanTamagochi {                                                  // Nuest
 		self.configurarTablero()
 		game.addVisual(protagonista)
 	}
+	method agregarVisualStats(){                                         // Agrega Visual de stats
+		listaDeStats.forEach{stat => game.addVisual(stat)}
+	}
+	method borrarVisualStats(){                                           // Lo borra
+		listaDeStats.forEach{stat => game.removeVisual(stat)}
+	}
+
 	method muerte(personaje){ // METODO PARA ELIMINAR AL PERSONAJE VISUAL
 		if(personaje.morir())
 			self.sacarPersonaje(personaje)

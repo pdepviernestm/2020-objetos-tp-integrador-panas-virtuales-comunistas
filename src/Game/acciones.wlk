@@ -1,5 +1,9 @@
-import stats.*
+import wollok.game.*
+import juanTamagochi.*
+import mapas.*
+import personajesVisuales.*
 import productos.*
+import stats.*
 import objetos.*
 
 object personaje {
@@ -35,8 +39,7 @@ object personaje {
       statsDelJuego.modificarPlata(-100)
       statsDelJuego.energiaDePersonaje().modificarCantidad(-20)
       statsDelJuego.humorDePersonaje().modificarCantidad(50)
-      salio = true
-              
+      salio = true             
 	}
 	//method trabajarFuera(){     // Va a laburar y gana mas lata q desde casa(da corona)
       //statsDelJuego.modificarPlata(400)
