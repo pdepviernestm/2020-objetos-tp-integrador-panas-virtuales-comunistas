@@ -35,10 +35,10 @@ object personaje {
       statsDelJuego.saciedadDePersonaje().modificarCantidad(100)
       statsDelJuego.higieneDePersonaje().modificarCantidad(-5)		
 	}
-	method salir(){                // sale a divertirce
+	method salir(){                // sale a divertirse
       statsDelJuego.modificarPlata(-100)
       statsDelJuego.energiaDePersonaje().modificarCantidad(-20)
-      statsDelJuego.humorDePersonaje().modificarCantidad(50)
+      statsDelJuego.humorDePersonaje().modificarCantidad(10)
       salio = true             
 	}
 	//method trabajarFuera(){     // Va a laburar y gana mas lata q desde casa(da corona)

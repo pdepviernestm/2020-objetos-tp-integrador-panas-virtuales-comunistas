@@ -1,6 +1,7 @@
 import stats.*
 import acciones.*
 import Game.productos.*
+import objetos.*
 
 describe "Acciones"{
 	test "Cuando duerme en el sillon aumenta su energia en 50 y su humor en 20" {
@@ -17,6 +18,7 @@ describe "Acciones"{
 	}
 	test "Cuando defeca disminuye su higiene en 20 y 10 en su hambre pero aumenta su salud en 20"{
 		statsDelJuego.saludDePersonaje().cantidad(80)
+		statsDelJuego.higieneDePersonaje().cantidad(100)
 		personaje.defecar()
 		assert.equals(80,statsDelJuego.higieneDePersonaje().cantidad())
 		assert.equals(100,statsDelJuego.saludDePersonaje().cantidad())
@@ -24,6 +26,7 @@ describe "Acciones"{
 	}
 	test "Cuando trabaja aumenta dinero en 100 y disminuye 20 en energia y humor"{
 		statsDelJuego.cantidadPlata(0)
+		statsDelJuego.humorDePersonaje().cantidad(100)
 		personaje.trabajar(-20, 100, -20)
 		assert.equals(100, statsDelJuego.cantidadPlata())
 		assert.equals(80, statsDelJuego.energiaDePersonaje().cantidad())
@@ -33,6 +36,7 @@ describe "Acciones"{
 		statsDelJuego.humorDePersonaje().cantidad(90)
 		statsDelJuego.cantidadPlata(100)
 		statsDelJuego.saciedadDePersonaje().cantidad(0)
+		statsDelJuego.higieneDePersonaje().cantidad(100)
 		personaje.comprarComida()
 		assert.equals(0, statsDelJuego.cantidadPlata())
 		assert.equals(95, statsDelJuego.energiaDePersonaje().cantidad())
@@ -42,7 +46,7 @@ describe "Acciones"{
 		}
 	test "Cuando sale de la casa disminuye plata en 100 y energia en 20, pero aumenta humor en 50. Ademas, por salir le agarra corona "{
 		statsDelJuego.cantidadPlata(100)
-		statsDelJuego.humorDePersonaje().cantidad(50)
+		statsDelJuego.humorDePersonaje().cantidad(90)
 		personaje.salir()
 		assert.equals(0, statsDelJuego.cantidadPlata())
 		assert.equals(80, statsDelJuego.energiaDePersonaje().cantidad())
@@ -51,6 +55,7 @@ describe "Acciones"{
 	}
 	test "Cuando sale trabajar afuera aumenta en 400 el dinero, pero disminuye 40 en energia y humor"{
 		statsDelJuego.cantidadPlata(0)
+		statsDelJuego.humorDePersonaje().cantidad(100)
 		personaje.trabajar(-40, 400, -40)
 		assert.equals(400, statsDelJuego.cantidadPlata())
 		assert.equals(60, statsDelJuego.energiaDePersonaje().cantidad())
@@ -75,6 +80,7 @@ describe "Productos"{
 	test "Cuando el personaje come una pizza la salud, la higiene y energia disminuyen 5, pero saciedad sube 100 y humor sube 10"{
 		statsDelJuego.humorDePersonaje().cantidad(90)
 		statsDelJuego.saciedadDePersonaje().cantidad(0)
+		statsDelJuego.higieneDePersonaje().cantidad(100)
 		productos.pizza().comer()
 		assert.equals(95, statsDelJuego.higieneDePersonaje().cantidad())
 		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
@@ -86,6 +92,7 @@ describe "Productos"{
 		statsDelJuego.humorDePersonaje().cantidad(90)
 		statsDelJuego.saciedadDePersonaje().cantidad(90)
 		statsDelJuego.energiaDePersonaje().cantidad(90)
+		statsDelJuego.higieneDePersonaje().cantidad(100)
 		productos.jojaCola().comer()
 		assert.equals(95, statsDelJuego.higieneDePersonaje().cantidad())
 		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
@@ -95,6 +102,8 @@ describe "Productos"{
 	}
 	test "Cuando el personaje come comida barata la energia, la higiene y el humor disminuyen 5, ademas la salud tambien disminuye pero en 10. En cambio, la saciedad aumenta 50"{
 		statsDelJuego.saciedadDePersonaje().cantidad(50)
+		statsDelJuego.higieneDePersonaje().cantidad(100)
+		statsDelJuego.humorDePersonaje().cantidad(100)
 		productos.comidaBarata().comer()
 		assert.equals(95, statsDelJuego.higieneDePersonaje().cantidad())
 		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
@@ -106,6 +115,8 @@ describe "Productos"{
 		statsDelJuego.saludDePersonaje().cantidad(90)
 		statsDelJuego.saciedadDePersonaje().cantidad(20)
 		statsDelJuego.energiaDePersonaje().cantidad(90)
+		statsDelJuego.higieneDePersonaje().cantidad(100)
+		statsDelJuego.humorDePersonaje().cantidad(100)
 		productos.fruta().comer()
 		assert.equals(95, statsDelJuego.higieneDePersonaje().cantidad())
 		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
@@ -115,6 +126,24 @@ describe "Productos"{
 	}
 }
 
+describe "Coronavirus"{
+	test "Cuando el personaje esta en condiciones de contagio"{
+		statsDelJuego.humorDePersonaje().cantidad(5)
+		statsDelJuego.higieneDePersonaje().cantidad(5)
+		personaje.salir()
+		assert.equals(true,coronavirusDePersonaje.estaEnCondicionesDeContagio())
+	}
+	
+	test "Cuando el personaje se contagia"{
+		coronavirusDePersonaje.analizarContagio()
+		coronavirusDePersonaje.probabilidadDeContagio().between(1,2)
+		assert.equals(true, coronavirusDePersonaje.contagiado())
+		//assert.equals(true,living.removido())
+	}
+	
+	
+	
+}
 
 
 

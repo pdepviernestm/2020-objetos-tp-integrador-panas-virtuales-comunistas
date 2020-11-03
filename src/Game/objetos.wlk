@@ -22,7 +22,7 @@ class ObjetoVisual{
 		game.addVisual(self)
 	}
 	method borrarSuVisual(){
-		game.removeVisual(self)
+		game.removeVisual(self)	
 	}
 	method activarAccion(posicionDelPersonaje){
 		return posicionDelPersonaje == self.position() && game.hasVisual(self)
@@ -57,7 +57,7 @@ object living {
 	const cocina=new ObjetoVisual(x=3,y=11,imagen="cocina.jpg",accionPrimaria={personaje => personaje.comer()})
 	const property salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg",accionPrimaria={personaje => personaje.movermeAlSuper()},accionSecundaria={personaje => personaje.movermeAOficina()})
 	const heladera=new ObjetoVisual(x=5,y=11,imagen="heladera.png") // Cual sería la función de la heladera?
-	
+	var property removido = false
 	const lista = [pc,cama,cocina,puertaEntradaBanio,salida,heladera] 
 	//const lista=[pc,cama,cocina,puertaEntradaBanio,heladera]
 	const property position = game.origin()
@@ -77,6 +77,7 @@ object living {
 		method borrarse(){
 			lista.forEach{objeto => objeto.borrarSuVisual()}
 			game.removeVisual(self)
+			removido = true
 		}
 }
 
