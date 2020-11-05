@@ -118,9 +118,12 @@ object superMercado {
 	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png",accionPrimaria={carro => carro.cobrar()})
 	const ahorrador = new ObjetoVisual(x=11,y=10,imagen="ahorradorT.png",accionPrimaria={carro => carro.seleccionarBarato()})
     const property salida=new ObjetoVisual(x=1,y=0,imagen="salidaLiving.jpg",accionSecundaria={personaje => personaje.volverACasa()})
+    const carameloRaro = new ObjetoVisual(x=7,y=3,imagen="CarameloRaro.png")
+    const curaCorona = new ObjetoVisual(x=7,y=5,imagen="curaCorona.jpg")
+    const alcoholGel = new ObjetoVisual(x=7,y=1,imagen="buenaSalud.jpg")
 	
 	const property protagonista = personajePrincipal
-	const lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura,caja,cajera,ahorrador,salida]
+	const lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura,caja,cajera,ahorrador,salida,carameloRaro,curaCorona,alcoholGel]
 	const property position = game.origin()
 	method image()="superMercado.png"
 	method configurarTeclas(){		
@@ -219,9 +222,10 @@ object mochila {
 
 object oficina{
 	const protagonista = juanTamagochi.protagonista()
-	const pc = new ObjetoVisual(x=2,y=7,imagen="punto.png",accionPrimaria={protagonista=>protagonista.trabajar()})
+	const pc = new ObjetoVisual(x=1,y=8,imagen="punto.png",accionPrimaria={protagonista=>protagonista.trabajar()})
 	const salida = new ObjetoVisual(x=8,y=0,imagen="punto.png",accionPrimaria={personaje=>personaje.volverACasa()})
-	const lista=[pc,salida]
+	const mateAgeno =  new ObjetoVisual(x=3,y=8,imagen="mateAgeno.jpg")
+	const lista=[pc,salida,mateAgeno]
 	const property position = game.origin()
 	method image() = "oficina.png"
 	method configurarTeclas(){
