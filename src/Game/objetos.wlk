@@ -52,7 +52,7 @@ object living {
 	
 //	const property puertaEntradaBanio=new ObjetoVisual(x=7,y=11,imagen="puertaBaño.jpg",esDeTransicion=true,mapaNuevo=mapas.banioDeLaCasa(),posicionEnMapaNuevo=game.origin())
 	const property puertaEntradaBanio=new ObjetoVisual(x=7,y=11,imagen="puertaBaño.jpg",accionPrimaria={personaje => personaje.movermeAlBanio()})
-	const pc=new ObjetoVisual(x=13,y=11,imagen="PC.jpg",accionPrimaria={personaje => personaje.trabajar()} ,accionSecundaria={personaje => personaje.comprarComida()} )//
+	const pc=new ObjetoVisual(x=13,y=11,imagen="PC.jpg",accionPrimaria={personaje => personaje.trabajarEnCasa()} ,accionSecundaria={personaje => personaje.comprarComida()} )//
 	const cama=new ObjetoVisual(x=7,y=7,imagen="cama.jpg",accionPrimaria={personaje => personaje.dormir()})
 	const cocina=new ObjetoVisual(x=3,y=11,imagen="cocina.jpg",accionPrimaria={personaje => personaje.comer()})
 	const property salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg",accionPrimaria={personaje => personaje.movermeAlSuper()},accionSecundaria={personaje => personaje.movermeAOficina()})
@@ -234,17 +234,17 @@ object oficina{
 		game.addVisual(self)
 		self.configurarObjetos()
 	}
-		method configurarObjetos(){
+	method configurarObjetos(){
 		lista.forEach{objeto => objeto.configurarVisual()}
 	}
-		method borrarse(){
-			lista.forEach{objeto => objeto.borrarSuVisual()}
-			game.removeVisual(self)
-		}
+	method borrarse(){
+		lista.forEach{objeto => objeto.borrarSuVisual()}
+		game.removeVisual(self)
+	}
 }
 /* 
 object mapaGeneral{
-*/
+
 	
 	const protagonista = personajePrincipal
 	const lista = []
@@ -275,3 +275,4 @@ object mapaGeneral{
 		}	
 	
 }
+*/

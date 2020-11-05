@@ -26,8 +26,15 @@ object personajePrincipal {
 	}
 	method trabajar(){
 		trabajoActual.trabajar()
-		game.say(self,"Trabajo desde casa :D")
+		game.say(self,"Trabajo en la oficina :D")
 	}
+	method trabajarEnCasa(){
+		if (trabajoActual.trabajaEnCasa()){
+		trabajoActual.trabajar()
+		game.say(self,"Trabajo en Casa :D")
+		}
+	}
+
 	method cambiarDeTrabajo(){
 		if(puedeCambiarDeTrabajo){
 			game.removeVisual(trabajoActual)
