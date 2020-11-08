@@ -58,25 +58,24 @@ object personajePrincipal {
 		personaje.salir()
 		game.say(self,"Voy de shopping :D")
 	}
-	method movermeAlSuper(){
-		juanTamagochi.modificarMapa(mapas.superMercadoJoJo(),game.at(1,1))
-	}
+	
+//	method movermeAlSuper(){
+//		juanTamagochi.modificarMapa(mapas.superMercadoJoJo(),game.at(1,1))
+//	}
 	method movermeAOficina(){
-		juanTamagochi.modificarMapa(mapas.oficina(),game.at(8,0))
+		juanTamagochi.modificarMapa(oficina,game.at(8,0))
 	}
+
 	method movermeAlBanio(){
-		juanTamagochi.modificarMapa(mapas.banioDeLaCasa(),game.at(0,1))
+		juanTamagochi.modificarMapa(banio,game.at(0,1))
 	}
 	method volverACasa(){
-		juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),game.at(1,5))
+		juanTamagochi.modificarMapa(living,game.at(1,5))
 	}
 	method salirDelBanio(){
-		juanTamagochi.modificarMapa(mapas.livingDeLaCasa(),game.at(6,11))
+		juanTamagochi.modificarMapa(living,game.at(6,11))
 	}	
-	/*method trabajarFuera(){
-		personaje.trabajarFuera()
-		game.say(self,"Voy a trabajar :c")
-	}*/
+
 	method comer(){
 		personaje.comer()
 		game.say(self,"Comiendo :D")

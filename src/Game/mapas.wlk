@@ -1,25 +1,51 @@
 import wollok.game.*
 import objetos.*
+import juanTamagochi.*
 
 class Mapa {
+	const protagonista = juanTamagochi.protagonista()
+	var property lista
+	var property removido = false
+	const property position = game.origin()
+	const property imagen
 	
-	var property mapaActual
+	method image() = imagen
+	
 	method configurar(){
 		self.configurarFondo()
-		self.configurarLasTeclas()
+		self.configurarTeclas()
 	}
 	method configurarFondo(){
-		mapaActual.configurarVisual()
+		self.configurarVisual()
 	}
-	method configurarLasTeclas(){
-		mapaActual.configurarTeclas()
+
+	method cambioDeMapa(protag){
+		self.borrarse()
+		game.removeVisual(protag)
 	}
-	method cambioDeMapa(protagonista){
-		mapaActual.borrarse()
-		game.removeVisual(protagonista)
+	method configurarTeclas(){
+		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto =>objeto.activarAccionPrimaria(protagonista)})}
+
+		keyboard.a().onPressDo{lista.filter({objeto=> objeto.activarAccion(protagonista.position())}).forEach({objeto =>objeto.activarAccionSecundaria(protagonista)})}
+}	
+	method configurarVisual(){
+		game.addVisual(self)
+		self.configurarObjetos()
 	}
+		method configurarObjetos(){
+		lista.forEach{objeto => objeto.configurarVisual()}
+	}
+		method borrarse(){
+			lista.forEach{objeto => objeto.borrarSuVisual()}
+			game.removeVisual(self)
+			removido = true
+		}
 }
 
+const living = new Mapa(lista= [pc,cama,cocina,puertaEntradaBanio,salida,heladera],imagen = "Piso.png")
+const banio = new Mapa (lista = [lavamanos,inodoro,puerta],imagen = "fondo-baño.jpg")
+const oficina = new Mapa(lista =[pcOficina,salidaOficina,mateAgeno],imagen = "oficina.png" )
+/* 
 object mapas{
 	method livingDeLaCasa()= new Mapa(mapaActual=living)
 	method banioDeLaCasa()=new Mapa(mapaActual=banio)
@@ -27,5 +53,5 @@ object mapas{
 	method mapa() = new Mapa(mapaActual = mapaGeneral)
 	method oficina() = new Mapa(mapaActual=oficina)
 }
-
+*/
 

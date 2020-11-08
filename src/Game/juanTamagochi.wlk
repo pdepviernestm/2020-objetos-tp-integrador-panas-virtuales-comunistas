@@ -6,7 +6,7 @@ import mapas.*
 
 object juanTamagochi {                                                  // Nuestro Juego
 	const property protagonista = personajePrincipal
-	var property mapaActual = mapas.livingDeLaCasa()
+	var property mapaActual = living
 	const listaDeStats=statsDelJuego.listaDeStats()
 	var property mostrarStats = false
 	var property contador = 0

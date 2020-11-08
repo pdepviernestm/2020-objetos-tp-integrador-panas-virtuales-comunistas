@@ -4,7 +4,7 @@ import Game.productos.*
 import objetos.*
 import productos.*
 import juanTamagochi.*
-
+/* 
 describe "Acciones"{
 	test "Cuando duerme en el sillon aumenta su energia en 50 y su humor en 20" {
 		statsDelJuego.energiaDePersonaje().cantidad(50)
@@ -160,7 +160,7 @@ describe "SuperMercado"{
 }
 
 
-
+*/
 
 
 

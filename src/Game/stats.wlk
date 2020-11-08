@@ -52,6 +52,7 @@ object statsDelJuego {
 		game.onTick(30000,"disminuye hambre cada 30 seg",{self.saciedadDePersonaje().modificarCantidad(-10)})
 		game.onTick(5000,"proba. contagio",{self.activarProbabilidadDeContagio()}) 
 	}
+	
 	method activarProbabilidadDeContagio(){
 		if(coronavirusDePersonaje.estaEnCondicionesDeContagio()){ 
 			game.removeTickEvent("proba. contagio")
@@ -60,9 +61,11 @@ object statsDelJuego {
 				//game.removeTickEvent("proba. contagio")
 		}
 	}
+	
 	method contagioAleatorio(){
 		game.onTick(2000,"puede contagiarse",{coronavirusDePersonaje.analizarContagio() })
 	}
+	
 	method modificarPlata(cantidad){
 		cantidadPlata += cantidad // modifica plata en cantidad ingresada
 	}
@@ -79,22 +82,24 @@ object coronavirusDePersonaje{
 		const proporcionStatsDeContagio = (statsDelJuego.higieneDePersonaje().cantidad() + statsDelJuego.humorDePersonaje().cantidad() ).div(10)
 		return (1.randomUpTo(proporcionStatsDeContagio))
 	}
+
+	 
 	method analizarContagio(){
 		if((self.probabilidadDeContagio()).between(0,3)){
 			contagiado=true
-			game.removeVisual(living.salida())
+			game.removeVisual(salida)
 			game.removeTickEvent("puede contagiarse")
 			self.cuarentena()
 			}
 		}
 		
 	method cuarentena(){		
-		game.onTick(2000, "cuarentena", {contagiado = false game.addVisual(living.salida()) game.removeTickEvent("cuarentena")})	 
+		game.onTick(2000, "cuarentena", {contagiado = false game.addVisual(salida) game.removeTickEvent("cuarentena")})	 
 	}
     method visual(){
         if(self.contagiado()) // si usamos if(self.contagiado) rompe todo 
             return "corona.png"
         return "feliz.jpg"
-}
+    }
     method image() = self.visual()
 }
