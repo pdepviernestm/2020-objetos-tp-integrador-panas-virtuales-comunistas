@@ -2,6 +2,8 @@ import stats.*
 import acciones.*
 import Game.productos.*
 import objetos.*
+import productos.*
+import juanTamagochi.*
 
 describe "Acciones"{
 	test "Cuando duerme en el sillon aumenta su energia en 50 y su humor en 20" {
@@ -81,7 +83,7 @@ describe "Productos"{
 		statsDelJuego.humorDePersonaje().cantidad(90)
 		statsDelJuego.saciedadDePersonaje().cantidad(0)
 		statsDelJuego.higieneDePersonaje().cantidad(100)
-		productos.pizza().comer()
+		pizza.comer()
 		assert.equals(95, statsDelJuego.higieneDePersonaje().cantidad())
 		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
 		assert.equals(95, statsDelJuego.energiaDePersonaje().cantidad())
@@ -93,7 +95,7 @@ describe "Productos"{
 		statsDelJuego.saciedadDePersonaje().cantidad(90)
 		statsDelJuego.energiaDePersonaje().cantidad(90)
 		statsDelJuego.higieneDePersonaje().cantidad(100)
-		productos.jojaCola().comer()
+		jojaCola.comer()
 		assert.equals(95, statsDelJuego.higieneDePersonaje().cantidad())
 		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
 		assert.equals(100, statsDelJuego.energiaDePersonaje().cantidad())
@@ -104,7 +106,7 @@ describe "Productos"{
 		statsDelJuego.saciedadDePersonaje().cantidad(50)
 		statsDelJuego.higieneDePersonaje().cantidad(100)
 		statsDelJuego.humorDePersonaje().cantidad(100)
-		productos.comidaBarata().comer()
+		comidaBarata.comer()
 		assert.equals(95, statsDelJuego.higieneDePersonaje().cantidad())
 		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
 		assert.equals(95, statsDelJuego.energiaDePersonaje().cantidad())
@@ -117,7 +119,7 @@ describe "Productos"{
 		statsDelJuego.energiaDePersonaje().cantidad(90)
 		statsDelJuego.higieneDePersonaje().cantidad(100)
 		statsDelJuego.humorDePersonaje().cantidad(100)
-		productos.fruta().comer()
+		fruta.comer()
 		assert.equals(95, statsDelJuego.higieneDePersonaje().cantidad())
 		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
 		assert.equals(100, statsDelJuego.energiaDePersonaje().cantidad())
@@ -136,11 +138,24 @@ describe "Coronavirus"{
 	
 	test "Cuando el personaje se contagia"{
 		coronavirusDePersonaje.analizarContagio()
-		coronavirusDePersonaje.probabilidadDeContagio().between(1,2)
 		assert.equals(true, coronavirusDePersonaje.contagiado())
-		//assert.equals(true,living.removido())
-	}
+		
+	} // no anda
 	
+	
+	
+}
+
+describe "SuperMercado"{
+	
+	test "Deberia agregarme comida al carrito y decirme cantidad cuando apreto a y s sobre la gondola del producto"{
+		//tengo que hacer que este en el super
+		juanTamagochi.modificarMapa(superMercado, 0)
+		carrito.agregarComida(comidaBarata)
+		carrito.agregarComida(jojaCola)
+		assert.equals(comidaBarata, (carrito.comidas()).any(comidaBarata))
+		assert.equals(jojaCola, (carrito.comidas()).any(jojaCola))		
+	} // no anda
 	
 	
 }
