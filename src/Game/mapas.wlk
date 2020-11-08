@@ -45,6 +45,10 @@ class Mapa {
 const living = new Mapa(lista= [pc,cama,cocina,puertaEntradaBanio,salida,heladera],imagen = "Piso.png")
 const banio = new Mapa (lista = [lavamanos,inodoro,puerta],imagen = "fondo-baño.jpg")
 const oficina = new Mapa(lista =[pcOficina,salidaOficina,mateAgeno],imagen = "oficina.png" )
+const superMercado = new Mapa(lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura,caja,cajera,ahorrador,salidaSuper,carameloRaro,curaCorona,alcoholGel], imagen = "superMercado.png")
+
+
+
 /* 
 object mapas{
 	method livingDeLaCasa()= new Mapa(mapaActual=living)

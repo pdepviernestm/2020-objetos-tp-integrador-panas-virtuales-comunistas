@@ -52,44 +52,23 @@ class ObjetoVisual{
 	const salidaOficina = new ObjetoVisual(x=8,y=0,imagen="punto.png",accionPrimaria={personaje=>personaje.volverACasa()})
 	const mateAgeno =  new ObjetoVisual(x=3,y=8,imagen="mateAgeno.jpg")
 
-
-object superMercado {
 	const jojoPizza = new ObjetoVisual(x=7,y=11,imagen="jojoPizza.png",accionPrimaria={carro => carro.agregarComida(new Producto(nombre = "Pizza", precio = 300, valorEnergia = -5, valorHumor = 10, valorSaciedad = 100, valorHigiene = -5, valorSalud = -5))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Pizza")})
 	const jojaCola = new ObjetoVisual(x=2,y=7,imagen="jojaCola.png",accionPrimaria={carro => carro.agregarComida(new Producto(nombre = "JojaCola", precio = 100, valorEnergia = 10, valorHumor = 10, valorSaciedad = 10, valorHigiene = -5, valorSalud = -5))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"JojaCola")})
 	const fruta = new ObjetoVisual(x=2,y=11,imagen="fruta.png",accionPrimaria={carro => carro.agregarComida(new Producto(nombre = "Fruta", precio = 200, valorEnergia = 10, valorHumor = -5, valorSaciedad = 80, valorHigiene = -5, valorSalud = 10))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Fruta")})
 	const comidaBarata = new ObjetoVisual(x=7,y=7,imagen="comidaBarata.png",accionPrimaria={carro => carro.agregarComida(new Producto(nombre = "ComidaBarata", precio = 100, valorEnergia = -5, valorHumor = -5, valorSaciedad = 50, valorHigiene = -5, valorSalud = -10))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Comida barata")})
 	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png",accionPrimaria={carro => carro.vaciarCarrito()})	
-	const property cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={carro=>carro.informarMontoYCantidad()})
+	const  cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={carro=>carro.informarMontoYCantidad()})
 	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png",accionPrimaria={carro => carro.cobrar()})
 	const ahorrador = new ObjetoVisual(x=11,y=10,imagen="ahorradorT.png",accionPrimaria={carro => carro.seleccionarBarato()})
-    const property salida=new ObjetoVisual(x=1,y=0,imagen="salidaLiving.jpg",accionSecundaria={personaje => personaje.volverACasa()})
+    const salidaSuper =new ObjetoVisual(x=1,y=0,imagen="salidaLiving.jpg",accionSecundaria={personaje => personaje.volverACasa()})
     const carameloRaro = new ObjetoVisual(x=7,y=3,imagen="CarameloRaro.png")
     const curaCorona = new ObjetoVisual(x=7,y=5,imagen="curaCorona.jpg")
     const alcoholGel = new ObjetoVisual(x=7,y=1,imagen="buenaSalud.jpg")
-	
-	const property protagonista = personajePrincipal
-	const lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura,caja,cajera,ahorrador,salida,carameloRaro,curaCorona,alcoholGel]
-	const property position = game.origin()
-	method image()="superMercado.png"
-	method configurarTeclas(){		
- 		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionPrimaria(carrito)})}
- 		keyboard.a().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto => objeto.activarAccionSecundaria(protagonista)})}
-	}
+    
+    
+    
 
-	method configurarVisual(){
-		game.addVisual(self)
-		self.configurarObjetos()
-	}
-		method configurarObjetos(){
-		lista.forEach{objeto => objeto.configurarVisual()}
-	}
-	method borrarse(){
-			lista.forEach{objeto => objeto.borrarSuVisual()}
-			game.removeVisual(self)
-		}	
-	
-	
-}
+
 
 object notificador{
 	

@@ -4,12 +4,40 @@ import stats.*
 import trabajos.*
 import juanTamagochi.*
 import mapas.*
+import objetos.*
+
 
 object personajePrincipal {
 	var property position = game.origin()
 	var property trabajoActual = trabajos.listaTrabajos().head()
 	var puedeCambiarDeTrabajo=true
 	
+	
+	method agregarComida(comida){
+		carrito.agregarComida(comida)
+		
+	}
+	method vaciarCarrito(){
+		carrito.vaciarCarrito()
+	}
+	method calcularPrecio(){
+		return carrito.calcularPrecio()
+	}
+	method cantidadDe(nombreProducto){
+		return carrito.cantidadDe(nombreProducto)
+	}
+	method informarMontoYCantidad(){
+		carrito.informarMontoYCantidad()
+	}
+	method cobrar(){
+		carrito.cobrar()
+	}
+	method seleccionarBarato(){
+		carrito.seleccionarBarato()
+	}
+	method encontrarComida(){
+		return carrito.encontrarComida()
+	}
 	method image() = "avatar.png" 
 	method saludo() = "Hola! :D" // Mensaje de prueba
 	method dormir(){
@@ -59,9 +87,9 @@ object personajePrincipal {
 		game.say(self,"Voy de shopping :D")
 	}
 	
-//	method movermeAlSuper(){
-//		juanTamagochi.modificarMapa(mapas.superMercadoJoJo(),game.at(1,1))
-//	}
+	method movermeAlSuper(){
+	juanTamagochi.modificarMapa(superMercado,game.at(1,1))
+	}
 	method movermeAOficina(){
 		juanTamagochi.modificarMapa(oficina,game.at(8,0))
 	}
