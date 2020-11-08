@@ -149,13 +149,12 @@ describe "Coronavirus"{
 describe "SuperMercado"{
 	
 	test "Deberia agregarme comida al carrito y decirme cantidad cuando apreto a y s sobre la gondola del producto"{
-		//tengo que hacer que este en el super
-		juanTamagochi.modificarMapa(superMercado, 0)
+		notificador.juego(gameDeMentira)
 		carrito.agregarComida(comidaBarata)
 		carrito.agregarComida(jojaCola)
-		assert.equals(comidaBarata, (carrito.comidas()).any(comidaBarata))
-		assert.equals(jojaCola, (carrito.comidas()).any(jojaCola))		
-	} // no anda
+		assert.that((carrito.comidas()).contains(comidaBarata))
+		assert.that((carrito.comidas()).contains(jojaCola))		
+	} 
 	
 	
 }

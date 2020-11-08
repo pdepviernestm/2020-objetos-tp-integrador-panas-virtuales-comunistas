@@ -146,6 +146,27 @@ object superMercado {
 	
 }
 
+object notificador{
+	
+	var property juego = game
+	
+	method decir(visual, mensaje){
+		
+		juego.say(visual, mensaje)
+		
+	}
+	
+	
+}
+
+object gameDeMentira{
+	
+	method say(visual, mensaje){
+		
+	}
+	
+}
+
 object carrito {
 	var property comidas = []
 	const property position= game.at(7,7)
@@ -158,7 +179,7 @@ object carrito {
 	method agregarComida(comida){
 		comidas.add(comida)
 		const nombreComida = comida.nombre()
-		game.say(protagonista,"agregué une " + nombreComida +" al carrito")
+		notificador.decir(protagonista,"agregué une " + nombreComida +" al carrito")
 	}
 	method vaciarCarrito(){
 		if(comidas == [])
