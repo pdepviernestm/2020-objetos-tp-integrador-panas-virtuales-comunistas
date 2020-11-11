@@ -102,6 +102,15 @@ object personajePrincipal {
 	}
 	method salirDelBanio(){
 		juanTamagochi.modificarMapa(living,game.at(6,11))
+	}
+	method movermeABoleta(){
+	    juanTamagochi.modificarMapa(boleta,game.at(1,1))
+	}
+	method movermeAMochila(){
+	    juanTamagochi.modificarMapa(mochila,game.at(1,1))
+	}
+	method volverAtras(ultimoLugar,ubicacion){
+		juanTamagochi.modificarMapa(ultimoLugar,ubicacion)
 	}	
 
 	method comer(){
