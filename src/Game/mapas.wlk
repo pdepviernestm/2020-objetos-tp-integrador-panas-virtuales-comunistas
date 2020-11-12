@@ -25,9 +25,9 @@ class Mapa {
 		game.removeVisual(protag)
 	}
 	method configurarTeclas(){
-		keyboard.s().onPressDo{lista.filter({objeto => objeto.activarAccion(protagonista.position())}).forEach({objeto =>objeto.activarAccionPrimaria(protagonista)})}
+		keyboard.s().onPressDo{lista.filter({objeto => objeto.puedeActivarAccion(protagonista.position())}).forEach({objeto =>objeto.activarAccionPrimaria(protagonista)})}
 
-		keyboard.a().onPressDo{lista.filter({objeto=> objeto.activarAccion(protagonista.position())}).forEach({objeto =>objeto.activarAccionSecundaria(protagonista)})}
+		keyboard.a().onPressDo{lista.filter({objeto=> objeto.puedeActivarAccion(protagonista.position())}).forEach({objeto =>objeto.activarAccionSecundaria(protagonista)})}
 }	
 	method configurarVisual(){
 		game.addVisual(self)
