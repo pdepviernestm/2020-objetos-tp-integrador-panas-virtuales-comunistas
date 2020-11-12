@@ -50,7 +50,7 @@ class ObjetoVisual{
 	
 	const pcOficina = new ObjetoVisual(x=1,y=8,imagen="punto.png",accionPrimaria={protagonista=>protagonista.trabajar()})
 	const salidaOficina = new ObjetoVisual(x=8,y=0,imagen="punto.png",accionPrimaria={personaje=>personaje.volverACasa()})
-	const mateAgeno =  new ObjetoVisual(x=3,y=8,imagen="mateAgeno.jpg")
+	const mateAgeno =  new ObjetoVisual(x=3,y=8,imagen="mateAgeno.jpg",accionPrimaria={personaje=>personaje.meContagie()})
 
 	const jojoPizza = new ObjetoVisual(x=7,y=11,imagen="jojoPizza.png",accionPrimaria={carro => carro.agregarComida(new Producto(nombre = "Pizza", precio = 300, valorEnergia = -5, valorHumor = 10, valorSaciedad = 100, valorHigiene = -5, valorSalud = -5))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Pizza")})
 	const jojaCola = new ObjetoVisual(x=2,y=7,imagen="jojaCola.png",accionPrimaria={carro => carro.agregarComida(new Producto(nombre = "JojaCola", precio = 100, valorEnergia = 10, valorHumor = 10, valorSaciedad = 10, valorHigiene = -5, valorSalud = -5))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"JojaCola")})

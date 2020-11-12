@@ -12,7 +12,7 @@ object personaje {
 		statsDelJuego.energiaDePersonaje().modificarCantidad(50)
 		statsDelJuego.saludDePersonaje().modificarCantidad(20) 
 		statsDelJuego.humorDePersonaje().modificarCantidad(20)
-		statsDelJuego.saciedadDePersonaje().modificarCantidad(-40)
+		statsDelJuego.saciedadDePersonaje().modificarCantidad(-20)
 		statsDelJuego.agregarUnDia()
 	}
 	method lavarseLasManos(){

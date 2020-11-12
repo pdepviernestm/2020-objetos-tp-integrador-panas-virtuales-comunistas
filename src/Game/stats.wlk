@@ -89,12 +89,15 @@ object coronavirusDePersonaje{
 	 
 	method analizarContagio(){
 		if((self.probabilidadDeContagio()).between(0,3)){
-			contagiado=true
-			game.removeVisual(salida)
-			game.removeTickEvent("puede contagiarse")
-			self.cuarentena()
+			self.meContagie()
 			}
 		}
+	method meContagie(){
+		contagiado=true
+		game.removeVisual(salida)
+		game.removeTickEvent("puede contagiarse")
+		self.cuarentena()
+	}
 		
 	method cuarentena(){		
 		game.onTick(200000, "cuarentena", {contagiado = false game.addVisual(salida) game.removeTickEvent("cuarentena")})	 

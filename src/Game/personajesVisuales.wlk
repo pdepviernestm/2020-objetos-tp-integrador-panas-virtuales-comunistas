@@ -120,8 +120,12 @@ object personajePrincipal {
 		personaje.comer()
 		game.say(self,"Comiendo :D")
 	}
+	method meContagie(){
+		game.say(self,"Me falta el aire")
+		coronavirusDePersonaje.meContagie()
+	}
 	method tengoCorona() {             //Me da Corona q resta salud sobre tiempo
-		if(personaje.higieneBaja())
+//		if(personaje.higieneBaja())
 		  game.onTick(30000, "modifica salud cada 30 segundos", {personaje.efectoCorona()})
 	}
 	method morir(){
