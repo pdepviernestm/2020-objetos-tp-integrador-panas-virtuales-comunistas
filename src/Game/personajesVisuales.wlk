@@ -82,6 +82,9 @@ object personajePrincipal {
 		personaje.comprarComida()
 		game.say(self,"Me pido una pizza :D")
 		}
+	method contarDias(){
+		game.say(self,"Ya pase "+ statsDelJuego.dias() +" dias en cuarentena")
+	}
 	method salir(){
 		personaje.salir()
 		game.say(self,"Voy de shopping :D")
@@ -104,7 +107,7 @@ object personajePrincipal {
 		juanTamagochi.modificarMapa(living,game.at(6,11))
 	}
 	method movermeABoleta(){
-	    juanTamagochi.modificarMapa(boleta,game.at(1,1))
+	    juanTamagochi.modificarMapa(boleta,game.at(8,2))
 	}
 	method movermeAMochila(){
 	    juanTamagochi.modificarMapa(mochila,game.at(1,1))

@@ -5,7 +5,6 @@ import personajesVisuales.*
 import productos.*
 import stats.*
 
-
 class ObjetoVisual{
 	const property x
 	const property y
@@ -43,6 +42,7 @@ class ObjetoVisual{
 	const cocina=new ObjetoVisual(x=3,y=11,imagen="cocina.jpg",accionPrimaria={personaje => personaje.comer()})
 	const salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg",accionPrimaria={personaje => personaje.movermeAlSuper()},accionSecundaria={personaje => personaje.movermeAOficina()})
 	const heladera=new ObjetoVisual(x=5,y=11,imagen="heladera.png")
+	const calendario = new ObjetoVisual(x=10,y=11,imagen="Punto.png",accionPrimaria={personaje => personaje.contarDias()})
 	
 	const lavamanos = new ObjetoVisual(x=3,y=2,imagen="lavaManos.jpg",accionPrimaria={personaje=>personaje.lavarseLasManos()})
 	const inodoro = new ObjetoVisual(x=9,y=2,imagen="inodoro.jpg",accionSecundaria={personaje=>personaje.defecar()})
@@ -70,28 +70,6 @@ class ObjetoVisual{
     const saldo = new ObjetoVisual(x=10,y=5,imagen="cajera.jpg",accionPrimaria={carro=>carro.informarMontoYCantidad()})
 	const cobrar = new ObjetoVisual(x=10,y=2,imagen="PC.jpg",accionPrimaria={carro => carro.cobrar()})
 
-
-
-object notificador{
-	
-	var property juego = game
-	
-	method decir(visual, mensaje){
-		
-		juego.say(visual, mensaje)
-		
-	}
-	
-	
-}
-
-object gameDeMentira{
-	
-	method say(visual, mensaje){
-		
-	}
-	
-}
 
 object carrito {
 	var property comidas = []
@@ -151,8 +129,7 @@ object carrito {
 }
 
 object mochila {
-	var property comidas = [new Producto(nombre = "Pizza", precio = 300, valorEnergia = -5, valorHumor = 10, valorSaciedad = 100, valorHigiene = -5, valorSalud = -5)]
-	
+	var property comidas = [pizza]
 	method agregarComida(comida){
 		comidas.add(comida)
 	}
@@ -168,3 +145,23 @@ object mochila {
 	}
 }
 
+object notificador{
+	
+	var property juego = game
+	
+	method decir(visual, mensaje){
+		
+		juego.say(visual, mensaje)
+		
+	}
+	
+	
+}
+
+object gameDeMentira{
+	
+	method say(visual, mensaje){
+		
+	}
+	
+}

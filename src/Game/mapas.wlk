@@ -33,17 +33,17 @@ class Mapa {
 		game.addVisual(self)
 		self.configurarObjetos()
 	}
-		method configurarObjetos(){
+	method configurarObjetos(){
 		lista.forEach{objeto => objeto.configurarVisual()}
 	}
-		method borrarse(){
-			lista.forEach{objeto => objeto.borrarSuVisual()}
-			game.removeVisual(self)
-			removido = true
-		}
+	method borrarse(){
+		lista.forEach{objeto => objeto.borrarSuVisual()}
+		game.removeVisual(self)
+		removido = true
+	}
 }
 
-const living = new Mapa(lista= [pc,cama,cocina,puertaEntradaBanio,salida,heladera],imagen = "Piso.png")
+const living = new Mapa(lista= [pc,cama,cocina,puertaEntradaBanio,salida,heladera,calendario],imagen = "Piso.png")
 const banio = new Mapa (lista = [lavamanos,inodoro,puerta],imagen = "fondo-baño.jpg")
 const oficina = new Mapa(lista =[pcOficina,salidaOficina,mateAgeno],imagen = "oficina.png" )
 const superMercado = new Mapa(lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura,caja,cajera,ahorrador,salidaSuper,carameloRaro,curaCorona,alcoholGel], imagen = "superMercado.png")
@@ -51,13 +51,4 @@ const boleta = new Mapa(lista = [salidaBoleta,borrarCarrito,saldo,cobrar], image
 const interiorMochila = new Mapa(lista = mochila.comidas(),imagen = "interiorMochila.png")
 
 
-/* 
-object mapas{
-	method livingDeLaCasa()= new Mapa(mapaActual=living)
-	method banioDeLaCasa()=new Mapa(mapaActual=banio)
-	method superMercadoJoJo()=new Mapa(mapaActual=superMercado)
-	method mapa() = new Mapa(mapaActual = mapaGeneral)
-	method oficina() = new Mapa(mapaActual=oficina)
-}
-*/
 

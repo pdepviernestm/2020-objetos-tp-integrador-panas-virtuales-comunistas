@@ -10,9 +10,10 @@ object personaje {
 	var property salio = false
 	method dormir(){
 		statsDelJuego.energiaDePersonaje().modificarCantidad(50)
-		statsDelJuego.saludDePersonaje().modificarCantidad(20) //hay que ver si esta accion modifica o no la salud ya que por el momento 
-														  //la salud depende estrictamente de la higiene
+		statsDelJuego.saludDePersonaje().modificarCantidad(20) 
 		statsDelJuego.humorDePersonaje().modificarCantidad(20)
+		statsDelJuego.saciedadDePersonaje().modificarCantidad(-40)
+		statsDelJuego.agregarUnDia()
 	}
 	method lavarseLasManos(){
 		statsDelJuego.higieneDePersonaje().modificarCantidad(20)

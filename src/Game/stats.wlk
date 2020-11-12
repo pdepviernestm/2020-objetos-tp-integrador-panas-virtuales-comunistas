@@ -69,6 +69,9 @@ object statsDelJuego {
 	method modificarPlata(cantidad){
 		cantidadPlata += cantidad // modifica plata en cantidad ingresada
 	}
+	method agregarUnDia(){
+		dias += 1
+	}
 }
 
 object coronavirusDePersonaje{
@@ -76,7 +79,7 @@ object coronavirusDePersonaje{
     var property contagiado = false //
     
     method estaEnCondicionesDeContagio(){
-    	return personaje.salio() && statsDelJuego.higieneDePersonaje().cantidad() <= 20 && statsDelJuego.humorDePersonaje().cantidad() <= 20 
+    	return personaje.salio() && statsDelJuego.higieneDePersonaje().cantidad() <= 50 && statsDelJuego.humorDePersonaje().cantidad() <= 50 
     }
 	method probabilidadDeContagio(){
 		const proporcionStatsDeContagio = (statsDelJuego.higieneDePersonaje().cantidad() + statsDelJuego.humorDePersonaje().cantidad() ).div(10)
@@ -94,7 +97,7 @@ object coronavirusDePersonaje{
 		}
 		
 	method cuarentena(){		
-		game.onTick(2000, "cuarentena", {contagiado = false game.addVisual(salida) game.removeTickEvent("cuarentena")})	 
+		game.onTick(200000, "cuarentena", {contagiado = false game.addVisual(salida) game.removeTickEvent("cuarentena")})	 
 	}
     method visual(){
         if(self.contagiado()) // si usamos if(self.contagiado) rompe todo 
