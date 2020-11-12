@@ -12,7 +12,7 @@ class Stat{
 	const property buenaImagen
 	const property mediaImagen
 	const property malaImagen
-	
+/* 	
 	method modificarCantidad(cantidadQueModifica){
 		if(tieneLimite){
 			cantidad = (cantidad +cantidadQueModifica).min(100)
@@ -22,6 +22,10 @@ class Stat{
 		}
 		return cantidad
 	}
+	*/
+	method modificarCantidad(cantidadQueModifica){
+			cantidad += cantidadQueModifica
+			}
 	method visualCorrespondida(){
 		position=game.at(x,y)
 		if(cantidad >= 70)
@@ -35,16 +39,22 @@ class Stat{
 	method image() = self.visualCorrespondida()
 
 }
+
+class StatConLimite inherits Stat{
+	var property limiteStats = 100
+	
+	override method modificarCantidad(cantidadQueModifica){cantidad = (cantidad +cantidadQueModifica).min(limiteStats)}
+}
 object statsDelJuego {
 	var property cantidadPlata = 10000
 	var property dias = 0
 	
 	
-	const property saludDePersonaje = new Stat (cantidad = 100,x=14,y=12,buenaImagen="corazonLleno.png",mediaImagen="corazonMitad.png",malaImagen="corazonVacio.png")
-	const property energiaDePersonaje = new Stat (cantidad=100,x=14,y=11,buenaImagen="energiaLlena.jpg",mediaImagen="energiaMitad.jpg",malaImagen="energiaVacia.jpg")
-	const property humorDePersonaje = new Stat (cantidad = 40,x=14,y=14,buenaImagen="feliz.jpg",mediaImagen="neutral.jpg",malaImagen="triste.jpg")
-	const property higieneDePersonaje = new Stat (cantidad=40,x=14,y=13,buenaImagen="buenasalud.jpg",mediaImagen="pocaSalud.jpg",malaImagen="malaSalud.jpg")
-	const property saciedadDePersonaje = new Stat (cantidad=100,x=14,y=10,buenaImagen="Pizza.jpg",mediaImagen="PizzaCortada.jpg",malaImagen="PizzaPorcion.jpg")
+	const property saludDePersonaje = new StatConLimite (cantidad = 100,x=14,y=12,buenaImagen="corazonLleno.png",mediaImagen="corazonMitad.png",malaImagen="corazonVacio.png")
+	const property energiaDePersonaje = new StatConLimite (cantidad=100,x=14,y=11,buenaImagen="energiaLlena.jpg",mediaImagen="energiaMitad.jpg",malaImagen="energiaVacia.jpg")
+	const property humorDePersonaje = new StatConLimite (cantidad = 100,x=14,y=14,buenaImagen="feliz.jpg",mediaImagen="neutral.jpg",malaImagen="triste.jpg")
+	const property higieneDePersonaje = new StatConLimite (cantidad=100,x=14,y=13,buenaImagen="buenasalud.jpg",mediaImagen="pocaSalud.jpg",malaImagen="malaSalud.jpg")
+	const property saciedadDePersonaje = new StatConLimite (cantidad=100,x=14,y=10,buenaImagen="Pizza.jpg",mediaImagen="PizzaCortada.jpg",malaImagen="PizzaPorcion.jpg")
 	const property listaDeStats = [saludDePersonaje,energiaDePersonaje,humorDePersonaje,higieneDePersonaje,saciedadDePersonaje,coronavirusDePersonaje]
 	method configurarAfeccionesDeStats(){
 		game.onTick(20000,"disminuye humor cada 20 seg",{self.humorDePersonaje().modificarCantidad(-5)}) //-5
