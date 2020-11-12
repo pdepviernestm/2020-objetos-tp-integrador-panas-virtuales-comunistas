@@ -58,8 +58,8 @@ object juanTamagochi {                                                  // Nuest
 		protagonista.configurarVisualTrabajo() 
 		game.say(protagonista,protagonista.saludo()) //Imprime el mensaje de prueba, lo podemos borrar
 		keyboard.p().onPressDo {protagonista.plataActual()}
-	//	keyboard.t().onPressDo {protagonista.estadoActual()}
     	keyboard.t().onPressDo {self.mostrandoStats()}
+    	keyboard.m().onPressDo {if(!game.hasVisual(mochila)) mochila.abrir() else {mochila.cerrar()}}
 		statsDelJuego.configurarAfeccionesDeStats()
 		game.onTick(100,"verificar si muere",{if(game.hasVisual(protagonista)) self.muerte(protagonista)}) // MATA A JUAN :( pd: Cuando se muere rompe todo)
 		keyboard.j().onPressDo{protagonista.cambiarDeTrabajo()}

@@ -91,10 +91,10 @@ object personajePrincipal {
 	}
 	
 	method movermeAlSuper(){
-	juanTamagochi.modificarMapa(superMercado,game.at(1,1))
+		if(!coronavirusDePersonaje.contagiado())juanTamagochi.modificarMapa(superMercado,game.at(1,1))
 	}
 	method movermeAOficina(){
-		juanTamagochi.modificarMapa(oficina,game.at(8,0))
+		if(!coronavirusDePersonaje.contagiado()) {juanTamagochi.modificarMapa(oficina,game.at(8,0))}
 	}
 
 	method movermeAlBanio(){

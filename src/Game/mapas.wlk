@@ -8,7 +8,6 @@ class Mapa {
 	var property removido = false
 	const property position = game.origin()
 	const property imagen
-//	var property ultimoLugar = living
 	
 	method image() = imagen
 	

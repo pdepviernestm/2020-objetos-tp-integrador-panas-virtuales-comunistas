@@ -94,13 +94,13 @@ object coronavirusDePersonaje{
 		}
 	method meContagie(){
 		contagiado=true
-		removedor.sacarVisual(salida)
-		removedorDeEvento.sacarTick("puede contagiarse")
+		game.onTick(30000,"efecto corona",{personaje.efectoCorona()})
 		self.cuarentena()
+		removedorDeEvento.sacarTick("puede contagiarse")
 	}
 		
 	method cuarentena(){		
-		game.onTick(200000, "cuarentena", {contagiado = false game.addVisual(salida) game.removeTickEvent("cuarentena")})	 
+		game.onTick(200000, "cuarentena", {contagiado = false removedorDeEvento.sacarTick("efecto corona") removedorDeEvento.sacarTick("cuarentena")}) 
 	}
     method visual(){
         if(self.contagiado()) // si usamos if(self.contagiado) rompe todo 

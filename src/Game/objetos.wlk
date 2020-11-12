@@ -130,6 +130,9 @@ object carrito {
 
 object mochila {
 	var property comidas = []
+	var property comidasMostradas = if(comidas.size()>10) comidas.take(10) else comidas
+	const imagen = "interiorMochila.png"
+	const property position = game.origin()
 	method agregarComida(comida){
 		comidas.add(comida)
 	}
@@ -142,6 +145,13 @@ object mochila {
 	method comer(comida){
 		
 		comida.comer()
+	}
+	method image() = imagen
+	method abrir(){
+		game.addVisual(self)
+	}
+	method cerrar(){
+		game.removeVisual(self)
 	}
 }
 
