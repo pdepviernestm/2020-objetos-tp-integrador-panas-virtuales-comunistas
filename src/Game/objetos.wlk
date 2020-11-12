@@ -165,3 +165,34 @@ object gameDeMentira{
 	}
 	
 }
+
+object removedor{
+	var property juego = game
+	
+	method sacarVisual(lugar){
+		juego.sacar(lugar)
+	}	
+}
+
+object lugarDeMentira{
+	
+	method sacar(lugar){}
+	
+	
+}
+
+object removedorDeEvento{
+
+	var property juego = game
+	
+	method sacarTick( palabraMentirosa){
+		juego.sacarT( palabraMentirosa)
+	}
+		
+}
+
+object eventoDeMentira{
+	
+	method sacarT(palabraMentirosa){}
+	
+}

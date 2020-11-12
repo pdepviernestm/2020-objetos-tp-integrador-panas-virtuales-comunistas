@@ -1,0 +1,37 @@
+import stats.*
+import Game.productos.*
+import objetos.*
+import productos.*
+import juanTamagochi.*
+
+describe "Carrito"{
+	
+	test "deberia agregarme comidaBarata al carrito"{
+		notificador.juego(gameDeMentira)
+		carrito.agregarComida(comidaBarata)
+		
+		assert.that((carrito.comidas()).contains(comidaBarata))
+		
+	} 
+	test "deberia agregarme jojaCola al carrito"{
+		notificador.juego(gameDeMentira)
+		carrito.agregarComida(jojaCola)
+		
+		assert.that((carrito.comidas()).contains(jojaCola))		
+	} 
+	test "deberia agregarme fruta al carrito"{
+		notificador.juego(gameDeMentira)
+		carrito.agregarComida(fruta)
+		
+		assert.that((carrito.comidas()).contains(fruta))		
+	} 
+	test "deberia agregarme pizza al carrito"{
+		notificador.juego(gameDeMentira)
+		carrito.agregarComida(pizza)
+		
+		assert.that((carrito.comidas()).contains(pizza))		
+	} 
+	
+	
+}
+

@@ -1,0 +1,55 @@
+import stats.*
+import acciones.*
+import objetos.*
+import juanTamagochi.*
+
+describe "Stats"{
+	test "humor no puede tener mas de 100 en cantidad"{
+		statsDelJuego.humorDePersonaje().cantidad(90)
+		statsDelJuego.humorDePersonaje().modificarCantidad(50)
+		
+		assert.equals(100, statsDelJuego.humorDePersonaje().cantidad())
+	}
+	test "salud  no puede tener mas de 100 en cantidad"{
+		statsDelJuego.saludDePersonaje().cantidad(50)
+		statsDelJuego.saludDePersonaje().modificarCantidad(250)
+		
+		assert.equals(100, statsDelJuego.saludDePersonaje().cantidad())
+	}
+	test "energia  no puede tener mas de 100 en cantidad"{
+		statsDelJuego.energiaDePersonaje().cantidad(70)
+		statsDelJuego.energiaDePersonaje().modificarCantidad(35)
+		
+		assert.equals(100, statsDelJuego.energiaDePersonaje().cantidad())
+	}
+	test "higiene  no puede tener mas de 100 en cantidad"{
+		statsDelJuego.higieneDePersonaje().cantidad(5)
+		statsDelJuego.higieneDePersonaje().modificarCantidad(335)
+		
+		assert.equals(100, statsDelJuego.higieneDePersonaje().cantidad())
+	}
+	test "saciedad  no puede tener mas de 100 en cantidad"{
+		statsDelJuego.saciedadDePersonaje().cantidad(1)
+		statsDelJuego.saciedadDePersonaje().modificarCantidad(10000000)
+		
+		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
+	}
+	
+}
+
+describe "Coronavirus"{
+	test "Cuando el personaje esta en condiciones de contagio"{
+		statsDelJuego.humorDePersonaje().cantidad(5)
+		statsDelJuego.higieneDePersonaje().cantidad(5)
+		personaje.salir()
+		assert.that(coronavirusDePersonaje.estaEnCondicionesDeContagio())
+	}
+	
+	test "Cuando el personaje se contagia"{
+		removedorDeEvento.juego(eventoDeMentira)
+		removedor.juego(lugarDeMentira)
+		coronavirusDePersonaje.meContagie()
+		assert.that(coronavirusDePersonaje.contagiado())
+		
+	} 
+}	

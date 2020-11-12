@@ -42,8 +42,8 @@ object statsDelJuego {
 	
 	const property saludDePersonaje = new Stat (cantidad = 100,x=14,y=12,buenaImagen="corazonLleno.png",mediaImagen="corazonMitad.png",malaImagen="corazonVacio.png")
 	const property energiaDePersonaje = new Stat (cantidad=100,x=14,y=11,buenaImagen="energiaLlena.jpg",mediaImagen="energiaMitad.jpg",malaImagen="energiaVacia.jpg")
-	const property humorDePersonaje = new Stat (cantidad = 100,x=14,y=14,buenaImagen="feliz.jpg",mediaImagen="neutral.jpg",malaImagen="triste.jpg")
-	const property higieneDePersonaje = new Stat (cantidad=100,x=14,y=13,buenaImagen="buenasalud.jpg",mediaImagen="pocaSalud.jpg",malaImagen="malaSalud.jpg")
+	const property humorDePersonaje = new Stat (cantidad = 40,x=14,y=14,buenaImagen="feliz.jpg",mediaImagen="neutral.jpg",malaImagen="triste.jpg")
+	const property higieneDePersonaje = new Stat (cantidad=40,x=14,y=13,buenaImagen="buenasalud.jpg",mediaImagen="pocaSalud.jpg",malaImagen="malaSalud.jpg")
 	const property saciedadDePersonaje = new Stat (cantidad=100,x=14,y=10,buenaImagen="Pizza.jpg",mediaImagen="PizzaCortada.jpg",malaImagen="PizzaPorcion.jpg")
 	const property listaDeStats = [saludDePersonaje,energiaDePersonaje,humorDePersonaje,higieneDePersonaje,saciedadDePersonaje,coronavirusDePersonaje]
 	method configurarAfeccionesDeStats(){
@@ -94,8 +94,8 @@ object coronavirusDePersonaje{
 		}
 	method meContagie(){
 		contagiado=true
-		game.removeVisual(salida)
-		game.removeTickEvent("puede contagiarse")
+		removedor.sacarVisual(salida)
+		removedorDeEvento.sacarTick("puede contagiarse")
 		self.cuarentena()
 	}
 		
