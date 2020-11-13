@@ -45,7 +45,7 @@ class Mapa {
 const living = new Mapa(lista= [pc,cama,cocina,puertaEntradaBanio,salida,heladera,calendario],imagen = "Piso.png")
 const banio = new Mapa (lista = [lavamanos,inodoro,puerta],imagen = "fondo-baño.jpg")
 const oficina = new Mapa(lista =[pcOficina,salidaOficina,mateAgeno],imagen = "oficina.png" )
-const superMercado = new Mapa(lista = [jojaCola,jojoPizza,fruta,comidaBarata,basura,caja,cajera,ahorrador,salidaSuper,carameloRaro,curaCorona,alcoholGel], imagen = "superMercado.png")
+const superMercado = new Mapa(lista = [jojaColaSuper,jojoPizzaSuper,frutaSuper,comidaBarataSuper,basura,caja,cajera,ahorrador,salidaSuper,carameloRaro,curaCorona,alcoholGel], imagen = "superMercado.png")
 const boleta = new Mapa(lista = [salidaBoleta,borrarCarrito,saldo,cobrar], imagen = "Boleta.png")
 const interiorMochila = new Mapa(lista = mochila.comidas(),imagen = "interiorMochila.png")
 
