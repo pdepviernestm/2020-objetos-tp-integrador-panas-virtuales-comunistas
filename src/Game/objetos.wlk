@@ -163,8 +163,6 @@ object mochila {
 	method image() = imagen
 	
 	method configurarTeclas(){
-		if(game.hasVisual(self))
-		{	
 			keyboard.num(0).onPressDo {self.comerDeMochila(comidas.get(0))}
 	 		keyboard.num(1).onPressDo {self.comerDeMochila(comidas.get(1))}
 			keyboard.num(2).onPressDo {self.comerDeMochila(comidas.get(2))}
@@ -175,7 +173,6 @@ object mochila {
 			keyboard.num(7).onPressDo {self.comerDeMochila(comidas.get(7))}
 			keyboard.num(8).onPressDo {self.comerDeMochila(comidas.get(8))}
 			keyboard.num(9).onPressDo {self.comerDeMochila(comidas.get(9))}
-		}
 		//arreglar
 	}
 	
