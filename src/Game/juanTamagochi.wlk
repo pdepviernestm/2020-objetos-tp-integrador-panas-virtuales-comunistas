@@ -56,7 +56,7 @@ object juanTamagochi {                                                  // Nuest
 	method configurarPersonaje(){
 		game.addVisualCharacter(protagonista)
 		protagonista.configurarVisualTrabajo() 
-		game.say(protagonista,protagonista.saludo()) //Imprime el mensaje de prueba, lo podemos borrar
+		//game.say(protagonista,protagonista.saludo()) //Mensaje de prueba, ahora lo imprime cada vez que cierra la mochila
 		keyboard.p().onPressDo {protagonista.plataActual()}
     	keyboard.t().onPressDo {self.mostrandoStats()}
     	keyboard.m().onPressDo {if(!game.hasVisual(mochila)) mochila.abrir() else {mochila.cerrar()}}

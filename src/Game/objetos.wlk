@@ -142,8 +142,7 @@ object carrito {
 }
 
 object mochila {
-	var property comidas = []//[bloqueVacio]
-	//var property comidasMostradas = if(comidas.size()>10) comidas.take(10) else comidas
+	var property comidas = []
 	var property x = 7
 	var property y = 2
 	const imagen = "interiorMochila.png"
@@ -202,8 +201,6 @@ object mochila {
 	method cerrar(){
 		x = 7
 		y = 2
-		//comidasMostradas.forEach{comida => game.removeVisual(comida)}
-		//game.removeVisual(self)
 		game.clear()
 		juanTamagochi.configurar()
 	}
