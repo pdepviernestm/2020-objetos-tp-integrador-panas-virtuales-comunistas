@@ -139,7 +139,7 @@ object carrito {
 }
 
 object mochila {
-	var property comidas = [pizza, jojaCola, comidaBarata]
+	var property comidas = []
 	var property comidasMostradas = if(comidas.size()>10) comidas.take(10) else comidas
 	var property x = 0
 	var property y = 0
@@ -147,6 +147,7 @@ object mochila {
 	const property position = game.origin()
 	method agregarComida(comida){
 		comidas.add(comida)
+		game.removeVisual(comida)
 	}
 	method sacarComida(comida){
 		comidas.remove(comida)
@@ -160,25 +161,35 @@ object mochila {
 	}
 	method image() = imagen
 	
-	/*method configurarTeclas(){
-		keyboard.num0().onPressDo {self.comerDeMochila(comidas.get(0))}
+	method configurarTeclas(){
+		keyboard.num(0).onPressDo {self.comerDeMochila(comidas.get(0))}
+		keyboard.num(1).onPressDo {self.comerDeMochila(comidas.get(1))}
+		keyboard.num(2).onPressDo {self.comerDeMochila(comidas.get(2))}
+		keyboard.num(3).onPressDo {self.comerDeMochila(comidas.get(3))}
+		keyboard.num(4).onPressDo {self.comerDeMochila(comidas.get(4))}
+		keyboard.num(5).onPressDo {self.comerDeMochila(comidas.get(5))}
+		keyboard.num(6).onPressDo {self.comerDeMochila(comidas.get(6))}
+		keyboard.num(7).onPressDo {self.comerDeMochila(comidas.get(7))}
+		keyboard.num(8).onPressDo {self.comerDeMochila(comidas.get(8))}
+		keyboard.num(9).onPressDo {self.comerDeMochila(comidas.get(9))}
 	}
 	
 	method comerDeMochila(comida){
 		comida.comer()
-		self.sacarComida(comida)	
-	}*/
+		self.sacarComida(comida)
+		game.removeVisual(comida)	
+	}
 
-	method abrir(){              //Por ahora solo muestra 1 imagen de pizza
+	method abrir(){              
 		game.addVisual(self)
-		//self.configurarTeclas()
+		self.configurarTeclas()
 		comidasMostradas.forEach{comida => comida.configurarVisual(x,y) x+=1}
 	}
 	method cerrar(){
-		game.removeVisual(self)
 		x = 0
 		y = 0
 		comidasMostradas.forEach{comida => game.removeVisual(comida)}
+		game.removeVisual(self)
 	}
 
 }
