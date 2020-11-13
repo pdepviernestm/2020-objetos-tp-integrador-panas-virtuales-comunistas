@@ -142,8 +142,8 @@ object carrito {
 }
 
 object mochila {
-	var property comidas = [bloqueVacio]
-	var property comidasMostradas = if(comidas.size()>10) comidas.take(10) else comidas
+	var property comidas = []//[bloqueVacio]
+	//var property comidasMostradas = if(comidas.size()>10) comidas.take(10) else comidas
 	var property x = 7
 	var property y = 2
 	const imagen = "interiorMochila.png"
@@ -164,16 +164,19 @@ object mochila {
 	method image() = imagen
 	
 	method configurarTeclas(){
-		keyboard.num(0).onPressDo {self.comerDeMochila(comidas.get(0))}
-	 	keyboard.num(1).onPressDo {self.comerDeMochila(comidas.get(1))}
-		keyboard.num(2).onPressDo {self.comerDeMochila(comidas.get(2))}
-		keyboard.num(3).onPressDo {self.comerDeMochila(comidas.get(3))}
-		keyboard.num(4).onPressDo {self.comerDeMochila(comidas.get(4))}
-		keyboard.num(5).onPressDo {self.comerDeMochila(comidas.get(5))}
-		keyboard.num(6).onPressDo {self.comerDeMochila(comidas.get(6))}
-		keyboard.num(7).onPressDo {self.comerDeMochila(comidas.get(7))}
-		keyboard.num(8).onPressDo {self.comerDeMochila(comidas.get(8))}
-		keyboard.num(9).onPressDo {self.comerDeMochila(comidas.get(9))}
+		if(game.hasVisual(self))
+		{	
+			keyboard.num(0).onPressDo {self.comerDeMochila(comidas.get(0))}
+	 		keyboard.num(1).onPressDo {self.comerDeMochila(comidas.get(1))}
+			keyboard.num(2).onPressDo {self.comerDeMochila(comidas.get(2))}
+			keyboard.num(3).onPressDo {self.comerDeMochila(comidas.get(3))}
+			keyboard.num(4).onPressDo {self.comerDeMochila(comidas.get(4))}
+			keyboard.num(5).onPressDo {self.comerDeMochila(comidas.get(5))}
+			keyboard.num(6).onPressDo {self.comerDeMochila(comidas.get(6))}
+			keyboard.num(7).onPressDo {self.comerDeMochila(comidas.get(7))}
+			keyboard.num(8).onPressDo {self.comerDeMochila(comidas.get(8))}
+			keyboard.num(9).onPressDo {self.comerDeMochila(comidas.get(9))}
+		}
 		//arreglar
 	}
 	
@@ -185,8 +188,8 @@ object mochila {
 
 	method abrir(){              
 		game.addVisual(self)
+		comidas.take(10).forEach{comida => comida.configurarVisual(x,y) self.calcularPocicion()}
 		self.configurarTeclas()
-		comidasMostradas.forEach{comida => comida.configurarVisual(x,y) self.calcularPocicion()}
 	}
 	method calcularPocicion(){
 		x+=1
@@ -199,8 +202,10 @@ object mochila {
 	method cerrar(){
 		x = 7
 		y = 2
-		comidasMostradas.forEach{comida => game.removeVisual(comida)}
-		game.removeVisual(self)
+		//comidasMostradas.forEach{comida => game.removeVisual(comida)}
+		//game.removeVisual(self)
+		game.clear()
+		juanTamagochi.configurar()
 	}
 
 }
