@@ -11,7 +11,7 @@ class ObjetoVisualBasico{    //modificar si se repite algo mas q necesita produc
 
 	method image()=imagen
 	method configurarVisual(x,y){
-		position=game.at(x,y)
+		position=game.at(x, y)
 		game.addVisual(self)
 	}
 	method borrarSuVisual(){
@@ -62,18 +62,18 @@ class ObjetoVisual inherits ObjetoVisualBasico{
 	const salidaOficina = new ObjetoVisual(x=8,y=0,imagen="punto.png",accionPrimaria={personaje=>personaje.volverACasa()})
 	const mateAgeno =  new ObjetoVisual(x=3,y=8,imagen="mateAgeno.jpg",accionPrimaria={personaje=>personaje.meContagie()})
 
-	const jojoPizzaSuper = new ObjetoVisual(x=7,y=11,imagen="jojoPizza.png",accionPrimaria={personaje => personaje.agregarComida(pizza)},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Pizza")})
-	const jojaColaSuper = new ObjetoVisual(x=2,y=7,imagen="jojaCola.png",accionPrimaria={personaje => personaje.agregarComida(jojaCola)},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"JojaCola")})
-	const frutaSuper = new ObjetoVisual(x=2,y=11,imagen="fruta.png",accionPrimaria={personaje => personaje.agregarComida(fruta)},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Fruta")})
-	const comidaBarataSuper = new ObjetoVisual(x=7,y=7,imagen="comidaBarata.png",accionPrimaria={personaje => personaje.agregarComida(comidaBarata)},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Comida barata")})
+	const jojoPizzaSuper = new ObjetoVisual(x=7,y=11,imagen="jojoPizza.png",accionPrimaria={personaje => personaje.agregarComida(new Producto(nombre = "Pizza", precio = 300, valorEnergia = -5, valorHumor = 10, valorSaciedad = 100, valorHigiene = -5, valorSalud = -5,imagen="Pizza.jpg"))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Pizza")})
+	const jojaColaSuper = new ObjetoVisual(x=2,y=7,imagen="jojaCola.png",accionPrimaria={personaje => personaje.agregarComida(new Producto(nombre = "JojaCola", precio = 100, valorEnergia = 10, valorHumor = 10, valorSaciedad = 10, valorHigiene = -5, valorSalud = -5,imagen="lata.png"))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"JojaCola")})
+	const frutaSuper = new ObjetoVisual(x=2,y=11,imagen="fruta.png",accionPrimaria={personaje => personaje.agregarComida(new Producto(nombre = "Fruta", precio = 200, valorEnergia = 10, valorHumor = -5, valorSaciedad = 80, valorHigiene = -5, valorSalud = 10,imagen="frutita.png"))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Fruta")})
+	const comidaBarataSuper = new ObjetoVisual(x=7,y=7,imagen="comidaBarata.png",accionPrimaria={personaje => personaje.agregarComida(new Producto(nombre = "ComidaBarata", precio = 100, valorEnergia = -5, valorHumor = -5, valorSaciedad = 50, valorHigiene = -5, valorSalud = -10,imagen="comidabaratata.png"))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Comida barata")})
 	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png",accionPrimaria={personaje => personaje.vaciarCarrito()})	
 	const cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={personaje=>personaje.informarMontoYCantidad()})
 	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png",accionPrimaria={personaje => personaje.movermeABoleta()})
 	const ahorrador = new ObjetoVisual(x=11,y=10,imagen="ahorradorT.png",accionPrimaria={personaje => personaje.seleccionarBarato()})
     const salidaSuper =new ObjetoVisual(x=1,y=0,imagen="alfombra.png",accionPrimaria={personaje => personaje.volverACasa()})
-    const carameloRaro = new ObjetoVisual(x=7,y=3,imagen="CarameloRaro.png",accionPrimaria={personaje => personaje.agregarComida(carameloRaro)}) // Falta lo de q tiene q estar feliz para comprar
-    const curaCorona = new ObjetoVisual(x=7,y=5,imagen="curaCorona.jpg",accionPrimaria={personaje => personaje.agregarComida(CuraTotal)})
-    const alcoholGel = new ObjetoVisual(x=7,y=1,imagen="buenaSalud.jpg",accionPrimaria={personaje => personaje.agregarComida(alcoholEnGel)})
+    const carameloRaro = new ObjetoVisual(x=7,y=3,imagen="CarameloRaro.png",accionPrimaria={personaje => personaje.comprarCaramelo()}) // Falta lo de q tiene q estar feliz para comprar
+    const curaCorona = new ObjetoVisual(x=7,y=5,imagen="curaCorona.jpg",accionPrimaria={personaje => personaje.agregarComida(new CuraTotal(nombre = "CuraTotal", precio = 2000, valorEnergia = 0, valorHumor = 0, valorSaciedad = 0, valorHigiene = 0, valorSalud = 0,imagen="curaCorona.jpg"))})
+    const alcoholGel = new ObjetoVisual(x=7,y=1,imagen="buenaSalud.jpg",accionPrimaria={personaje => personaje.agregarComida(new Producto(nombre = "AlcoholEnGel", precio = 200, valorEnergia = 0, valorHumor = 0, valorSaciedad = 0, valorHigiene = 50, valorSalud = 0,imagen="buenaSalud.jpg"))})
     
     const salidaBoleta = new ObjetoVisual(x=3,y=2,imagen="alfombra.png",accionPrimaria={personaje => personaje.movermeAlSuper()})
     const borrarCarrito = new ObjetoVisual(x=3,y=5,imagen="basura.png",accionPrimaria={personaje => personaje.vaciarCarrito()})
@@ -139,8 +139,10 @@ object carrito {
 }
 
 object mochila {
-	var property comidas = [pizza]
+	var property comidas = [pizza, jojaCola, comidaBarata]
 	var property comidasMostradas = if(comidas.size()>10) comidas.take(10) else comidas
+	var property x = 0
+	var property y = 0
 	const imagen = "interiorMochila.png"
 	const property position = game.origin()
 	method agregarComida(comida){
@@ -157,15 +159,28 @@ object mochila {
 		comida.comer()
 	}
 	method image() = imagen
+	
+	/*method configurarTeclas(){
+		keyboard.num0().onPressDo {self.comerDeMochila(comidas.get(0))}
+	}
+	
+	method comerDeMochila(comida){
+		comida.comer()
+		self.sacarComida(comida)	
+	}*/
 
 	method abrir(){              //Por ahora solo muestra 1 imagen de pizza
 		game.addVisual(self)
-		game.addVisual(pizza)
+		//self.configurarTeclas()
+		comidasMostradas.forEach{comida => comida.configurarVisual(x,y) x+=1}
 	}
 	method cerrar(){
 		game.removeVisual(self)
-		game.removeVisual(pizza)
+		x = 0
+		y = 0
+		comidasMostradas.forEach{comida => game.removeVisual(comida)}
 	}
+
 }
 
 object notificador{

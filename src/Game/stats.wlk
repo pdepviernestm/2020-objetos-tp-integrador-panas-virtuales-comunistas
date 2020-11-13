@@ -114,7 +114,7 @@ object coronavirusDePersonaje{
 	}
 	method meCure(){
 		contagiado = false 
-		removedorDeEvento.sacarTick("efecto corona")
+		//removedorDeEvento.sacarTick("efecto corona")
 	}
     method visual(){
         if(self.contagiado()) // si usamos if(self.contagiado) rompe todo 

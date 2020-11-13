@@ -49,6 +49,7 @@ object personaje {
       //salio = true
 	//}
 	method comer(){
+		//mochila.configurarTeclas(n)
 		const comida = mochila.encontrarComida()
 		comida.comer()
 		mochila.sacarComida(comida)				

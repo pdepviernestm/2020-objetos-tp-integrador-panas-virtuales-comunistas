@@ -5,12 +5,22 @@ import trabajos.*
 import juanTamagochi.*
 import mapas.*
 import objetos.*
+import productos.*
 
 
 object personajePrincipal {
 	var property position = game.origin()
 	var property trabajoActual = trabajos.listaTrabajos().head()
 	var puedeCambiarDeTrabajo=true
+	
+	method comprarCaramelo(){
+		if(!self.puedeComprarCaramelo()){
+			self.error("No puede comprar caramelo raro")
+		}
+		carrito.agregarComida(new Producto(nombre = "CarameloRaro", precio = 800, valorEnergia = 100, valorHumor = 100, valorSaciedad = 100, valorHigiene = 100, valorSalud = 100,imagen="CarameloRaro.png"))
+	}
+	
+	method puedeComprarCaramelo() = statsDelJuego.humorDePersonaje().cantidad() > 80
 	
 	
 	method agregarComida(comida){
