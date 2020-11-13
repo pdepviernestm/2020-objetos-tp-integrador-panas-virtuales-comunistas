@@ -47,6 +47,8 @@ class ObjetoVisual inherits ObjetoVisualBasico{
 		juanTamagochi.modificarMapa(mapa,posicionEnMapaNuevo)
 	}
 }
+    const mostrarTeclas = new ObjetoVisual(x=6,y=0,imagen="teclas.png")
+    
 	const puertaEntradaBanio=new ObjetoVisual(x=7,y=11,imagen="puertaBaño.jpg",accionPrimaria={personaje => personaje.movermeAlBanio()})
 	const pc=new ObjetoVisual(x=13,y=11,imagen="PC.jpg",accionPrimaria={personaje => personaje.trabajarEnCasa()} ,accionSecundaria={personaje => personaje.comprarComida()} )//
 	const cama=new ObjetoVisual(x=7,y=7,imagen="cama.jpg",accionPrimaria={personaje => personaje.dormir()})
@@ -143,7 +145,7 @@ object mochila {
 	var property comidas = [bloqueVacio]
 	var property comidasMostradas = if(comidas.size()>10) comidas.take(10) else comidas
 	var property x = 7
-	var property y = 6
+	var property y = 2
 	const imagen = "interiorMochila.png"
 	const property position = game.origin()
 	method agregarComida(comida){
@@ -188,15 +190,15 @@ object mochila {
 	}
 	method calcularPocicion(){
 		x+=1
-		if (x>6){
-			x = 4
+		if (x>3){
+			x = 1
 			y+=1
 		}
 	}
 	
 	method cerrar(){
 		x = 7
-		y = 6
+		y = 2
 		comidasMostradas.forEach{comida => game.removeVisual(comida)}
 		game.removeVisual(self)
 	}

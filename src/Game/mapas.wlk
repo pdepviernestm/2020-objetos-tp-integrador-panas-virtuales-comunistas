@@ -42,7 +42,7 @@ class Mapa {
 	}
 }
 
-const living = new Mapa(lista= [pc,cama,cocina,puertaEntradaBanio,salida,heladera,calendario],imagen = "Piso.png")
+const living = new Mapa(lista= [pc,cama,cocina,puertaEntradaBanio,salida,heladera,calendario,mostrarTeclas],imagen = "Piso.png")
 const banio = new Mapa (lista = [lavamanos,inodoro,puerta],imagen = "fondo-baño.jpg")
 const oficina = new Mapa(lista =[pcOficina,salidaOficina,mateAgeno],imagen = "oficina.png" )
 const superMercado = new Mapa(lista = [jojaColaSuper,jojoPizzaSuper,frutaSuper,comidaBarataSuper,basura,caja,cajera,ahorrador,salidaSuper,carameloRaro,curaCorona,alcoholGel], imagen = "superMercado.png")
