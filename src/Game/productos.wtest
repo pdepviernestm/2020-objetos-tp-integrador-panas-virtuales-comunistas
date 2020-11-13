@@ -1,6 +1,8 @@
 import productos.*
 import stats.*
-
+import acciones.*
+import personajesVisuales.*
+import objetos.*
 
 describe "Productos"{
 	
@@ -50,5 +52,36 @@ describe "Productos"{
 		assert.equals(100, statsDelJuego.energiaDePersonaje().cantidad())
 		assert.equals(95, statsDelJuego.humorDePersonaje().cantidad())
 		assert.equals(100, statsDelJuego.saludDePersonaje().cantidad())
+	}
+	
+	test "si el personaje principal come un carameloRaro  todos los stats se ponen al maximo"{
+		statsDelJuego.humorDePersonaje().cantidad(90)
+		statsDelJuego.saludDePersonaje().cantidad(20)
+		statsDelJuego.saciedadDePersonaje().cantidad(20)
+		statsDelJuego.energiaDePersonaje().cantidad(20)
+		statsDelJuego.higieneDePersonaje().cantidad(20)
+		carameloRaro.comer()
+		assert.equals(100, statsDelJuego.higieneDePersonaje().cantidad())
+		assert.equals(100, statsDelJuego.humorDePersonaje().cantidad())
+		assert.equals(100, statsDelJuego.energiaDePersonaje().cantidad())
+		assert.equals(100, statsDelJuego.saludDePersonaje().cantidad())
+		assert.equals(100, statsDelJuego.saciedadDePersonaje().cantidad())
+	}
+	test "si el humor del personaje es mayor de 80 puede comprar un carameloRaro"{
+		statsDelJuego.humorDePersonaje().cantidad(90)
+		
+		assert.that(personajePrincipal.puedeComprarCaramelo())
+	}
+	test "si el humor del personaje es menor de 80 no puede comprar un carameloRaro"{
+		statsDelJuego.humorDePersonaje().cantidad(20)
+		
+		assert.notThat(personajePrincipal.puedeComprarCaramelo())
+	}
+	test "si el personaje usa curaTotal se cura del coronavirus"{
+		removedorDeEvento.juego(eventoDeMentira)
+		removedor.juego(lugarDeMentira)
+		coronavirusDePersonaje.meContagie()
+		curaTotal.comer()
+		assert.notThat(coronavirusDePersonaje.contagiado())
 	}
 }
