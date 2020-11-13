@@ -21,12 +21,11 @@ class Producto inherits ObjetoVisualBasico{      //modificar para que ande mochi
 	}
 }
 class CuraTotal inherits Producto {  //arreglar para q ande false
-	/* 
+	 
 	override method comer(){
-		coronavirusDePersonaje.contagiado() = false
-		removedorDeEvento.sacarTick("efecto corona")
-	}
-	*/
+		coronavirusDePersonaje.meCure()
+			}
+	
 }
 
 

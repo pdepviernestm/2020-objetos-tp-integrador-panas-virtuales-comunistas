@@ -112,6 +112,10 @@ object coronavirusDePersonaje{
 	method cuarentena(){		
 		game.onTick(200000, "cuarentena", {contagiado = false removedorDeEvento.sacarTick("efecto corona") removedorDeEvento.sacarTick("cuarentena")}) 
 	}
+	method meCure(){
+		contagiado = false 
+		removedorDeEvento.sacarTick("efecto corona")
+	}
     method visual(){
         if(self.contagiado()) // si usamos if(self.contagiado) rompe todo 
             return "corona.png"
