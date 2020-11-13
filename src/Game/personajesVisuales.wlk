@@ -36,8 +36,8 @@ object personajePrincipal {
 	method cantidadDe(nombreProducto){
 		return carrito.cantidadDe(nombreProducto)
 	}
-	method informarMontoYCantidad(){
-		carrito.informarMontoYCantidad()
+	method informarMontoYCantidad(loDice){
+		carrito.informarMontoYCantidad(loDice)
 	}
 	method cobrar(){
 		carrito.cobrar()

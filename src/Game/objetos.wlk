@@ -70,7 +70,7 @@ class ObjetoVisual inherits ObjetoVisualBasico{
 	const frutaSuper = new ObjetoVisual(x=2,y=11,imagen="fruta.png",accionPrimaria={personaje => personaje.agregarComida(new Producto(nombre = "Fruta", precio = 200, valorEnergia = 10, valorHumor = -5, valorSaciedad = 80, valorHigiene = -5, valorSalud = 10,imagen="frutita.png"))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Fruta")})
 	const comidaBarataSuper = new ObjetoVisual(x=7,y=7,imagen="comidaBarata.png",accionPrimaria={personaje => personaje.agregarComida(new Producto(nombre = "ComidaBarata", precio = 100, valorEnergia = -5, valorHumor = -5, valorSaciedad = 50, valorHigiene = -5, valorSalud = -10,imagen="comidabaratata.png"))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Comida barata")})
 	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png",accionPrimaria={personaje => personaje.vaciarCarrito()})	
-	const cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={personaje=>personaje.informarMontoYCantidad()})
+	const cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={personaje=>personaje.informarMontoYCantidad(cajera)})
 	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png",accionPrimaria={personaje => personaje.movermeABoleta()})
 	const ahorrador = new ObjetoVisual(x=11,y=10,imagen="ahorradorT.png",accionPrimaria={personaje => personaje.seleccionarBarato()})
     const salidaSuper =new ObjetoVisual(x=1,y=0,imagen="alfombra.png",accionPrimaria={personaje => personaje.volverACasa()})
@@ -80,7 +80,7 @@ class ObjetoVisual inherits ObjetoVisualBasico{
     
     const salidaBoleta = new ObjetoVisual(x=3,y=2,imagen="alfombra.png",accionPrimaria={personaje => personaje.movermeAlSuper()})
     const borrarCarrito = new ObjetoVisual(x=3,y=5,imagen="basura.png",accionPrimaria={personaje => personaje.vaciarCarrito()})
-    const saldo = new ObjetoVisual(x=10,y=5,imagen="cajera.jpg",accionPrimaria={personaje=>personaje.informarMontoYCantidad()})
+    const saldo = new ObjetoVisual(x=10,y=5,imagen="cajera.jpg",accionPrimaria={personaje=>personaje.informarMontoYCantidad(saldo)})
 	const cobrar = new ObjetoVisual(x=10,y=2,imagen="PC.jpg",accionPrimaria={personaje => personaje.cobrar()})
 
 
@@ -112,15 +112,17 @@ object carrito {
 	method cantidadDe(nombreProducto){
 		return (comidas.filter({unProducto=>unProducto.nombre() == nombreProducto})).size()
 	}
-	method informarMontoYCantidad(){
+	method informarMontoYCantidad(loDice){
 		const precio = self.calcularPrecio()
+		/* 
 		const cantidadDePizzas=self.cantidadDe("Pizza")
 		const cantidadDeJojaCola= self.cantidadDe("JojaCola")
 		const cantidadDeComidaBarata=self.cantidadDe("Comidabarata")
 		const cantidadDeFruta = self.cantidadDe("Fruta")
 			game.say(cajera,"los productos son: "+cantidadDePizzas+" Pizzas, "+cantidadDeJojaCola+" JojaColas, "+cantidadDeComidaBarata+" comidas baratas, y "
 											+cantidadDeFruta+" Frutas")
-			game.say(cajera,"el precio es "+ precio.toString())
+											*/
+			game.say(loDice,"el precio es "+ precio.toString())
 	}
 	method cobrar(){
 		const precio = self.calcularPrecio()
