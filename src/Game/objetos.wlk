@@ -18,7 +18,8 @@ class ObjetoVisualBasico{    //modificar si se repite algo mas q necesita produc
 		game.removeVisual(self)	
 	}
 }
-
+    const bloqueVacio = new ObjetoVisualBasico(imagen="Punto.png")
+    
 class ObjetoVisual inherits ObjetoVisualBasico{
 	const property x
 	const property y
@@ -139,10 +140,10 @@ object carrito {
 }
 
 object mochila {
-	var property comidas = []
+	var property comidas = [bloqueVacio]
 	var property comidasMostradas = if(comidas.size()>10) comidas.take(10) else comidas
-	var property x = 0
-	var property y = 0
+	var property x = 7
+	var property y = 6
 	const imagen = "interiorMochila.png"
 	const property position = game.origin()
 	method agregarComida(comida){
@@ -162,7 +163,7 @@ object mochila {
 	
 	method configurarTeclas(){
 		keyboard.num(0).onPressDo {self.comerDeMochila(comidas.get(0))}
-		keyboard.num(1).onPressDo {self.comerDeMochila(comidas.get(1))}
+	 	keyboard.num(1).onPressDo {self.comerDeMochila(comidas.get(1))}
 		keyboard.num(2).onPressDo {self.comerDeMochila(comidas.get(2))}
 		keyboard.num(3).onPressDo {self.comerDeMochila(comidas.get(3))}
 		keyboard.num(4).onPressDo {self.comerDeMochila(comidas.get(4))}
@@ -183,11 +184,19 @@ object mochila {
 	method abrir(){              
 		game.addVisual(self)
 		self.configurarTeclas()
-		comidasMostradas.forEach{comida => comida.configurarVisual(x,y) x+=1}
+		comidasMostradas.forEach{comida => comida.configurarVisual(x,y) self.calcularPocicion()}
 	}
+	method calcularPocicion(){
+		x+=1
+		if (x>6){
+			x = 4
+			y+=1
+		}
+	}
+	
 	method cerrar(){
-		x = 0
-		y = 0
+		x = 7
+		y = 6
 		comidasMostradas.forEach{comida => game.removeVisual(comida)}
 		game.removeVisual(self)
 	}
