@@ -147,7 +147,6 @@ object mochila {
 	const property position = game.origin()
 	method agregarComida(comida){
 		comidas.add(comida)
-		game.removeVisual(comida)
 	}
 	method sacarComida(comida){
 		comidas.remove(comida)
@@ -172,6 +171,7 @@ object mochila {
 		keyboard.num(7).onPressDo {self.comerDeMochila(comidas.get(7))}
 		keyboard.num(8).onPressDo {self.comerDeMochila(comidas.get(8))}
 		keyboard.num(9).onPressDo {self.comerDeMochila(comidas.get(9))}
+		//arreglar
 	}
 	
 	method comerDeMochila(comida){
