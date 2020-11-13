@@ -143,7 +143,7 @@ object carrito {
 
 object mochila {
 	var property comidas = []
-	var property x = 7
+	var property x = 2
 	var property y = 2
 	const imagen = "interiorMochila.png"
 	const property position = game.origin()
@@ -192,14 +192,14 @@ object mochila {
 	}
 	method calcularPocicion(){
 		x+=1
-		if (x>3){
+		if (x>3 || y<3){
 			x = 1
 			y+=1
 		}
 	}
 	
 	method cerrar(){
-		x = 7
+		x = 2
 		y = 2
 		game.clear()
 		juanTamagochi.configurar()
