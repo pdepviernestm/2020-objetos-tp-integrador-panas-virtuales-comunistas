@@ -82,6 +82,7 @@ object statsDelJuego {
 	method agregarUnDia(){
 		dias += 1
 	}
+	
 }
 
 object coronavirusDePersonaje{
@@ -119,7 +120,7 @@ object coronavirusDePersonaje{
     method visual(){
         if(self.contagiado()) // si usamos if(self.contagiado) rompe todo 
             return "corona.png"
-        return "feliz.jpg"
+        return "cruz_verde.png"
     }
     method image() = self.visual()
 }

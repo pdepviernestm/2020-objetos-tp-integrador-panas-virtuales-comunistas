@@ -48,8 +48,18 @@ object juanTamagochi {                                                  // Nuest
 
 	method muerte(personaje){ // METODO PARA ELIMINAR AL PERSONAJE VISUAL
 		if(personaje.morir())
-			self.sacarPersonaje(personaje)
+			{
+			//self.sacarPersonaje(personaje)
+				self.finDelJuego()
+			}
 	}
+	
+	method finDelJuego(){
+		protagonista.movermeA(muerte,0,0)
+		game.removeVisual(protagonista)
+		keyboard.enter().onPressDo {game.stop()}
+	}
+	
 	method sacarPersonaje(personaje){
 		spawner.despawnear(personaje)
 	}
@@ -94,4 +104,10 @@ object spawner {
 	method despawnear(personaje){
 		game.removeVisual(personaje)		
 	}
+}
+
+object muerte{
+	const property position = game.origin()
+	
+	method image() = "muerteJuego.jpg"
 }
