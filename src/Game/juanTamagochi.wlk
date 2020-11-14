@@ -36,8 +36,6 @@ object juanTamagochi {                                                  // Nuest
 		personajePrincipal.cambiarPosicion(ubicacion)
 		game.clear()
 		self.configurar()
-		//self.configurarTablero()
-		//game.addVisual(protagonista)
 	}
 	method agregarVisualStats(){                                         // Agrega Visual de stats
 	if (mostrarStats)
@@ -58,7 +56,6 @@ object juanTamagochi {                                                  // Nuest
 	method configurarPersonaje(){
 		game.addVisualCharacter(protagonista)
 		protagonista.configurarVisualTrabajo() 
-		//game.say(protagonista,protagonista.saludo()) //Mensaje de prueba, ahora lo imprime cada vez que cierra la mochila
 		keyboard.p().onPressDo {protagonista.plataActual()}
     	keyboard.t().onPressDo {self.mostrandoStats()}
     	keyboard.m().onPressDo {if(!game.hasVisual(mochila)) mochila.abrir() else {mochila.cerrar()}}

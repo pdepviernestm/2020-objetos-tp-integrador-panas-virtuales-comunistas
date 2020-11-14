@@ -138,7 +138,6 @@ object personajePrincipal {
 		coronavirusDePersonaje.meContagie()
 	}
 	method tengoCorona() {             //Me da Corona q resta salud sobre tiempo
-//		if(personaje.higieneBaja())
 		  game.onTick(30000, "modifica salud cada 30 segundos", {personaje.efectoCorona()})
 	}
 	method morir(){

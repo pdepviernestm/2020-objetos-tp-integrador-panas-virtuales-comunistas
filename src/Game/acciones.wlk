@@ -42,14 +42,7 @@ object personaje {
       statsDelJuego.humorDePersonaje().modificarCantidad(10)
       salio = true             
 	}
-	//method trabajarFuera(){     // Va a laburar y gana mas lata q desde casa(da corona)
-      //statsDelJuego.modificarPlata(400)
-      //statsDelJuego.energiaDePersonaje().modificarCantidad(-40)
-      //statsDelJuego.humorDePersonaje().modificarCantidad(-40)
-      //salio = true
-	//}
 	method comer(){
-		//mochila.configurarTeclas(n)
 		const comida = mochila.encontrarComida()
 		comida.comer()
 		mochila.sacarComida(comida)				
