@@ -6,7 +6,7 @@ import juanTamagochi.*
 import mapas.*
 import objetos.*
 import productos.*
-
+import exepciones.*
 
 object personajePrincipal {
 	var property position = game.origin()
@@ -117,15 +117,17 @@ object personajePrincipal {
 		juanTamagochi.modificarMapa(living,game.at(6,11))
 	}
 	method movermeABoleta(){
+		self.carritoVacio()
 	    juanTamagochi.modificarMapa(boleta,game.at(8,2))
+	    boleta.agregarObjetosCarrito()
 	}
-	method movermeAMochila(){
-	    juanTamagochi.modificarMapa(mochila,game.at(1,1))
-	}
-	method volverAtras(ultimoLugar,ubicacion){
-		juanTamagochi.modificarMapa(ultimoLugar,ubicacion)
-	}	
+	method carritoVacio(){
+		if(carrito.comidas().size() < 1){
+			game.say(self,"no tengo nada en el carrito :/")
+			throw new NoSePudoAtenderException(message="No se puede atender a Juan porque tiene el carrito vacio")
 
+			}
+	}
 	method comer(){
 		personaje.comer()
 		game.say(self,"Comiendo :D")

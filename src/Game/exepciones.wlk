@@ -5,7 +5,7 @@ object exepciones {
 	
 }
 
-  class MiTipoDeExcepcion inherits DomainException {
+  class NoSePudoAtenderException inherits DomainException {
   // no necesita lógica particular, sólo existir
   // lógica que se ejecuta si se lanzó
   // ese tipo de excepción

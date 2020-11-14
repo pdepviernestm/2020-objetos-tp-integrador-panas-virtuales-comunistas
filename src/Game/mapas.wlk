@@ -42,11 +42,22 @@ class Mapa {
 	}
 }
 
+class Boleta inherits Mapa{
+	var property x = 0
+	method agregarObjetosCarrito(){
+	carrito.comidas().take(10).forEach{comida => comida.configurarVisual(x,8) self.calcularPocicion()}
+	x=0
+	}
+	method calcularPocicion(){
+		x +=1
+	}
+}
+
 const living = new Mapa(lista= [pc,cama,cocina,puertaEntradaBanio,salida,heladera,calendario,mostrarTeclas],imagen = "Piso.png")
 const banio = new Mapa (lista = [lavamanos,inodoro,puerta],imagen = "fondo-baño.jpg")
 const oficina = new Mapa(lista =[pcOficina,salidaOficina,mateAgeno],imagen = "oficina.png" )
 const superMercado = new Mapa(lista = [jojaColaSuper,jojoPizzaSuper,frutaSuper,comidaBarataSuper,basura,caja,cajera,ahorrador,salidaSuper,carameloRaro,curaCorona,alcoholGel], imagen = "superMercado.png")
-const boleta = new Mapa(lista = [salidaBoleta,borrarCarrito,saldo,cobrar], imagen = "Boleta.png")
+const boleta = new Boleta(lista = [salidaBoleta,borrarCarrito,saldo,cobrar], imagen = "Boleta.png")
 const interiorMochila = new Mapa(lista = mochila.comidas(),imagen = "interiorMochila.png")
 
 
