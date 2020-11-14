@@ -100,11 +100,18 @@ object personajePrincipal {
 		game.say(self,"Voy de shopping :D")
 	}
 	
-	method movermeAlSuper(){
+	/*method movermeAlSuper(){
 		if(!coronavirusDePersonaje.contagiado())juanTamagochi.modificarMapa(superMercado,game.at(1,1))
 	}
 	method movermeAOficina(){
 		if(!coronavirusDePersonaje.contagiado()) {juanTamagochi.modificarMapa(oficina,game.at(8,0))}
+	}*/
+	
+	method movermeA(lugar, x, y){
+		if(!coronavirusDePersonaje.contagiado()){
+			juanTamagochi.modificarMapa(lugar, game.at(x,y))
+			personaje.salio(true)
+		}
 	}
 
 	method movermeAlBanio(){
@@ -112,6 +119,7 @@ object personajePrincipal {
 	}
 	method volverACasa(){
 		carrito.vaciarCarrito()
+		personaje.salio(false)
 		juanTamagochi.modificarMapa(living,game.at(1,5))
 	}
 	method salirDelBanio(){

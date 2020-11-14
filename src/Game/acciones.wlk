@@ -37,9 +37,6 @@ object personaje {
       statsDelJuego.higieneDePersonaje().modificarCantidad(-5)		
 	}
 	method salir(){                // sale a divertirse
-      statsDelJuego.modificarPlata(-100)
-      statsDelJuego.energiaDePersonaje().modificarCantidad(-20)
-      statsDelJuego.humorDePersonaje().modificarCantidad(10)
       salio = true             
 	}
 	method comer(){

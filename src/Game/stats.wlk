@@ -106,7 +106,7 @@ object coronavirusDePersonaje{
 		contagiado=true
 		game.onTick(30000,"efecto corona",{personaje.efectoCorona()})
 		self.cuarentena()
-		removedorDeEvento.sacarTick("puede contagiarse")
+		//removedorDeEvento.sacarTick("puede contagiarse")
 	}
 		
 	method cuarentena(){		

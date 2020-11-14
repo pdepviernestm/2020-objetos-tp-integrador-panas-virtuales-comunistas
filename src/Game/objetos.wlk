@@ -54,7 +54,7 @@ class ObjetoVisual inherits ObjetoVisualBasico{
 	const pc=new ObjetoVisual(x=13,y=11,imagen="PC.jpg",accionPrimaria={personaje => personaje.trabajarEnCasa()} ,accionSecundaria={personaje => personaje.comprarComida()} )//
 	const cama=new ObjetoVisual(x=7,y=7,imagen="cama.jpg",accionPrimaria={personaje => personaje.dormir()})
 	const cocina=new ObjetoVisual(x=3,y=11,imagen="cocina.jpg",accionPrimaria={personaje => personaje.comer()})
-	const salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg",accionPrimaria={personaje => personaje.movermeAlSuper()},accionSecundaria={personaje => personaje.movermeAOficina()})
+	const salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg",accionPrimaria={personaje => personaje.movermeA(superMercado,1,1)},accionSecundaria={personaje => personaje.movermeA(oficina,8,0)})
 	const heladera=new ObjetoVisual(x=5,y=11,imagen="heladera.png")
 	const calendario = new ObjetoVisual(x=10,y=11,imagen="Punto.png",accionPrimaria={personaje => personaje.contarDias()})
 	
