@@ -111,6 +111,7 @@ object personajePrincipal {
 		juanTamagochi.modificarMapa(banio,game.at(0,1))
 	}
 	method volverACasa(){
+		carrito.vaciarCarrito()
 		juanTamagochi.modificarMapa(living,game.at(1,5))
 	}
 	method salirDelBanio(){

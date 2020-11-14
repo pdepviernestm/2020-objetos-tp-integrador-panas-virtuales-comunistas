@@ -4,6 +4,7 @@ import mapas.*
 import personajesVisuales.*
 import productos.*
 import stats.*
+import exepciones.*
 
 class ObjetoVisualBasico{    //modificar si se repite algo mas q necesita productos y ya tenia bjeto visual
 	var property position = game.origin()
@@ -99,12 +100,8 @@ object carrito {
 		notificador.decir(protagonista,"agregué une " + nombreComida +" al carrito")
 	}
 	method vaciarCarrito(){
-		if(comidas == [])
-			game.say(protagonista,"No tengo nada para tirar")
-		else {
-			comidas = []
-			game.say(protagonista,"Vacie el carrito :/")
-			}
+		comidas = []
+		game.say(protagonista,"El carrito esta vacio")
 	}
 	method calcularPrecio(){
 		return (comidas.map({unProducto => unProducto.precio()})).sum()	
@@ -114,14 +111,6 @@ object carrito {
 	}
 	method informarMontoYCantidad(loDice){
 		const precio = self.calcularPrecio()
-		/* 
-		const cantidadDePizzas=self.cantidadDe("Pizza")
-		const cantidadDeJojaCola= self.cantidadDe("JojaCola")
-		const cantidadDeComidaBarata=self.cantidadDe("Comidabarata")
-		const cantidadDeFruta = self.cantidadDe("Fruta")
-			game.say(cajera,"los productos son: "+cantidadDePizzas+" Pizzas, "+cantidadDeJojaCola+" JojaColas, "+cantidadDeComidaBarata+" comidas baratas, y "
-											+cantidadDeFruta+" Frutas")
-											*/
 			game.say(loDice,"el precio es "+ precio.toString())
 	}
 	method cobrar(){
