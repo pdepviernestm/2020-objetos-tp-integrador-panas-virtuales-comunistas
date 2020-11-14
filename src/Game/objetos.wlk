@@ -120,6 +120,8 @@ object carrito {
 			statsDelJuego.modificarPlata(-precio)
 			comidas.forEach({producto => mochila.agregarComida(producto)})                     
             comidas = []
+            game.clear()
+            juanTamagochi.configurar()
             protagonista.volverACasa()
             protagonista.plataActual()
 		}

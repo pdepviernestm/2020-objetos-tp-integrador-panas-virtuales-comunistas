@@ -34,8 +34,10 @@ object juanTamagochi {                                                  // Nuest
 		mapaActual= nuevoMapa
 		self.borrarVisualStats()
 		personajePrincipal.cambiarPosicion(ubicacion)
-		self.configurarTablero()
-		game.addVisual(protagonista)
+		game.clear()
+		self.configurar()
+		//self.configurarTablero()
+		//game.addVisual(protagonista)
 	}
 	method agregarVisualStats(){                                         // Agrega Visual de stats
 	if (mostrarStats)
