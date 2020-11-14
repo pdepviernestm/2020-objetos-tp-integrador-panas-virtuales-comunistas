@@ -58,6 +58,5 @@ const banio = new Mapa (lista = [lavamanos,inodoro,puerta],imagen = "fondo-baño
 const oficina = new Mapa(lista =[pcOficina,salidaOficina,mateAgeno],imagen = "oficina.png" )
 const superMercado = new Mapa(lista = [jojaColaSuper,jojoPizzaSuper,frutaSuper,comidaBarataSuper,basura,caja,cajera,ahorrador,salidaSuper,carameloRaro,curaCorona,alcoholGel], imagen = "superMercado.png")
 const boleta = new Boleta(lista = [salidaBoleta,borrarCarrito,saldo,cobrar], imagen = "Boleta.png")
-const muerte = new Mapa(lista = [], imagen = "muerteJuego2.jpg")
 
 
