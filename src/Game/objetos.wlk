@@ -153,20 +153,22 @@ object mochila {
 	}
 	method comer(comida){
 		
-		comida.comer()
+		comida.producirEfecto()
 	}
 	method image() = imagen
 	
 	method configurarTeclas(){
 		//game.whenKeyPressedDo(0,self.comerDeMochila(comidas.get(0)))
 		const lista =[0,1,2,3,4,5,6,7,8,9]
-		lista.forEach{numero => keyboard.num(numero).onPressDo{self.comerDeMochila(comidas.get(numero))}}
+		lista.forEach{numero => keyboard.num(numero).onPressDo{self.UsarObjetoEnMochila(comidas.get(numero))}}
 	}
 	
-	method comerDeMochila(comida){
-		comida.comer()
+	method UsarObjetoEnMochila(comida){
+		comida.producirEfecto()
 		self.sacarComida(comida)
-		game.removeVisual(comida)	
+		game.removeVisual(comida)
+		self.cerrar()
+		self.abrir()
 	}
 
 	method abrir(){              

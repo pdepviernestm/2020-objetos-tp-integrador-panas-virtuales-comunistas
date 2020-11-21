@@ -160,5 +160,8 @@ object personajePrincipal {
 		game.say(self,"Mi higiene " + statsDelJuego.higieneDePersonaje().cantidad().toString())
 		game.say(self,"Mi hambre " + statsDelJuego.saciedadDePersonaje().cantidad().toString())
 	}
+	method cambiarStats(valorEnergia,valorHumor,valorSaciedad,valorHigiene,valorSalud){
+		personaje.cambiarStats(valorEnergia,valorHumor,valorSaciedad,valorHigiene,valorSalud)
+	}
 	
 }

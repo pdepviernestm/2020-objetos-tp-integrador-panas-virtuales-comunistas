@@ -1,4 +1,5 @@
 import wollok.game.*
+import personajesVisuales.*
 import stats.*
 import objetos.*
 
@@ -10,19 +11,14 @@ class Producto inherits ObjetoVisualBasico{      //modificar para que ande mochi
 	var property valorSaciedad	
 	var property valorHigiene
 	var property valorSalud
-
 	
-	method comer() {
-    statsDelJuego.energiaDePersonaje().modificarCantidad(valorEnergia)
-    statsDelJuego.humorDePersonaje().modificarCantidad(valorHumor)
-    statsDelJuego.saciedadDePersonaje().modificarCantidad(valorSaciedad)
-    statsDelJuego.higieneDePersonaje().modificarCantidad(valorHigiene)	
-	statsDelJuego.saludDePersonaje().modificarCantidad(valorSalud)
+	method producirEfecto() {
+		personajePrincipal.cambiarStats(valorEnergia,valorHumor,valorSaciedad,valorHigiene,valorSalud)
 	}
 }
 class CuraTotal inherits Producto {  //arreglar para q ande false
 	 
-	override method comer(){
+	override method producirEfecto(){
 		coronavirusDePersonaje.meCure()
 			}
 	
