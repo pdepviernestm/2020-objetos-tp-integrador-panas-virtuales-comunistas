@@ -138,6 +138,9 @@ object personajePrincipal {
 		game.say(self,"Me falta el aire")
 		coronavirusDePersonaje.meContagie()
 	}
+	method meCure(){
+		coronavirusDePersonaje.meCure()
+	}
 	method tengoCorona() {             //Me da Corona q resta salud sobre tiempo
 		  game.onTick(30000, "modifica salud cada 30 segundos", {personaje.efectoCorona()})
 	}

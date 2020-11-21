@@ -19,7 +19,7 @@ class Producto inherits ObjetoVisualBasico{      //modificar para que ande mochi
 class CuraTotal inherits Producto {  //arreglar para q ande false
 	 
 	override method producirEfecto(){
-		coronavirusDePersonaje.meCure()
+		personajePrincipal.meCure()
 			}
 	
 }
