@@ -28,6 +28,9 @@ object personaje {
       statsDelJuego.saciedadDePersonaje().modificarCantidad(100)
       statsDelJuego.higieneDePersonaje().modificarCantidad(-5)		
 	}
+	method gastarPlata(cantidadDePlata){
+		statsDelJuego.gastarPlata(cantidadDePlata)
+	}
 	method defecar(){                    // Hace el 2
 		statsDelJuego.higieneDePersonaje().modificarCantidad(-20)
 		statsDelJuego.saludDePersonaje().modificarCantidad(20)

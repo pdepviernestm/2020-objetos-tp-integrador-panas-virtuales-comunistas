@@ -34,7 +34,8 @@ object personajePrincipal {
 		return carrito.calcularPrecio()
 	}
 	method cantidadDe(nombreProducto){
-		return carrito.cantidadDe(nombreProducto)
+		//return carrito.cantidadDe(nombreProducto)
+		game.say(self,"Tengo "+carrito.cantidadDe(nombreProducto).toString()+" "+nombreProducto+"s")
 	}
 	method informarMontoYCantidad(loDice){
 		carrito.informarMontoYCantidad(loDice)
@@ -119,16 +120,12 @@ object personajePrincipal {
 		juanTamagochi.modificarMapa(living,game.at(6,11))
 	}
 	method movermeABoleta(){
-		self.carritoVacio()
+		carrito.carritoVacio()
 	    juanTamagochi.modificarMapa(boleta,game.at(8,2))
 	    boleta.agregarObjetosCarrito()
 	}
-	method carritoVacio(){
-		if(carrito.productos().size() < 1){
-			game.say(self,"no tengo nada en el carrito :/")
-			throw new NoSePudoAtenderException(message="No se puede atender a Juan porque tiene el carrito vacio")
-
-			}
+	method gastarPlata(cantidadDePlata){
+		personaje.gastarPlata(cantidadDePlata)
 	}
 	method comer(){
 		personaje.comer()
@@ -150,10 +147,6 @@ object personajePrincipal {
 	}
 	method cambiarPosicion(posicionNueva){
 		position = posicionNueva
-	}
-	method cantidadDe(lista,producto){
-		const cantidad = (lista.filter({objeto => objeto.nombre() == producto}).size())
-		game.say(self,"Tengo " + cantidad.toString() + " " + producto.toString() +"s")
 	}
 	method plataActual(){
 		game.say(self,"Me quedan " + statsDelJuego.cantidadPlata().toString() + " mangos")

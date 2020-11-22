@@ -66,20 +66,6 @@ class ObjetoVisual inherits ObjetoVisualBasico{
 	const salidaOficina = new ObjetoVisual(x=8,y=0,imagen="punto.png",accionPrimaria={personaje=>personaje.volverACasa()})
 	const mateAgeno =  new ObjetoVisual(x=3,y=8,imagen="mateAgeno.jpg",accionPrimaria={personaje=>personaje.meContagie()})
 
-	/* TODO ESTO ESTA ADENTRO DEL SUPERMERCADO EN EL ARCHIVO MAPAS
-	const jojoPizzaSuper = new ObjetoVisual(x=7,y=11,imagen="jojoPizza.png",accionPrimaria={personaje => personaje.agregarComida(new Producto(nombre = "Pizza", precio = 300, valorEnergia = -5, valorHumor = 10, valorSaciedad = 100, valorHigiene = -5, valorSalud = -5,imagen="Pizza.jpg"))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Pizza")})
-	const jojaColaSuper = new ObjetoVisual(x=2,y=7,imagen="jojaCola.png",accionPrimaria={personaje => personaje.agregarComida(new Producto(nombre = "JojaCola", precio = 100, valorEnergia = 10, valorHumor = 10, valorSaciedad = 10, valorHigiene = -5, valorSalud = -5,imagen="lata.png"))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"JojaCola")})
-	const frutaSuper = new ObjetoVisual(x=2,y=11,imagen="fruta.png",accionPrimaria={personaje => personaje.agregarComida(new Producto(nombre = "Fruta", precio = 200, valorEnergia = 10, valorHumor = -5, valorSaciedad = 80, valorHigiene = -5, valorSalud = 10,imagen="frutita.png"))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Fruta")})
-	const comidaBarataSuper = new ObjetoVisual(x=7,y=7,imagen="comidaBarata.png",accionPrimaria={personaje => personaje.agregarComida(new Producto(nombre = "ComidaBarata", precio = 100, valorEnergia = -5, valorHumor = -5, valorSaciedad = 50, valorHigiene = -5, valorSalud = -10,imagen="comidabaratata.png"))},accionSecundaria={personaje => personaje.cantidadDe(carrito.comidas(),"Comida barata")})
-	const basura = new ObjetoVisual(x=11,y=5,imagen="basura.png",accionPrimaria={personaje => personaje.vaciarCarrito()})	
-	const cajera = new ObjetoVisual(x=1,y=3,imagen="Punto.png",accionPrimaria={personaje=>personaje.informarMontoYCantidad(cajera)})
-	const caja = new ObjetoVisual(x=4,y=3,imagen="Punto.png",accionPrimaria={personaje => personaje.movermeABoleta()})
-	const ahorrador = new ObjetoVisual(x=11,y=10,imagen="ahorradorT.png",accionPrimaria={personaje => personaje.seleccionarBarato()})
-    const salidaSuper =new ObjetoVisual(x=1,y=0,imagen="alfombra.png",accionPrimaria={personaje => personaje.volverACasa()})
-    const carameloRaro = new ObjetoVisual(x=7,y=3,imagen="CarameloRaro.png",accionPrimaria={personaje => personaje.comprarCaramelo()}) // Falta lo de q tiene q estar feliz para comprar
-    const curaCorona = new ObjetoVisual(x=7,y=5,imagen="curaCorona.jpg",accionPrimaria={personaje => personaje.agregarComida(new CuraTotal(nombre = "CuraTotal", precio = 2000, valorEnergia = 0, valorHumor = 0, valorSaciedad = 0, valorHigiene = 0, valorSalud = 0,imagen="curaCorona.jpg"))})
-    const alcoholGel = new ObjetoVisual(x=7,y=1,imagen="buenaSalud.jpg",accionPrimaria={personaje => personaje.agregarComida(new Producto(nombre = "AlcoholEnGel", precio = 200, valorEnergia = 0, valorHumor = 0, valorSaciedad = 0, valorHigiene = 50, valorSalud = 0,imagen="buenaSalud.jpg"))})
-    */
     const salidaBoleta = new ObjetoVisual(x=3,y=2,imagen="alfombra.png",accionPrimaria={personaje => personaje.movermeA(superMercado,1,1)})
     const borrarCarrito = new ObjetoVisual(x=3,y=5,imagen="basura.png",accionPrimaria={personaje => personaje.vaciarCarrito()})
     const saldo = new ObjetoVisual(x=10,y=5,imagen="cajera.jpg",accionPrimaria={personaje=>personaje.informarMontoYCantidad(saldo)})
@@ -100,15 +86,24 @@ object carrito {
 		const nombreProducto = producto.nombre()
 		notificador.decir(protagonista,"agregué une " + nombreProducto +" al carrito")
 	}
+	method sacarProducto(producto){
+		productos.remove(producto)
+	}
 	method vaciarCarrito(){
 		productos = []
 		game.say(protagonista,"El carrito esta vacio")
 	}
 	method calcularPrecio(){
-		return (productos.map({unProducto => unProducto.precioDelProducto()})).sum()	
+		return self.listaDePrecios().sum()	
+	}
+	method listaDePrecios(){
+		return productos.map({unProducto => unProducto.precioDelProducto()})
 	}
 	method cantidadDe(nombreProducto){
-		return (productos.filter({unProducto=>unProducto.nombre() == nombreProducto})).size()
+		return (self.listaDe(nombreProducto).size())
+	}
+	method listaDe(nombreDeProducto){
+		return productos.filter{unProducto=>unProducto.tieneMismoNombre(nombreDeProducto)}
 	}
 	method informarMontoYCantidad(loDice){
 		const precio = self.calcularPrecio()
@@ -117,9 +112,9 @@ object carrito {
 	method cobrar(){
 		const precio = self.calcularPrecio()
 		if(precio <= statsDelJuego.cantidadPlata()) {
-			protagonista.carritoVacio()
-			statsDelJuego.modificarPlata(-precio)
-			productos.forEach({producto => mochila.agregarProducto(producto)})                     
+			self.carritoVacio()
+			protagonista.gastarPlata(-precio)
+			self.guardarProductosEnMochila()                    
             productos = []
             game.clear()
             juanTamagochi.configurar()
@@ -127,8 +122,21 @@ object carrito {
             protagonista.plataActual()
 		}
 	}
+	method carritoVacio(){
+		if(productos.size() < 1){
+			game.say(protagonista,"no tengo nada en el carrito :/")
+			throw new NoSePudoAtenderException(message="No se puede atender a Juan porque tiene el carrito vacio")
+			}
+	}
+	method guardarProductosEnMochila(){
+		productos.forEach({producto => mochila.agregarProducto(producto)})
+	}
 	method seleccionarBarato(){
-		productos.filter({producto => producto.precio() > 200}).forEach({producto => productos.remove(producto)})
+		self.filtrarProductoPorPrecio(200).forEach({producto => self.sacarProducto(producto)})
+		game.say(protagonista,"Me quedo con lo barato")
+	}
+	method filtrarProductoPorPrecio(precio){
+		return productos.filter{producto=>producto.precio()>precio}
 	}
 	method encontrarProducto(){
 		return productos.find({producto => producto.precio() > 50 })
@@ -158,7 +166,6 @@ object mochila {
 	method image() = imagen
 	
 	method configurarTeclas(){
-		//game.whenKeyPressedDo(0,self.comerDeMochila(comidas.get(0)))
 		const lista =[0,1,2,3,4,5,6,7,8,9]
 		lista.forEach{numero => keyboard.num(numero).onPressDo{self.UsarObjetoEnMochila(productos.get(numero))}}
 	}

@@ -12,17 +12,7 @@ class Stat{
 	const property buenaImagen
 	const property mediaImagen
 	const property malaImagen
-/* 	
-	method modificarCantidad(cantidadQueModifica){
-		if(tieneLimite){
-			cantidad = (cantidad +cantidadQueModifica).min(100)
-		}
-		else {
-			cantidad += cantidadQueModifica
-		}
-		return cantidad
-	}
-	*/
+
 	method modificarCantidad(cantidadQueModifica){
 			cantidad += cantidadQueModifica
 			}
@@ -78,6 +68,9 @@ object statsDelJuego {
 	
 	method modificarPlata(cantidad){
 		cantidadPlata += cantidad // modifica plata en cantidad ingresada
+	}
+	method gastarPlata(cantidadDePlata){
+		self.modificarPlata(cantidadDePlata)
 	}
 	method agregarUnDia(){
 		dias += 1
