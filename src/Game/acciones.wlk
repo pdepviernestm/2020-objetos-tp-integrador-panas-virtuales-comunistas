@@ -17,11 +17,11 @@ object personaje {
 	    statsDelJuego.saludDePersonaje().modificarCantidad(valorSalud)
 	}
 	method comer(){                                //Agarra de la mochila y usa el objeto
-		const comida = mochila.encontrarComida()
-		comida.producirEfecto()
-		mochila.sacarComida(comida)				
+		const producto = mochila.encontrarProducto()
+		producto.producirEfecto()
+		mochila.sacarProducto(producto)				
 	}
-	method comprarComida(){            //compra comida por la compu
+	method delivery(){            //compra comida por la compu
       statsDelJuego.modificarPlata(-100)
       statsDelJuego.energiaDePersonaje().modificarCantidad(-5)
       statsDelJuego.humorDePersonaje().modificarCantidad(10)

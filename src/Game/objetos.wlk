@@ -51,7 +51,7 @@ class ObjetoVisual inherits ObjetoVisualBasico{
     const mostrarTeclas = new ObjetoVisual(x=6,y=0,imagen="teclas.png")
     
 	const puertaEntradaBanio=new ObjetoVisual(x=7,y=11,imagen="puertaBaño.jpg",accionPrimaria={personaje => personaje.movermeAlBanio()})
-	const pc=new ObjetoVisual(x=13,y=11,imagen="PC.jpg",accionPrimaria={personaje => personaje.trabajarEnCasa()} ,accionSecundaria={personaje => personaje.comprarComida()} )//
+	const pc=new ObjetoVisual(x=13,y=11,imagen="PC.jpg",accionPrimaria={personaje => personaje.trabajarEnCasa()} ,accionSecundaria={personaje => personaje.delivery()} )//
 	const cama=new ObjetoVisual(x=7,y=7,imagen="cama.jpg",accionPrimaria={personaje => personaje.dormir()})
 	const cocina=new ObjetoVisual(x=3,y=11,imagen="cocina.jpg",accionPrimaria={personaje => personaje.comer()})
 	const salida=new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg",accionPrimaria={personaje => personaje.movermeA(superMercado,1,1)},accionSecundaria={personaje => personaje.movermeA(oficina,8,0)})
@@ -87,7 +87,7 @@ class ObjetoVisual inherits ObjetoVisualBasico{
 
 
 object carrito {
-	var property comidas = []
+	var property productos = []
 	const property position= game.at(7,7)
 	const property protagonista = personajePrincipal
 	method image()="feliz.jpg"
@@ -95,20 +95,20 @@ object carrito {
 		game.addVisual(self)
 	}
 	
-	method agregarComida(comida){
-		comidas.add(comida)
-		const nombreComida = comida.nombre()
-		notificador.decir(protagonista,"agregué une " + nombreComida +" al carrito")
+	method agregarProducto(producto){
+		productos.add(producto)
+		const nombreProducto = producto.nombre()
+		notificador.decir(protagonista,"agregué une " + nombreProducto +" al carrito")
 	}
 	method vaciarCarrito(){
-		comidas = []
+		productos = []
 		game.say(protagonista,"El carrito esta vacio")
 	}
 	method calcularPrecio(){
-		return (comidas.map({unProducto => unProducto.precio()})).sum()	
+		return (productos.map({unProducto => unProducto.precioDelProducto()})).sum()	
 	}
 	method cantidadDe(nombreProducto){
-		return (comidas.filter({unProducto=>unProducto.nombre() == nombreProducto})).size()
+		return (productos.filter({unProducto=>unProducto.nombre() == nombreProducto})).size()
 	}
 	method informarMontoYCantidad(loDice){
 		const precio = self.calcularPrecio()
@@ -119,8 +119,8 @@ object carrito {
 		if(precio <= statsDelJuego.cantidadPlata()) {
 			protagonista.carritoVacio()
 			statsDelJuego.modificarPlata(-precio)
-			comidas.forEach({producto => mochila.agregarComida(producto)})                     
-            comidas = []
+			productos.forEach({producto => mochila.agregarProducto(producto)})                     
+            productos = []
             game.clear()
             juanTamagochi.configurar()
             protagonista.volverACasa()
@@ -128,52 +128,52 @@ object carrito {
 		}
 	}
 	method seleccionarBarato(){
-		comidas.filter({comida => comida.precio() > 200}).forEach({comida => comidas.remove(comida)})
+		productos.filter({producto => producto.precio() > 200}).forEach({producto => productos.remove(producto)})
 	}
-	method encontrarComida(){
-		return comidas.find({comida => comida.precio() > 50 })
+	method encontrarProducto(){
+		return productos.find({producto => producto.precio() > 50 })
 	}
 	
 }
 
 object mochila {
-	var property comidas = []
+	var property productos = []
 	var property x = 2
 	var property y = 2
 	const imagen = "interiorMochila.png"
 	const property position = game.origin()
-	method agregarComida(comida){
-		comidas.add(comida)
+	method agregarProducto(producto){
+		productos.add(producto)
 	}
-	method sacarComida(comida){
-		comidas.remove(comida)
+	method sacarProducto(producto){
+		productos.remove(producto)
 	}
-	method encontrarComida(){
-		return comidas.find({comida => comida.precio() > 50 })
+	method encontrarProducto(){
+		return productos.find({producto => producto.precio() > 50 })
 	}
-	method comer(comida){
+	method comer(producto){
 		
-		comida.producirEfecto()
+		producto.producirEfecto()
 	}
 	method image() = imagen
 	
 	method configurarTeclas(){
 		//game.whenKeyPressedDo(0,self.comerDeMochila(comidas.get(0)))
 		const lista =[0,1,2,3,4,5,6,7,8,9]
-		lista.forEach{numero => keyboard.num(numero).onPressDo{self.UsarObjetoEnMochila(comidas.get(numero))}}
+		lista.forEach{numero => keyboard.num(numero).onPressDo{self.UsarObjetoEnMochila(productos.get(numero))}}
 	}
 	
-	method UsarObjetoEnMochila(comida){
-		comida.producirEfecto()
-		self.sacarComida(comida)
-		game.removeVisual(comida)
+	method UsarObjetoEnMochila(producto){
+		producto.producirEfecto()
+		self.sacarProducto(producto)
+		game.removeVisual(producto)
 		self.cerrar()
 		self.abrir()
 	}
 
 	method abrir(){              
 		game.addVisual(self)
-		comidas.take(10).forEach{comida => comida.configurarVisual(x,y) self.calcularPocicion()}
+		productos.take(10).forEach{producto => producto.configurarVisual(x,y) self.calcularPocicion()}
 		self.configurarTeclas()
 	}
 	method calcularPocicion(){

@@ -12,11 +12,15 @@ class Producto inherits ObjetoVisualBasico{      //modificar para que ande mochi
 	var property valorHigiene
 	var property valorSalud
 	
+	method precioDelProducto(){
+		return precio
+	}
+	
 	method producirEfecto() {
 		personajePrincipal.cambiarStats(valorEnergia,valorHumor,valorSaciedad,valorHigiene,valorSalud)
 	}
 }
-class CuraTotal inherits Producto {  //arreglar para q ande false
+class CuraTotal inherits Producto { 
 	 
 	override method producirEfecto(){
 		personajePrincipal.meCure()

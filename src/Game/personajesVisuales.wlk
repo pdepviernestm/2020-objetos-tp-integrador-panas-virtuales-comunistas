@@ -17,14 +17,14 @@ object personajePrincipal {
 		if(!self.puedeComprarCaramelo()){
 			self.error("No puede comprar caramelo raro")
 		}
-		carrito.agregarComida(new Producto(nombre = "CarameloRaro", precio = 800, valorEnergia = 100, valorHumor = 100, valorSaciedad = 100, valorHigiene = 100, valorSalud = 100,imagen="CarameloRaro.png"))
+		carrito.agregarProducto(new Producto(nombre = "CarameloRaro", precio = 800, valorEnergia = 100, valorHumor = 100, valorSaciedad = 100, valorHigiene = 100, valorSalud = 100,imagen="CarameloRaro.png"))
 	}
 	
 	method puedeComprarCaramelo() = statsDelJuego.humorDePersonaje().cantidad() > 80
 	
 	
-	method agregarComida(comida){
-		carrito.agregarComida(comida)
+	method agregarProducto(producto){
+		carrito.agregarProducto(producto)
 		
 	}
 	method vaciarCarrito(){
@@ -45,8 +45,8 @@ object personajePrincipal {
 	method seleccionarBarato(){
 		carrito.seleccionarBarato()
 	}
-	method encontrarComida(){
-		return carrito.encontrarComida()
+	method encontrarProducto(){
+		return carrito.encontrarProducto()
 	}
 	method image() = "avatar.png" 
 	method saludo() = "Hola! :D" // Mensaje de prueba
@@ -88,8 +88,8 @@ object personajePrincipal {
 	method configurarVisualTrabajo(){
 		game.addVisual(trabajoActual)
 	}
-	method comprarComida(){
-		personaje.comprarComida()
+	method delivery(){
+		personaje.delivery()
 		game.say(self,"Me pido una pizza :D")
 		}
 	method contarDias(){
@@ -124,7 +124,7 @@ object personajePrincipal {
 	    boleta.agregarObjetosCarrito()
 	}
 	method carritoVacio(){
-		if(carrito.comidas().size() < 1){
+		if(carrito.productos().size() < 1){
 			game.say(self,"no tengo nada en el carrito :/")
 			throw new NoSePudoAtenderException(message="No se puede atender a Juan porque tiene el carrito vacio")
 
@@ -139,6 +139,7 @@ object personajePrincipal {
 		coronavirusDePersonaje.meContagie()
 	}
 	method meCure(){
+		game.say(self,"me siento Mejor")
 		coronavirusDePersonaje.meCure()
 	}
 	method tengoCorona() {             //Me da Corona q resta salud sobre tiempo
