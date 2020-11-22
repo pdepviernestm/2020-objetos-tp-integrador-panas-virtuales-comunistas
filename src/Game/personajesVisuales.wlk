@@ -34,7 +34,6 @@ object personajePrincipal {
 		return carrito.calcularPrecio()
 	}
 	method cantidadDe(nombreProducto){
-		//return carrito.cantidadDe(nombreProducto)
 		game.say(self,"Tengo "+carrito.cantidadDe(nombreProducto).toString()+" "+nombreProducto+"s")
 	}
 	method informarMontoYCantidad(loDice){
@@ -68,18 +67,20 @@ object personajePrincipal {
 		game.say(self,"Trabajo en la oficina :D")
 	}
 	method trabajarEnCasa(){
-		if (trabajoActual.trabajaEnCasa()){
-		trabajoActual.trabajar()
-		game.say(self,"Trabajo en Casa :D")
+		if(!trabajoActual.trabajaEnCasa())
+			self.error("No disfruto de HomeOffice")
+		else{
+			trabajoActual.trabajar()
+			game.say(self,"Trabajo en Casa :D")
 		}
 	}
 
 	method cambiarDeTrabajo(){
 		if(puedeCambiarDeTrabajo){
 			game.removeVisual(trabajoActual)
-			trabajos.listaTrabajos().add(trabajoActual)
-			trabajos.listaTrabajos().remove(trabajoActual)
-			trabajoActual=trabajos.listaTrabajos().head()
+			trabajos.agregarTrabajoALaLista(trabajoActual)
+			trabajos.sacarTrabajoDeLaLista(trabajoActual)
+			trabajoActual=trabajos.elPrimerTrabajoDeLaLista()
 			game.say(self,"Mi trabajo ahora es: "+trabajoActual.nombre())
 			self.configurarVisualTrabajo()
 			puedeCambiarDeTrabajo=false

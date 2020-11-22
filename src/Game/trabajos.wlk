@@ -24,6 +24,16 @@ object trabajos{
 	const property tecnicoPC = new Trabajos(nombre="Tecnico de PC", sueldo = 400, energiaqconsume = -30, humorqconsume = -10, imagen = "reparadorPC.jpg",trabajaEnCasa = false)
 		
 	var property listaTrabajos = [desarrollador, tecnicoPC]
+	
+	method agregarTrabajoALaLista(trabajo){
+		listaTrabajos.add(trabajo)
+	}
+	method sacarTrabajoDeLaLista(trabajo){
+		listaTrabajos.remove(trabajo)
+	}
+	method elPrimerTrabajoDeLaLista(){
+		return listaTrabajos.head()
+	}
 }
 
 

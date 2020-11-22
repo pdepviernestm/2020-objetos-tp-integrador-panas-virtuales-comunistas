@@ -16,8 +16,10 @@ class Producto inherits ObjetoVisualBasico{      //modificar para que ande mochi
 		return precio
 	}
 	
-	method producirEfecto() {/*Vamos a tener que romper todo para que el personaje tenga sus stats adentro y asi no romper el 
-								encapsulamiento*/
+	method producirEfecto() {/*Deberia haber una forma de solucionar esto, porque si tuvieramos que agregar un estado más sería
+	 							mucho bardo tener que definirlo, agregar un nuevo atributo para productos, sumarle a cada producto
+	 							la cantidad de afeccion para ese stat, agregarlo en el method cambiarStats tanto para el archivo
+	 							de personajesVisuales como para el de acciones, por el momento no tengo idea de cómo solucionarlo*/
 		personajePrincipal.cambiarStats(valorEnergia,valorHumor,valorSaciedad,valorHigiene,valorSalud)
 	}
 	method tieneMismoNombre(nombreDeProducto)=	nombre == nombreDeProducto
