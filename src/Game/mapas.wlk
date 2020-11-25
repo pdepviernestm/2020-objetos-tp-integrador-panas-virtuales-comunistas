@@ -50,6 +50,7 @@ const living = new Mapa(lista= [
 								new ObjetoVisual(x=0,y=5,imagen="salidaLiving.jpg",accionPrimaria={personaje => personaje.movermeA(superMercado,1,1)},accionSecundaria={personaje => personaje.movermeA(oficina,8,0)}),
 								new ObjetoVisual(x=5,y=11,imagen="heladera.png"),
 								new ObjetoVisual(x=10,y=11,imagen="Punto.png",accionPrimaria={personaje => personaje.contarDias()}),
+								new ObjetoVisual(x=11,y=7,imagen="arcade.png",accionPrimaria={personaje => personaje.jugar()}),
 								mostrarTeclas
 								],
 								imagen = "Piso.png")

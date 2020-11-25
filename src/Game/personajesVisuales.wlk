@@ -180,5 +180,10 @@ object personajePrincipal {
 	method cambiarStats(valorEnergia,valorHumor,valorSaciedad,valorHigiene,valorSalud){
 		personaje.cambiarStats(valorEnergia,valorHumor,valorSaciedad,valorHigiene,valorSalud)
 	}
+	method jugar(){
+		self.cansado(20)
+		game.say(self,"Que divertido :)")
+		personaje.cambiarStats(-20,100,-20,-10,0)
+	}
 	
 }
