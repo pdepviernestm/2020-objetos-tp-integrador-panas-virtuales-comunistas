@@ -16,6 +16,7 @@ object personaje {
         statsDelJuego.higieneDePersonaje().modificarCantidad(valorHigiene)	
 	    statsDelJuego.saludDePersonaje().modificarCantidad(valorSalud)
 	}
+
 	method comer(){                                //Agarra de la mochila y usa el objeto
 		const producto = mochila.encontrarProducto()
 		producto.producirEfecto()
@@ -59,9 +60,11 @@ object personaje {
 	}
 
 	method trabajar(humorqconsume, sueldo, energiaqconsume){                 // trabaja desde la compu
+
       statsDelJuego.humorDePersonaje().modificarCantidad(humorqconsume)
       statsDelJuego.modificarPlata(sueldo)
       statsDelJuego.energiaDePersonaje().modificarCantidad(energiaqconsume)
+
 	}
 
 	method salir(){                // sale a divertirse

@@ -32,8 +32,9 @@ class Stat{
 
 class StatConLimite inherits Stat{
 	var property limiteStats = 100
+	var property minimoDeStats = 0
 	
-	override method modificarCantidad(cantidadQueModifica){cantidad = (cantidad +cantidadQueModifica).min(limiteStats)}
+	override method modificarCantidad(cantidadQueModifica){cantidad = (cantidad +cantidadQueModifica).min(limiteStats).max(minimoDeStats)}
 }
 object statsDelJuego {
 	var property cantidadPlata = 10000
@@ -41,13 +42,14 @@ object statsDelJuego {
 	
 	
 	const property saludDePersonaje = new StatConLimite (cantidad = 100,x=14,y=12,buenaImagen="corazonLleno.png",mediaImagen="corazonMitad.png",malaImagen="corazonVacio.png")
-	const property energiaDePersonaje = new StatConLimite (cantidad=100,x=14,y=11,buenaImagen="energiaLlena.jpg",mediaImagen="energiaMitad.jpg",malaImagen="energiaVacia.jpg")
+	const property energiaDePersonaje = new StatConLimite (cantidad=100,x=14,y=11,buenaImagen="energiaLlena.jpg",mediaImagen="energiaMitad.jpg",malaImagen="energiaVacia.png")
 	const property humorDePersonaje = new StatConLimite (cantidad = 100,x=14,y=14,buenaImagen="feliz.jpg",mediaImagen="neutral.jpg",malaImagen="triste.jpg")
 	const property higieneDePersonaje = new StatConLimite (cantidad=100,x=14,y=13,buenaImagen="buenasalud.jpg",mediaImagen="pocaSalud.jpg",malaImagen="malaSalud.jpg")
 	const property saciedadDePersonaje = new StatConLimite (cantidad=100,x=14,y=10,buenaImagen="Pizza.jpg",mediaImagen="PizzaCortada.jpg",malaImagen="PizzaPorcion.jpg")
 	const property listaDeStats = [saludDePersonaje,energiaDePersonaje,humorDePersonaje,higieneDePersonaje,saciedadDePersonaje,coronavirusDePersonaje]
 	method configurarAfeccionesDeStats(){
 		game.onTick(20000,"disminuye humor cada 20 seg",{self.humorDePersonaje().modificarCantidad(-5)}) //-5
+		game.onTick(20000,"disminuye la energia cada 20 seg",{self.energiaDePersonaje().modificarCantidad(-5)}) //-5
 		game.onTick(30000,"disminuye higiene cada 30 seg",{self.higieneDePersonaje().modificarCantidad(-10)}) //30000 -10
 		game.onTick(30000,"disminuye hambre cada 30 seg",{self.saciedadDePersonaje().modificarCantidad(-10)})
 		game.onTick(5000,"proba. contagio",{self.activarProbabilidadDeContagio()}) 

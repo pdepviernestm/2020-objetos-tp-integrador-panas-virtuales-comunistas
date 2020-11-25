@@ -68,13 +68,24 @@ object personajePrincipal {
 		game.say(self,"Usando el trono :D")
 	}
 	method trabajar(){
+		self.cansado(trabajoActual.energiaqconsume())
 		trabajoActual.trabajar()
 		game.say(self,"Trabajo en la oficina :D")
 	}
+	method cansado(condicion){
+		if(condicion > statsDelJuego.energiaDePersonaje().cantidad()){
+			game.say(self,"Estoy cansado")
+			throw new NoTengoSuficienteEnergia(message="No le alcanza la energia para realizar la tarea")
+			
+		}
+		
+	}
+
 	method trabajarEnCasa(){
 		if(!trabajoActual.trabajaEnCasa())
 			self.error("No disfruto de HomeOffice")
 		else{
+			self.cansado(trabajoActual.energiaqconsume())
 			trabajoActual.trabajar()
 			game.say(self,"Trabajo en Casa :D")
 		}
@@ -108,7 +119,10 @@ object personajePrincipal {
 	}
 	
 	method movermeA(lugar, x, y){
+		const meCanso = 10
 		if(!coronavirusDePersonaje.contagiado()){
+			self.cansado(meCanso)
+			self.cambiarStats(-(meCanso),10,-10,-10,10)
 			juanTamagochi.modificarMapa(lugar, game.at(x,y))
 			personaje.salio(true)
 		}

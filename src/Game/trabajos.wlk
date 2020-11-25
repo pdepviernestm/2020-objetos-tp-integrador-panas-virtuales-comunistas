@@ -16,6 +16,7 @@ class Trabajos {
 	method trabajar(){
 		personaje.trabajar(humorqconsume, sueldo, energiaqconsume)
 	}
+	method energiaqconsume() = energiaqconsume.abs()
 }
 
 object trabajos{

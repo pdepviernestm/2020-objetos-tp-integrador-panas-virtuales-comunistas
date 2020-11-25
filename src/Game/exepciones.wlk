@@ -10,3 +10,7 @@ object exepciones {
   // lógica que se ejecuta si se lanzó
   // ese tipo de excepción
 }
+
+class NoTengoSuficienteEnergia inherits DomainException{
+	
+}
