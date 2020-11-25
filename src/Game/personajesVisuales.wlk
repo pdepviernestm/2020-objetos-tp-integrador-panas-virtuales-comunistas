@@ -12,6 +12,11 @@ object personajePrincipal {
 	var property position = game.origin()
 	var property trabajoActual = trabajos.listaTrabajos().head()
 	var puedeCambiarDeTrabajo=true
+	var property visualPersonaje = "avatar.png"
+	
+	method cambiarVisualPersonaje(visual){
+		visualPersonaje = visual
+	}
 	
 	method comprarCaramelo(){
 		if(!self.puedeComprarCaramelo()){
@@ -48,7 +53,7 @@ object personajePrincipal {
 	method encontrarProducto(){
 		return carrito.encontrarProducto()
 	}
-	method image() = "avatar.png" 
+	method image() = visualPersonaje    //"juan.jpg"//"avatar.png" 
 	method saludo() = "Hola! :D" // Mensaje de prueba
 	method dormir(){
 		personaje.dormir()

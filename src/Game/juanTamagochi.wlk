@@ -70,6 +70,7 @@ object juanTamagochi {                                                  // Nuest
     	keyboard.t().onPressDo {self.mostrandoStats()}
     	keyboard.m().onPressDo {if(!game.hasVisual(mochila)) mochila.abrir() else {mochila.cerrar()}}
     	keyboard.h().onPressDo {self.mostrandoAyuda()}
+    	keyboard.n().onPressDo {if(protagonista.visualPersonaje() == "avatar.png") self.juanDesnudo() else {self.juanVestido()}}
 		statsDelJuego.configurarAfeccionesDeStats()
 		game.onTick(100,"verificar si muere",{if(game.hasVisual(protagonista)) self.muerte(protagonista)}) // MATA A JUAN :( pd: Cuando se muere rompe todo)
 		keyboard.j().onPressDo{protagonista.cambiarDeTrabajo()}
@@ -86,6 +87,15 @@ object juanTamagochi {                                                  // Nuest
 			mostrarStats = false	
 		} 
 	}
+	
+	method juanVestido(){
+		protagonista.cambiarVisualPersonaje("avatar.png")
+	}
+	
+	method juanDesnudo(){
+		protagonista.cambiarVisualPersonaje("juan.jpg")
+	}
+		
 	
 	method mostrandoAyuda(){
 		if(game.hasVisual(mostrarTeclas)){
