@@ -4,9 +4,13 @@ Nombre de grupo:
 					Panas Virtuales Comunistas
 
 Integrantes: 
+
 	-Diego Renato Pisconte Castillo
+	
 	-Matías Villa
+	
 	-Tomás Bavutti
+	
 	-Tomás Augusto De Lisio
 
 # Objetivo del Juego
