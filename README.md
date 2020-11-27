@@ -15,7 +15,7 @@ Integrantes:
 
 # Objetivo del Juego
 
-Sobrevivir la mayor cantidad de dias
+Lograr que Juan sobreviva
 
 # Teclas
 
